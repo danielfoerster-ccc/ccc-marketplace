@@ -12,7 +12,7 @@ description: |
 allowed-tools: "Read, Write, Glob"
 metadata:
   author: Daniel Förster · Claude Cowork Consultants
-  version: 2.1.0
+  version: 2.2.0
   created: 2026-03-06
   updated: 2026-03-18
   language: English
@@ -21,7 +21,7 @@ metadata:
 
 # Daily Check-in Skill
 
-**Workflow: Context Load → Rock Health → Revenue First → TOP 3 → Dependencies → Output**
+**Workflow: Context Load → Rock Health → Revenue First → TOP 3 → Skill Scan → Dependencies → Output**
 
 10-minute morning session. No bloat.
 
@@ -85,6 +85,20 @@ Confirm or adjust based on today's shape. Surface it as: "X hours available — 
 "From the Drumbeat — what are the three things that, if done, make today a success?"
 
 Pre-suggest TOP 3 based on: Revenue First action + today's day-type items from the Drumbeat. Confirm or let the user swap.
+
+---
+
+## Phase 2.5 — Skill Scan (automatic, no questions)
+
+After TOP 3 are locked, silently scan the installed skills and plugins (CCC + BenAI + standalone). If any skill directly matches one of today's TOP 3 tasks, mention it in one line:
+
+> "💡 For TOP 1 you could use `sales:lead-qualification`. For TOP 3 the `marketing:linkedin-writer` might help."
+
+Rules:
+- Only suggest if there's a genuine, high-confidence match. No forced suggestions.
+- Maximum 1-2 suggestions. If nothing matches, say nothing.
+- Also check the Capability Map at `00 - COMMAND CENTER/Capability Map.md` for network-layer matches (e.g., "Heiko could handle the implementation part of TOP 2").
+- This is a 10-second step, not a deep analysis. Keep it lean.
 
 ---
 
