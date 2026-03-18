@@ -16,6 +16,7 @@ description: >
   profile score", "improve my profile", "LinkedIn landing page", "LinkedIn copy",
   "update my LinkedIn", "fix my LinkedIn".
 allowed-tools: Read, Bash, Write, Glob, Grep
+distribution: marketplace-ready
 ---
 
 # CCC LinkedIn Profile Audit Skill

@@ -1,99 +1,125 @@
 ---
 name: daily-checkin
 description: |
-  Runs a lean 10-minute daily morning check-in. Reads the active weekly plan to pull
-  today's day type, TOP 3 goals, and remaining tasks — then guides through five quick
-  inputs: Revenue First question, Daily Drumbeat task list, Today's TOP 3, supporting
-  tasks, and dependencies. Outputs a dated daily check-in file to the vault. Update
-  the Drumbeat table throughout the day as tasks move. Run every morning before the
-  outreach block starts.
+  Runs a lean 10-minute daily morning check-in. Loads Rock Health from the active
+  sprint, the full weekly Drumbeat, and the Braindump Vault — then guides through:
+  Rock Health snapshot, Revenue First, Today's TOP 3, and Dependencies. Outputs a
+  dated Daily Work Notes file to the vault. The Drumbeat is the full week's task
+  map — updated daily, not rebuilt daily. Run every morning before the outreach
+  block starts.
   Trigger on: "daily check-in", "morning check-in", "start my day", "daily plan",
   "daily drumbeat", "plan today", "morning session".
 allowed-tools: "Read, Write, Glob"
 metadata:
   author: Daniel Förster · Claude Cowork Consultants
-  version: 1.0.0
+  version: 2.1.0
   created: 2026-03-06
+  updated: 2026-03-18
   language: English
+  distribution: marketplace-ready
 ---
 
 # Daily Check-in Skill
 
-**Workflow: Context Load → 5 Inputs → Output**
+**Workflow: Context Load → Rock Health → Revenue First → TOP 3 → Dependencies → Output**
 
-10-minute morning session. Five components, no bloat.
+10-minute morning session. No bloat.
 
 ---
 
 ## Phase 0 — Context Load (automatic, no questions)
 
-1. Find and read the most recent `*Weekly Plan*` file in `A - A - Empire/A - Daily Notes/`
-2. Identify today's day type from the day assignments table (Outreach / Delivery / Infrastructure)
-3. Pull the week's TOP 3 goals and the TOP 10 task list with current checkbox states
-4. Surface this in one compact block before asking anything:
+Load these three files before asking anything:
+
+1. **Sprint file** — find the most recent `*90 Day Strategic Goal Attainment Sprint*` in `00 - COMMAND CENTER/Daily Notes/` — extract the 3 Rocks and their current status
+2. **Weekly Plan** — find the most recent `*Weekly Plan*` in `00 - COMMAND CENTER/Daily Notes/` — extract: today's day type, week's TOP 3, and the full Drumbeat table with current statuses
+3. **Braindump Vault** — search for the most recent `*Braindump Vault*` in `00 - COMMAND CENTER/Daily Notes/` — it lives in the current week's folder as `YY-MM-DD - Braindump Vault.md` — note any `[ ]` A-items not already in the Drumbeat
+
+Surface this compact block before asking anything:
 
 ```
-Today is [Day], [Date]. Day type: [Outreach / Delivery / Infrastructure]
+Today is [Day], [Date]. Week [N] of The Quarter of [Theme].
+Day type: [Outreach / Delivery / Infrastructure / Transition]
+
+🏔️ Rock Health:
+  Rock 1 — [Name]: [🔴 / 🟡 / 🟢] [one-line status]
+  Rock 2 — [Name]: [🔴 / 🟡 / 🟢] [one-line status]
+  Rock 3 — [Name]: [🔴 / 🟡 / 🟢] [one-line status]
+
 Week's TOP 3: (1) [Goal] (2) [Goal] (3) [Goal]
-Remaining from TOP 10: [list unchecked tasks only]
+Drumbeat: [N] tasks · [N] done · [N] in progress · [N] to do
 ```
 
-If no weekly plan file exists, proceed without it and note: "No weekly plan found — I'll build today's check-in from scratch."
+If no weekly plan or sprint file exists, proceed without and note it.
 
 ---
 
 ## Phase 1 — Revenue First (1 question)
 
 **Q1**
-"Revenue First: what is the one action you can take today that moves money forward? A call made, a message sent, a proposal closed, a follow-up done. Name it specifically."
+"Where does TODAY the money come from?"
 
-This answer becomes the first item in the Drumbeat and the anchor for TOP 3.
+If it's already obvious from the Drumbeat (e.g., a booked call today), confirm it rather than asking again.
 
 ---
 
-## Phase 2 — Daily Drumbeat Setup (1 input)
+## Phase 1.5 — Timeboxes (confirm or adjust)
+
+Daniel's default daily container — use this unless he says otherwise:
+
+| Block | Hours |
+|-------|-------|
+| Build (CCC GTM / infrastructure) | 2h |
+| Calls / Revenue / Outreach | 5h |
+| Lunch break | 1h |
+| Delivery | 2h |
+| Close / organise / pipeline admin | 1h |
+
+Confirm or adjust based on today's shape. Surface it as: "X hours available — default container: 2h build · 5h calls · 1h lunch · 2h delivery · 1h close. Any changes?"
+
+---
+
+## Phase 2 — TODAY's TOP 3 (1 input)
 
 **Q2**
-"Let's build your Drumbeat — the complete task list for today. I'll pre-populate it with your Revenue First action and any unchecked items from this week's TOP 10 that belong today. Add anything else you want on today's list, and tell me the priority of each: High / Mid / Low."
+"From the Drumbeat — what are the three things that, if done, make today a success?"
 
-Pre-populate with:
-- Revenue First action (from Q1) → High
-- Any TOP 10 tasks assigned to today's day type → carry over their priority
-- Leave status as `To Do` for all
-
-The Drumbeat is a live table. It gets updated when the user comes back during the day and reports progress. See update instructions at the end of this skill.
+Pre-suggest TOP 3 based on: Revenue First action + today's day-type items from the Drumbeat. Confirm or let the user swap.
 
 ---
 
-## Phase 3 — TOP 3 for Today (1 input)
+## Phase 3 — Dependencies (1 input)
 
 **Q3**
-"From everything on today's Drumbeat: what are the three things that, if done, make today a success? These are your TOP 3."
+"Quick check: anyone waiting on you today? Anything you're waiting on that could move today?"
 
-If the Revenue First action is obvious as #1, say so and confirm. Don't make the user repeat themselves.
-
----
-
-## Phase 4 — Dependencies (1 input)
-
-**Q4**
-"Quick dependencies check: who are you waiting on today? And is anyone waiting on you for something?"
-
-Keep this to one line per dependency. If none, skip.
+Pull from last available dependencies list as default. User confirms or updates. Keep to one line per item.
 
 ---
 
-## Phase 5 — Output
+## Phase 4 — Output
 
-Save a new file at:
-`A - A - Empire/A - Daily Notes/[YEAR]/[QUARTER]/[YYYY-MM-DD] - Daily Check-in.md`
+**File location:**
+`00 - COMMAND CENTER/Daily Notes/[YEAR (folder)]/[QUARTER (folder)]/[WEEK FOLDER e.g. 26-03-15 to 21]/YY-MM-DD - Daily Work Notes.md`
 
-Use this exact template:
+Always save into the correct week subfolder. If the week folder doesn't exist yet, create it first.
+
+**Template:**
 
 ```markdown
-# Daily Check-in — [Day, Date]
-**Day Type:** [Outreach / Delivery / Infrastructure]
+# Daily Work Notes — [Day], [Date]
+**Day Type:** [Outreach / Delivery / Infrastructure / Transition]
 **Week's TOP 3 (reference):** [Goal 1] · [Goal 2] · [Goal 3]
+
+---
+
+## 🏔️ Rock Health
+
+| Rock | Target (May 31) | Status | This Week's Move |
+|------|----------------|--------|-----------------|
+| Rock 1 — [Name] | [Target] | 🔴/🟡/🟢 | [move] |
+| Rock 2 — [Name] | [Target] | 🔴/🟡/🟢 | [move] |
+| Rock 3 — [Name] | [Target] | 🔴/🟡/🟢 | [move] |
 
 ---
 
@@ -104,81 +130,99 @@ Use this exact template:
 
 ## 🥁 Daily Drumbeat
 
-| # | Task | Priority | Status | Notes |
-|---|------|----------|--------|-------|
-| 1 | [Revenue First action] | High | To Do | |
-| 2 | [Task] | High | To Do | |
-| 3 | [Task] | High | To Do | |
-| 4 | [Task] | Mid | To Do | |
-| 5 | [Task] | Mid | To Do | |
-| 6 | [Task] | Mid | To Do | |
-| 7 | [Task] | Low | To Do | |
-| 8 | [Task] | Low | To Do | |
+*The full week's task map — updated daily, not rebuilt daily.*
+*Carry statuses forward from the previous day. Add new tasks at the bottom.*
 
-*Status options: To Do · In Progress · Done · Blocked*
-*Update this table throughout the day.*
+| # | Task | Day | Priority | Status | Notes |
+|---|------|-----|----------|--------|-------|
+| 1 | [Revenue First / top priority] | [Day] | High | To Do | |
+| 2 | [Task] | [Day] | High | To Do | |
+| … | … | … | … | … | |
+
+*Status options: To Do · In Progress · Done ✅ · Blocked*
+*Update throughout the day. Completed tasks stay in the table — do not remove.*
 
 ---
 
 ## ✅ Today's TOP 3
-1. [Task / Goal]
-2. [Task / Goal]
-3. [Task / Goal]
-
----
-
-## 📋 Supporting Tasks
-- [ ] [Task]
-- [ ] [Task]
-- [ ] [Task]
+1. [Task]
+2. [Task]
+3. [Task]
 
 ---
 
 ## 🔗 Dependencies
-**Waiting on:** [Name — what for] *(or: none)*
-**They're waiting on me:** [Name — what for] *(or: none)*
+
+**They're waiting on me:**
+- [Name — what for]
+
+**I'm waiting on:**
+- [Name — what for]
 
 ---
 
-## End-of-Day (fill in before shutdown)
+## 📝 Notes
+*(Add during the day)*
+
+---
+
+## ⏱️ Timeboxes
+**Default container:** 2h build · 5h calls · 1h lunch · 2h delivery · 1h close
+
+| Block | Planned | Actual |
+|-------|---------|--------|
+| Build | 2h | — |
+| Calls / Outreach | 5h | — |
+| Lunch | 1h | — |
+| Delivery | 2h | — |
+| Close / Admin | 1h | — |
+
+---
+
+## End-of-Day
 **TOP 3 completed:** Yes / Partial / No
 **Revenue First done:** Yes / No
-**Carry-forward to tomorrow:** [tasks not completed]
-**One thing that would have made today better:**
+**Timeboxes held:** Yes / Partial / No
+**Carry-forward to tomorrow:** [tasks]
+**What went well:**
+**What needs work:**
+**Never again:**
 ```
 
 After saving, confirm the file path and say:
-"Your day is set. Revenue First action is locked. Start the outreach block now."
+"Your day is set. Revenue First is locked."
 
 ---
 
-## Drumbeat Updates (during the day)
+## Drumbeat Rules
 
-When the user returns mid-day or end-of-day and reports progress:
+The Daily Drumbeat is the **full week's task map** — not a daily to-do list rebuilt each morning.
 
-1. Read the existing daily check-in file
-2. Update the Status column for each task mentioned: `To Do → In Progress → Done / Blocked`
-3. Add brief notes if the user provides context (e.g., "blocked: waiting for Justin reply")
-4. If new tasks come in, append them to the Drumbeat table
-5. Save the updated file back to the same path (overwrite — this is a live document)
+- **Monday (first day of week):** build the Drumbeat fresh from the Weekly Plan's full task list
+- **Tuesday–Sunday:** carry the Drumbeat forward with updated statuses — do not rebuild
+- New tasks that arrive during the week get appended to the bottom
+- Completed tasks stay in the table marked Done ✅ — they are not removed
+- The Drumbeat always shows the full picture: done, in progress, to do
 
-Trigger phrases for Drumbeat updates:
+**Drumbeat update triggers** (mid-day or end-of-day):
 - "Update my drumbeat"
 - "Mark [task] as done"
 - "I finished [task]"
 - "[Task] is blocked"
 - "Add [task] to today"
 
+When updating: read the existing daily file → update status column → append new tasks if any → overwrite the file.
+
 ---
 
 ## Rules
 
-- Always load the weekly plan first. The day type determines what kind of work the Drumbeat should be loaded with.
-- Revenue First is always item #1 in the Drumbeat and always High priority.
-- TOP 3 come from the Drumbeat — don't invent new goals.
-- Supporting tasks are anything on the Drumbeat below priority High that didn't make the TOP 3.
-- Keep the session to 4 questions. If context load gives enough to pre-fill everything, reduce to 2 questions (Q1 + Q4).
-- The daily file is a live document — it gets updated throughout the day, not just in the morning.
-- Always create a new dated file in the morning. The Drumbeat update flow overwrites the same file.
+- Always load Sprint + Weekly Plan + Braindump Vault in Phase 0. Rock Health appears before everything else.
+- Revenue First is always the anchor of TODAY's TOP 3.
+- TODAY's TOP 3 comes from the Drumbeat — don't invent goals.
+- The Drumbeat is a weekly map, not a daily list. Carry it forward.
+- Keep the session to 3 questions max. If Phase 0 pre-fills enough, reduce to 1–2.
+- Always create a new dated file in the morning in the correct week subfolder.
+- The daily file is a live document — updated throughout the day, not just morning.
+- End-of-Day section stays blank at creation — filled via Drumbeat update or checkout.
 - Keep all output in English.
-- End-of-Day section stays blank at creation — filled by the user or via a Drumbeat update session.

@@ -14,6 +14,7 @@ description: >
   repeatable, documented procedure.
   Requires: Read, Write, Bash tools.
 allowed-tools: Read, Write, Bash
+distribution: marketplace-ready
 ---
 
 # CCC SOP Creator

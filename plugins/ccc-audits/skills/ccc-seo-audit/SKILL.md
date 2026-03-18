@@ -12,6 +12,7 @@ description: >
   "security headers", "robots.txt", "sitemap audit", "GSC data".
   For creating SEO pages at scale, see programmatic-seo.
   For GSC-only content optimization, see seo-optimizing.
+distribution: marketplace-ready
 ---
 
 # CCC SEO Audit Skill

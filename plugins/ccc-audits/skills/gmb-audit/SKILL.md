@@ -12,6 +12,7 @@ description: >
   "local search ranking", "profile completeness", "GMB optimization", or "GBP health check".
 
 allowed-tools: Read, Write, Bash, WebSearch, WebFetch, mcp__Claude_in_Chrome__tabs_context_mcp, mcp__Claude_in_Chrome__navigate, mcp__Claude_in_Chrome__computer, mcp__Claude_in_Chrome__find, mcp__Claude_in_Chrome__read_page, mcp__Claude_in_Chrome__get_page_text, mcp__Claude_in_Chrome__javascript_tool
+distribution: marketplace-ready
 ---
 
 # GMB Audit Skill

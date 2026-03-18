@@ -16,6 +16,7 @@ metadata:
   created: 2026-03-06
   language: English
   framework: CCC Planning System — daily close-out
+  distribution: marketplace-ready
 ---
 
 # Daily Checkout Skill
@@ -28,7 +29,7 @@ metadata:
 
 ## Phase 0 — Context Load (automatic)
 
-1. Find today's daily check-in file: search for today's date in `A - A - Empire/A - Daily Notes/`
+1. Find today's daily check-in file: search for today's date in `00 - COMMAND CENTER/Daily Notes/`
    - Format: `YY-MM-DD - Daily Check-in.md`
 2. Read the file — surface the TOP 3 and current Drumbeat status in one compact block:
 

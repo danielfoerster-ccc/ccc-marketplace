@@ -19,6 +19,7 @@ metadata:
   version: 1.2.0
   updated: 2026-03-12
   license: Free to use and share. Attribution appreciated.
+distribution: marketplace-ready
 ---
 
 # Skill Creator

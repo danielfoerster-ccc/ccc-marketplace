@@ -18,6 +18,7 @@ metadata:
   created: 2026-03-06
   language: English
   framework: Buy Back Your Time — Dan Martell (DRIP Matrix + ICE + OCA scoring)
+distribution: marketplace-ready
 ---
 
 # Buyback Audit Skill

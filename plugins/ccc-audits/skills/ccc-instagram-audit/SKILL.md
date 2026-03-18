@@ -13,6 +13,7 @@ description: >
   "Instagram audit", "IG audit", "check their Instagram", "how is the
   Instagram performing", "Instagram content review", "social media audit",
   "Instagram score", "Instagram report".
+distribution: marketplace-ready
 ---
 
 # CCC Instagram Audit Skill

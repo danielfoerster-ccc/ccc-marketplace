@@ -21,6 +21,7 @@ metadata:
   updated: 2026-03-02
   part-of: GTM Strategy Plugin — Part 1
   based-on: Live GTM discovery session for CCC, March 2026
+distribution: marketplace-ready
 ---
 
 # GTM 90-Day Launch Plan Skill

@@ -1,210 +1,263 @@
 ---
 name: weekly-planning
 description: |
-  Runs a structured weekly review and planning session. Reads the active 90-day sprint
-  file to surface current Rocks and Pebbles as context, then guides through a lean
-  review of the past week and a concrete plan for the next. Outputs a dated weekly plan
-  file to the vault. Run on Sunday evening or Monday morning before the week begins.
+  Runs a structured weekly review and planning session. Loads the active 90-day sprint,
+  last week's plan, and the Braindump Vault. Guides through: Week Review (wins, gaps,
+  decisions, learnings, routines, issues, dependencies), Braindump (read vault + dump
+  new items + re-prioritize), and Week Plan (TOP 3, week shape, daily container, carry-
+  forwards, parking lot). Creates the new week folder and saves the weekly plan file.
+  Outputs a dated weekly plan to the vault. Run on Sunday evening or Monday morning.
   Trigger on: "weekly planning", "weekly review", "plan my week", "week review",
   "Sunday planning", "start of week", "weekly check-in".
-allowed-tools: "Read, Write, Glob"
+allowed-tools: "Read, Write, Glob, Bash"
 metadata:
   author: Daniel Förster · Claude Cowork Consultants
-  version: 1.0.0
+  version: 2.0.0
   created: 2026-03-06
+  updated: 2026-03-15
   language: English
   framework: HEROIC SOP + Flashhub cadence hybrid
+  distribution: marketplace-ready
 ---
 
 # Weekly Planning Skill
 
-**Workflow: Context Load → Week Review → Week Plan → Output**
+**Workflow: Context Load → Week Review → Braindump → Week Plan → Output**
 
-Lean weekly review and planning session. No spiritual frameworks. Pure execution.
-
-Session time: ~20 minutes.
+Session time: ~25 minutes.
 
 ---
 
 ## Phase 0 — Context Load (automatic, no questions)
 
-Before asking anything:
+Before asking anything, load all three:
 
-1. Find and read the most recent `*90 Day Strategic Goal Attainment Sprint*` file in `A - A - Empire/A - Daily Notes/`
-2. Find and read last week's `*Weekly Plan*` file if it exists
-3. Surface a brief summary: "Your active Rocks this quarter: [list]. Your Pebbles for each: [list]."
-4. This becomes the reference frame for the entire session — no need to re-state OKRs during the review or plan.
+1. **Sprint file** — find the most recent `*90 Day Strategic Goal Attainment Sprint*` in `00 - COMMAND CENTER/Daily Notes/` — extract Rocks, Pebbles, quarter theme
+2. **Last week's Weekly Plan** — find the most recent `*Weekly Plan*` file — extract last week's TOP 3, Rock statuses, carry-forwards, and open dependencies
+3. **Braindump Vault** — search for the most recent `*Braindump Vault*` in `00 - COMMAND CENTER/Daily Notes/` — it lives in the previous week's folder as `YY-MM-DD - Braindump Vault.md` — note A-items and B-items for context
+
+Surface a brief summary:
+```
+Active Sprint: The Quarter of [Theme] · Week [N] of 13
+Rocks: (1) [Rock 1] (2) [Rock 2] (3) [Rock 3]
+Last week's carry-forwards: [list]
+Braindump Vault: [N] A-items open · [N] B-items open
+```
 
 ---
 
-## Phase 1 — Week Review (9 questions, ~12 min)
+## Phase 1 — Week Review (~12 min)
 
 Ask one at a time. Wait for each answer.
 
 **Q1 — Wins**
 "What were this week's wins? Revenue, calls made, clients signed, milestones hit, progress on Rocks. However small — list them."
 
-**Q2 — What didn't happen**
-"What should have happened this week that didn't? Give me the honest one-sentence reason for each."
+*Tip: offer to read the week's daily work notes to unearth wins the user may have forgotten.*
 
-**Q3 — Key decisions + assumptions**
-"What were the most important decisions you made this week? And were the assumptions behind those decisions actually correct — or just the most available ones at the time?"
+**Q2 — What didn't move**
+"What should have happened this week that didn't? One honest sentence per item."
+
+**Q3 — What changes next week**
+"Based on the wins and gaps: what's the one thing you're doing differently next week?"
 
 **Q4 — Key learnings**
-"What did you learn this week that's worth holding onto? One to three things maximum."
+"What did you learn this week worth holding onto? One to three things max."
 
 **Q5 — Routines maintained**
-"Did you maintain your core routines this week? Specifically: was the outreach block protected? Rate it honestly — not for guilt, for calibration."
+"Did you maintain your core routines? Was the daily container held? Rate it honestly — not for guilt, for calibration."
 
 **Q6 — Current issues**
-"What are the live issues in your business and life right now — the things that are creating friction, slowing momentum, or sitting unresolved in the back of your mind?"
+"What live issues are creating friction or sitting unresolved — business or life?"
 
-**Q7 — Solutions**
-"For each issue you just listed: what's the solution or next action? Even a partial answer counts."
-
-**Q8 — Assets from issues**
-"From solving any of those issues: is there a system, SOP, process, or reusable asset that should be built? If yes, name it — it goes into next week's TOP 10."
-
-**Q9 — Dependencies**
-"Who are you waiting on right now? And who is waiting on you?"
+**Q7 — Dependencies**
+"Who are you waiting on? Who is waiting on you?"
 
 ---
 
-## Phase 2 — Week Plan (5 inputs, ~8 min)
+## Phase 1b — Braindump (~5 min)
 
-**Q10 — TOP 3 Goals**
-"What are the three things you absolutely must achieve this week? One per major focus area (ABS, CCC, personal or infrastructure). These are your non-negotiables."
+After the review, before planning.
 
-**Q11 — TOP 10 Tasks**
-"List up to 10 tasks you want to complete this week — beyond the TOP 3. Include anything carried over from last week, assets identified in Q8, and Pebble-level activities from your sprint. Prioritise as you list them."
+1. Read the Braindump Vault — surface current A and B items
+2. Ask: "Before we plan: full brain dump. Everything on your mind — tasks, ideas, commitments, nagging things. Don't organise it, just dump it."
+3. Take the dump and re-prioritize the full list into A / B / C:
+   - **A** — Urgent & Important (must address this week or has hard deadline)
+   - **B** — Important, semi-urgent (aim for this week, flex if needed)
+   - **C** — Parking Lot / Someday (captured, not this week)
+4. Create this week's Braindump Vault file at `[new week folder]/YY-MM-DD - Braindump Vault.md` (Sunday date of the new week):
+   - Copy all open `[ ]` and this-week `[ ] →` items from last week's vault, carrying their status
+   - Add new items from the user's dump, assigned to A / B / C
+   - Mark items that were completed this past week as `[x]` (move to Done section)
+   - Re-sort A / B / C based on updated priorities
+   - Update "Last updated" date
+5. Each week's Braindump Vault is a snapshot — a fresh file per week in the week folder. This creates a record of how the braindump evolves week to week. Items are never deleted from a week's file, only status-updated.
 
-**Q12 — Day assignments**
-"Let's assign the week. Which days are Outreach days (ABS calls / CCC LinkedIn+email), which are Delivery days (client work), and which are Infrastructure days (systems, skills, planning)?
-Standard template to confirm or adjust:
-- Mon / Wed: Outreach (ABS)
-- Tue / Thu: Outreach (CCC) or Delivery
-- Fri: Infrastructure + weekly review prep
-Just tell me what changes, if anything."
+---
 
-**Q13 — Pre-mortem**
-"What's the most likely thing that derails this week — and what's your pre-decided response if it happens?"
+## Phase 2 — Week Plan (~8 min)
 
-**Q14 — Meeting audit**
-"Are there any meetings this week you can cancel, shorten, or move to protect your outreach block?"
+**Q8 — TOP 3 Goals**
+"What are the three outcomes that, if achieved by Friday, make this week a success?"
 
-**Q15 — Delegation queue**
-"Which tasks from your TOP 10 are ready to hand off this week — to Claude or a team member? Think: research, drafting, building, analysis, structured workflows, admin — anything where someone else can produce a complete output if you give them good context. List them and note who you're handing off to and what context they'll need."
+**Q9 — Week shape**
+"Let's assign the week. What's the primary focus for each day — Outreach / Delivery / Infrastructure? And what are the non-negotiable milestones for each day?"
 
-Pre-populate with any tasks from the TOP 10 that match common delegation patterns (research, writing, systems-building, analysis, document creation, admin).
+**Q10 — Daily container**
+"What's your daily rhythm this week? Confirm or adjust the container:
+- Wake time
+- Deep Work I (until when)
+- Reset (movement + EFT)
+- Lunch + rest
+- Deep Work II (until when)
+- Evening presence
+- Shutdown + sleep"
+
+**Q11 — Carry-forwards**
+"From last week's open items and the Braindump Vault A-list: which carry-forwards get hard day slots this week, and which go to the Parking Lot?"
+
+**Q12 — Parking Lot**
+"What's explicitly NOT this week — captured but parked?"
+
+**Q13 — Daily Drumbeat**
+"What are the non-negotiable recurring items every day this week?"
 
 ---
 
 ## Phase 3 — Output
 
-Save a new file at:
-`A - A - Empire/A - Daily Notes/[YEAR]/[QUARTER]/[YYYY-MM-DD] - Weekly Plan.md`
+**Folder creation:**
+Before saving, create the new week folder:
+`00 - COMMAND CENTER/Daily Notes/[YEAR (folder)]/[QUARTER (folder)]/[YY-MM-DD to YY-MM-DD]/`
 
-Use this exact template:
+Use the format `26-03-16 to 21` for week of March 16–21.
+
+**File location:**
+`[new week folder]/YY-MM-DD - Weekly Plan.md` (date = Monday of the week)
+
+**Template:**
 
 ```markdown
 # Weekly Plan — Week of [Monday Date]
-**Created:** [Today's Date]
-**Active Quarter:** [Sprint period from loaded file]
+**Sprint:** [Quarter name and dates]
+**Week:** [N] of 13
+**Theme:** [One-line theme for this week]
 
 ---
 
-## This Week's Rocks & Pebbles (from 90-Day Sprint)
-| Rock | Pebble Targets This Week |
-|---|---|
-| [Rock 1 — S&M Revenue] | [Target] |
-| [Rock 2 — S&M Thought Leadership] | [Target] |
-| [Rock 3 — Operations] | [Target] |
+## 🏔️ Rock Health Check
+
+| Rock | Target (end of sprint) | Status | This Week's Move |
+|------|----------------------|--------|-----------------|
+| Rock 1 — [Name] | [Target] | 🔴/🟡/🟢 | [move] |
+| Rock 2 — [Name] | [Target] | 🔴/🟡/🟢 | [move] |
+| Rock 3 — [Name] | [Target] | 🔴/🟡/🟢 | [move] |
 
 ---
 
-## TOP 3 Goals This Week
-1. [Goal — Business/Area]
-2. [Goal — Business/Area]
-3. [Goal — Business/Area]
+## 🎯 TOP 3 This Week
+
+1. [Goal]
+2. [Goal]
+3. [Goal]
 
 ---
 
-## TOP 10 Tasks
-- [ ] 1. [Task] — [Priority: High/Mid/Low]
-- [ ] 2. [Task]
-- [ ] 3. [Task]
-- [ ] 4. [Task]
-- [ ] 5. [Task]
-- [ ] 6. [Task]
-- [ ] 7. [Task]
-- [ ] 8. [Task]
-- [ ] 9. [Task]
-- [ ] 10. [Task]
+## 🗓️ Week Shape
+
+### [Day] — [Theme]
+**Milestone:** [non-negotiable outcome]
+- [Task]
+- [Task]
+
+*(repeat for each day)*
 
 ---
 
-## Day Assignments
-| Day | Mode | Focus |
-|---|---|---|
-| Monday | [Outreach / Delivery / Infra] | [Business / task] |
-| Tuesday | | |
-| Wednesday | | |
-| Thursday | | |
-| Friday | | |
+## ⏱️ Daily Container
+
+| Time | Block |
+|------|-------|
+| [Wake] | Wake |
+| [Start]–[End] | Deep Work I |
+| [Time] | Movement + EFT tapping |
+| [Time]–[Time] | Lunch + full rest |
+| [Time]–[End] | Deep Work II |
+| [Time]–[Time] | [Evening presence] |
+| [Time]–[Time] | Shutdown ritual |
+| [Time] | Sleep |
 
 ---
 
-## Dependencies
-**Waiting on:** [Name — what for]
-**They're waiting on me:** [Name — what for]
+## 🥁 Daily Drumbeat
+
+| # | Item | Time/Volume |
+|---|------|-------------|
+| 1 | [Recurring daily task] | [Amount] |
+| 2 | [Recurring daily task] | [Amount] |
+| 3 | [Recurring daily task] | [Amount] |
 
 ---
 
-## Pre-Mortem
-**Most likely derail:** [What]
-**Pre-decided response:** [What I'll do if it happens]
+## 🔗 Dependencies
+
+**They're waiting on me:**
+- [Name — what for · day]
+
+**I'm waiting on:**
+- [Name — what for]
 
 ---
 
-## Delegation Queue This Week
+## 💰 Pipeline Tracker
 
-| Task | Recipient (Claude / Name) | Context needed | Expected output | When |
-|---|---|---|---|---|
-| [Task from TOP 10] | [Claude / VA name / etc.] | [Files, background, specifics needed] | [What they should produce] | [Mon / Tue / etc.] |
-
-*Tip: use the Handoff Prep skill before each delegation to package a tight brief — AI or human.*
+| Lead | Value | Offer | Status |
+|------|-------|-------|--------|
+| [Name] | [€] | [Offer] | [Status] |
 
 ---
 
-## Week Review (completed at end of week)
+## 🅿️ Parking Lot (not this week)
+
+- [Item]
+- [Item]
+
+---
+
+## 📝 Braindump / New Items This Week
+
+*(Add here during the week — capture, don't act)*
+
+---
+
+## Week Review (filled at end of week — or feeds next week's Phase 1)
 
 **Wins:**
 
-**What didn't happen + why:**
+**What didn't move + why:**
 
-**Key decisions + assumptions check:**
+**What changes next week:**
 
 **Key learnings:**
 
-**Routines maintained:** Yes / Partial / No — [note]
+**Routines maintained:** Yes / Partial / No
 
 **Issues + solutions:**
-
-**Asset to build:**
 ```
 
 After saving, confirm the file path and say:
-"Your week is set. Start Monday with the outreach block — everything else follows."
+"Your week is set."
 
 ---
 
 ## Rules
 
-- Always load the active sprint file first. The Rocks and Pebble targets are the anchor for every week plan.
-- Never ask about OKRs or quarterly goals during the session — those live in the sprint file.
-- The Week Review section in the output stays blank — it gets filled at the end of the week (or feeds into next week's Phase 1).
-- TOP 10 tasks are a list, not a project plan. Keep them single-line.
-- Day assignments default to the standard template. Only change what the user specifies.
-- Always create a new dated file. Never overwrite.
+- Always load Sprint + last week's plan + Braindump Vault in Phase 0.
+- The Braindump Vault is a per-week file living in the week folder (`YY-MM-DD - Braindump Vault.md`). Read last week's vault in Phase 0. Create this week's fresh vault in Phase 1b by carrying forward open items. This creates a week-by-week record of how the braindump evolves.
+- Week Review goes at the bottom of last week's plan (not this week's).
+- Always create the new week folder before saving.
+- Rock Health appears at the top of every weekly plan — before TOP 3.
+- The Braindump phase (1b) always runs between Review and Planning — it is not optional.
+- Parking Lot items go to the Braindump Vault as C-items, not into the weekly plan.
 - Keep all output in English.
-- If the user is short on time, Phase 1 can be compressed: ask Q1, Q2, Q6, and Q9 only, then move to Phase 2.
+- If the user is short on time, Phase 1 can be compressed to Q1 + Q2 + Q6 + Q7 only.

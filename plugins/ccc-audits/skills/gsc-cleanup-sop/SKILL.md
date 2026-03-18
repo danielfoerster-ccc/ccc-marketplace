@@ -15,6 +15,7 @@ description: >
 
   Requires: Claude in Chrome (browser automation), docx skill (for diagnosis report).
 allowed-tools: Read, Write, Bash, Edit
+distribution: marketplace-ready
 ---
 
 # GSC Cleanup SOP v2.0

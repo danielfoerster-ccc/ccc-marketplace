@@ -19,6 +19,7 @@ metadata:
   created: 2026-03-06
   language: English
   framework: Buy Back Your Time — Dan Martell (Preloaded Year + ICE scoring)
+distribution: marketplace-ready
 ---
 
 # Preloaded Year Skill
@@ -50,7 +51,7 @@ Most operators plan reactively — they fill their year with what shows up and w
 
 1. Check for 10X Vision: search for `*10X Vision*` in `A - A - Empire/Buyback System/`
 2. Check for existing Preloaded Year: search for `*Preloaded Year*` in `A - A - Empire/Buyback System/`
-3. Check for current sprint: search for `*90 Day Strategic Goal Attainment Sprint*` in `A - A - Empire/A - Daily Notes/`
+3. Check for current sprint: search for `*90 Day Strategic Goal Attainment Sprint*` in `00 - COMMAND CENTER/Daily Notes/`
 4. Surface what's found:
    - If 10X Vision exists: "I found your 10X Vision from [date] — I'll use it to set checkpoints."
    - If sprint exists: "Your current Rocks are [list] — these will anchor the Q1 Big Rocks."

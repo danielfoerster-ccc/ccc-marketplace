@@ -18,6 +18,7 @@ metadata:
   created: 2026-03-06
   language: English
   framework: Buy Back Your Time — Dan Martell (Perfect Week)
+distribution: marketplace-ready
 ---
 
 # Perfect Week Skill

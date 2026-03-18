@@ -20,6 +20,7 @@ metadata:
     Q2.4 (how ICP buys — outcome vs. technology framing); expanded Q5.3 (partner timing and
     contribution window); added Rules 9–10; updated self-improvement with ABS as 2nd example.
     2.1.0 — Added Phase 5: Operational Context → context.md as 5th output
+distribution: marketplace-ready
 ---
 
 # GTM Discovery Process

@@ -21,6 +21,7 @@ metadata:
   updated: 2026-03-06
   language: English
   framework: CCC Planning System — delegation & AI capacity optimization
+  distribution: marketplace-ready
 ---
 
 # Handoff Prep Skill
@@ -45,7 +46,7 @@ This skill builds that brief in 5 minutes.
 
 ## Phase 0 — Context Load (automatic)
 
-1. Read the active weekly plan: search for the most recent `*Weekly Plan*` in `A - A - Empire/A - Daily Notes/`
+1. Read the active weekly plan: search for the most recent `*Weekly Plan*` in `00 - COMMAND CENTER/Daily Notes/`
 2. Find the Delegation Queue table (added during weekly planning)
 3. Read today's daily check-in if it exists: search for today's `*Daily Check-in*`
 4. Surface what's queued:

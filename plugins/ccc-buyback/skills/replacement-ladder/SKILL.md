@@ -19,6 +19,7 @@ metadata:
   created: 2026-03-06
   language: English
   framework: Buy Back Your Time — Dan Martell (Replacement Ladder + Test-First Hiring)
+distribution: marketplace-ready
 ---
 
 # Replacement Ladder Skill

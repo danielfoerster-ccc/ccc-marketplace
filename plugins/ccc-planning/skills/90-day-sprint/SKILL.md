@@ -16,6 +16,7 @@ metadata:
   created: 2026-03-06
   language: English
   framework: Flashhub Boulders/Rocks/Pebbles + OKR hybrid
+  distribution: marketplace-ready
 ---
 
 # 90-Day Sprint Planning Skill
@@ -32,8 +33,8 @@ Session time: ~45 minutes.
 
 Before asking anything, read the vault:
 
-1. Search for the most recent sprint file matching `*90 Day Strategic Goal Attainment Sprint*` in `A - A - Empire/A - Daily Notes/`
-2. Read `A - A - Empire/A - Daily Notes/2026 (Early - from 25-12 onwards)/Q1/26-03-02 - 90 Day Strategic Goal Attainment Sprint.md`
+1. Search for the most recent sprint file matching `*90 Day Strategic Goal Attainment Sprint*` in `00 - COMMAND CENTER/Daily Notes/`
+2. Read `00 - COMMAND CENTER/Daily Notes/2026 (Early - from 25-12 onwards)/Q1/26-03-02 - 90 Day Strategic Goal Attainment Sprint.md`
 3. Surface a brief summary: "Here's what I found in your last sprint: [Objectives, Rocks, status]."
 4. Tell the user which questions you will skip because they're already answered.
 
@@ -141,7 +142,7 @@ Keep it to max 5 activities per Pebble. Mark each: **Committed** or **Stretch**.
 ### Generate the Sprint Document
 
 Create a new file at:
-`A - A - Empire/A - Daily Notes/[YEAR]/[QUARTER]/[YYYY-MM-DD] - 90 Day Strategic Goal Attainment Sprint.md`
+`00 - COMMAND CENTER/Daily Notes/[YEAR]/[QUARTER]/[YYYY-MM-DD] - 90 Day Strategic Goal Attainment Sprint.md`
 
 Use this exact template:
 
