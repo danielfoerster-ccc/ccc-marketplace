@@ -16,8 +16,8 @@ metadata:
     Anthropic skill-creator (base engineering loop) ·
     BenAI "How to Build Claude Skills Better than 99% of People" (Feb 2026) ·
     Jeremy Longshore / Intent Solutions skill standard
-  version: 1.2.0
-  updated: 2026-03-12
+  version: 1.3.0
+  updated: 2026-03-20
   license: Free to use and share. Attribution appreciated.
 distribution: marketplace-ready
 ---
@@ -559,6 +559,74 @@ If you're in Cowork, the main things to know are:
   ```
 
   Then use `present_files` on the `.skill` file. The user clicks "Copy to your skills" to reinstall it — **Claude cannot install the skill directly**. This is the complete, correct workflow. Do not attempt to edit the installed path or skip the `chmod` step.
+
+---
+
+## CCC Publishing Workflow — Source of Truth
+
+For CCC-owned skills, the canonical source of truth is the Obsidian vault. All skill files live there first; Cowork sessions are the working copy. The full cycle:
+
+### 1. Write or edit in Obsidian
+
+All CCC skill files live at:
+
+```
+02 - MISSION CONTROL/Claude Skills & Plugins/
+  [plugin-name]/
+    .claude-plugin/
+      plugin.json          ← plugin manifest (name, description, version, author)
+    skills/
+      [skill-name]/
+        SKILL.md           ← skill content
+```
+
+The five CCC plugins and what goes in each:
+
+| Plugin | Contents |
+|---|---|
+| `planning` | daily-checkin, daily-checkout, weekly-planning, 90-day-sprint, handoff-prep |
+| `buyback` | audit, buyback, perfect-week, preloaded-year, replacement-ladder, vision |
+| `ccc-audits` | ccc-seo-audit, ccc-wordpress-seo-implementation, gsc-cleanup-sop, gmb-audit, ccc-linkedin-profile-audit, ccc-instagram-audit |
+| `gtm` | gtm-90-day-launch-plan, gtm-discovery |
+| `ccc-operations` | ccc-sop-creator, skill-creator-pro, second-brain |
+
+### 2. Commit to GitHub
+
+The vault connects to the CCC marketplace GitHub repo (`ccc-skills` or similar). Commit after every meaningful skill change. This makes skills version-controlled and shareable via the marketplace.
+
+### 3. Package into a .plugin file
+
+Use the `cowork-plugin-management:create-cowork-plugin` skill to package, or run manually:
+
+```bash
+# From the plugin's parent directory:
+cd "/path/to/vault/02 - MISSION CONTROL/Claude Skills & Plugins"
+zip -r [plugin-name].plugin [plugin-name]/
+```
+
+### 4. Install in Cowork
+
+Install the `.plugin` file via the Cowork plugin manager. This puts skills into `/mnt/.claude/plugins/cache/[plugin-name]/`, which is **writable** from future sessions.
+
+### 5. After session edits — sync back to vault
+
+If you edit a skill from within a Cowork session (e.g., fixing a vault path, adding a Self-Improvement section), copy the updated file back to the vault immediately:
+
+```bash
+SESSION="/sessions/admiring-relaxed-brahmagupta"
+PLUGIN="planning"
+SKILL="daily-checkin"
+VERSION="1.0.0"
+
+cp "$SESSION/mnt/.claude/plugins/cache/$PLUGIN/$VERSION/skills/$SKILL/SKILL.md" \
+   "$SESSION/mnt/WELTENERNEUERER/02 - MISSION CONTROL/Claude Skills & Plugins/$PLUGIN/skills/$SKILL/SKILL.md"
+```
+
+Then commit to GitHub to close the loop.
+
+### Why this matters
+
+Skills in "Meine Fähigkeiten" (the `.skills/` mount) are **read-only** from within sessions — they cannot be edited. Skills installed via plugins (`.claude/plugins/cache/`) are **writable**. The goal is for all CCC-owned skills to live in the plugin structure. Never edit the installed `.skills/` path directly — always edit the vault copy and re-package.
 
 ---
 

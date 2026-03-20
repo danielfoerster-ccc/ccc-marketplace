@@ -15,11 +15,11 @@ description: |
 allowed-tools: "Read, Write, Glob"
 metadata:
   author: Daniel Förster · Claude Cowork Consultants
-  version: 1.0.0
+  version: 1.1.0
   created: 2026-03-06
+  updated: 2026-03-20
   language: English
   framework: Buy Back Your Time — Dan Martell (Preloaded Year + ICE scoring)
-distribution: marketplace-ready
 ---
 
 # Preloaded Year Skill
@@ -49,8 +49,8 @@ Most operators plan reactively — they fill their year with what shows up and w
 
 ## Phase 0 — Context Load (automatic)
 
-1. Check for 10X Vision: search for `*10X Vision*` in `A - A - Empire/Buyback System/`
-2. Check for existing Preloaded Year: search for `*Preloaded Year*` in `A - A - Empire/Buyback System/`
+1. Check for 10X Vision: search for `*10X Vision*` in `03 - OPERATIONS/Buyback System/`
+2. Check for existing Preloaded Year: search for `*Preloaded Year*` in `03 - OPERATIONS/Buyback System/`
 3. Check for current sprint: search for `*90 Day Strategic Goal Attainment Sprint*` in `00 - COMMAND CENTER/Daily Notes/`
 4. Surface what's found:
    - If 10X Vision exists: "I found your 10X Vision from [date] — I'll use it to set checkpoints."
@@ -147,7 +147,7 @@ If the answer to the last question is no — rework it until it is.
 ## Phase 6 — Output
 
 Save a new file at:
-`A - A - Empire/Buyback System/[YYYY] - Preloaded Year.md`
+`03 - OPERATIONS/Buyback System/[YYYY] - Preloaded Year.md`
 
 Use this exact template:
 
@@ -245,3 +245,15 @@ After saving, confirm the file path and say:
 - The Q1 → 90-Day Sprint bridge is critical for connecting this skill to the existing planning system.
 - Always create a new file per year. Never overwrite.
 - Keep all output in English.
+
+---
+
+## Self-Improvement
+
+When the Stress Test answer is "no, this year doesn't excite me" but no changes are made, flag this more firmly: "A year that doesn't excite you won't be followed. We need to rework it — which element is the problem?"
+
+When a Big Rock placed in a specific month consistently collides with an unplanned reality (school holidays, client surge, health dip), add it as a standing "watch" to the Stress Test: "Flag [month] as historically high-load — don't place two Big Rocks here."
+
+When the ICE scoring session produces all-high scores (operator inflating confidence or ease), add a calibration check: "If everything scores 25+, the ICE tool isn't doing its job. Which one would you drop if you had to cut 20% of the list?"
+
+When the "Hell Yeah! Filter" needs to be applied mid-year, update the "Notes & Updates" section of the Preloaded Year file with the decision and whether the course change was made.

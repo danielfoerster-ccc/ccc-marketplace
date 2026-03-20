@@ -14,11 +14,11 @@ description: |
 allowed-tools: "Read, Write, Glob"
 metadata:
   author: Daniel Förster · Claude Cowork Consultants
-  version: 1.0.0
+  version: 1.1.0
   created: 2026-03-06
+  updated: 2026-03-20
   language: English
   framework: Buy Back Your Time — Dan Martell (10X Vision)
-distribution: marketplace-ready
 ---
 
 # 10X Vision Skill
@@ -47,7 +47,7 @@ Dan Sullivan's principle applies here: **10X is easier than 2X.** 2X requires yo
 
 ## Phase 0 — Context Load (automatic)
 
-1. Check if a 10X Vision already exists: search for `*10X Vision*` in `A - A - Empire/Buyback System/`
+1. Check if a 10X Vision already exists: search for `*10X Vision*` in `03 - OPERATIONS/Buyback System/`
 2. Check if a sprint file exists: search for `*90 Day Strategic Goal Attainment Sprint*` in `00 - COMMAND CENTER/Daily Notes/` — the 3-Year Vision sections are relevant context
 3. Surface what's found: "I found a previous 10X Vision from [date] and your current sprint's 3-year goals. I'll use these as a starting point for Phase 2 — Phase 1 we'll do fresh."
 
@@ -127,7 +127,7 @@ This creates the bridge to the Preloaded Year session.
 ## Phase 4 — Output
 
 Save a new file at:
-`A - A - Empire/Buyback System/[YYYY-MM-DD] - 10X Vision.md`
+`03 - OPERATIONS/Buyback System/[YYYY-MM-DD] - 10X Vision.md`
 
 Use this exact template:
 

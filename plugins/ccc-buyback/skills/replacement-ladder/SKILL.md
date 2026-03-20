@@ -15,11 +15,11 @@ description: |
 allowed-tools: "Read, Write, Glob"
 metadata:
   author: Daniel Förster · Claude Cowork Consultants
-  version: 1.0.0
+  version: 1.1.0
   created: 2026-03-06
+  updated: 2026-03-20
   language: English
   framework: Buy Back Your Time — Dan Martell (Replacement Ladder + Test-First Hiring)
-distribution: marketplace-ready
 ---
 
 # Replacement Ladder Skill
@@ -59,8 +59,8 @@ If you're spending more than 20% of your time on any delegated task, you haven't
 
 ## Phase 0 — Context Load (automatic)
 
-1. Check for Buyback Audit: search for `*Buyback Audit*` in `A - A - Empire/Buyback System/`
-2. Check for existing Replacement Ladder: search for `*Replacement Ladder*` in `A - A - Empire/Buyback System/`
+1. Check for Buyback Audit: search for `*Buyback Audit*` in `03 - OPERATIONS/Buyback System/`
+2. Check for existing Replacement Ladder: search for `*Replacement Ladder*` in `03 - OPERATIONS/Buyback System/`
 3. Surface what's found: "I found your Buyback Audit from [date] — I'll use the Delegation and Replacement quadrant tasks to identify what to hire for first."
 4. If no audit exists: "No Buyback Audit found — I'll do a quick version during this session to identify what to hire for."
 
@@ -156,7 +156,7 @@ Once you've decided who you want: switch modes entirely. Stop interviewing — s
 ## Phase 5 — Output
 
 Save a new file at:
-`A - A - Empire/Buyback System/[YYYY-MM-DD] - Replacement Ladder.md`
+`03 - OPERATIONS/Buyback System/[YYYY-MM-DD] - Replacement Ladder.md`
 
 Use this exact template:
 
@@ -251,3 +251,15 @@ After saving, confirm the file path and say:
 - The "Sell the Future" step surprises operators but is critical for top candidates. Don't leave it out of the output.
 - Never let the operator hire for skills alone. Hire for complement to the team's existing profile.
 - Keep all output in English.
+
+---
+
+## Self-Improvement
+
+When a Test-First task is skipped ("we just went straight to offer"), add this to the Rules section: "Test-First was skipped on [date] — outcome: [result]. This is the data for why the step matters."
+
+When the operator hires at the wrong rung (skips from solo to senior delivery without PA first), track the outcome. If it creates problems, add a concrete example to the Background section to make the sequencing argument more persuasive.
+
+When the "Sell the Future" step (Step 6) consistently surprises operators, add a real example to Phase 4: a case where the best candidate chose this role over alternatives because of how the opportunity was framed.
+
+When a role profile (Phase 3) produces a hired candidate who fails within 90 days, review which outcome or profile element was missing or wrong — add it to the Definition of Done framework.

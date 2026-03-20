@@ -14,11 +14,11 @@ description: |
 allowed-tools: "Read, Write, Glob"
 metadata:
   author: Daniel Förster · Claude Cowork Consultants
-  version: 1.0.0
+  version: 1.1.0
   created: 2026-03-06
+  updated: 2026-03-20
   language: English
   framework: Buy Back Your Time — Dan Martell (Perfect Week)
-distribution: marketplace-ready
 ---
 
 # Perfect Week Skill
@@ -45,9 +45,9 @@ Before designing anything, understand what to eliminate:
 
 ## Phase 0 — Context Load (automatic)
 
-1. Check if a Buyback Audit exists: search for `*Buyback Audit*` in `A - A - Empire/Buyback System/`
+1. Check if a Buyback Audit exists: search for `*Buyback Audit*` in `03 - OPERATIONS/Buyback System/`
 2. If found, read the Production Quadrant section — these are the tasks that must be protected in the Perfect Week
-3. Check if a previous Perfect Week exists: search for `*Perfect Week*` in `A - A - Empire/Buyback System/`
+3. Check if a previous Perfect Week exists: search for `*Perfect Week*` in `03 - OPERATIONS/Buyback System/`
 4. Surface what's found: "Your Production Quadrant work from the audit: [list]. I found a previous Perfect Week from [date] — we're updating it."
 
 ---
@@ -120,7 +120,7 @@ One answer per likely disruption. This becomes the "defend the week" rule.
 ## Phase 5 — Output
 
 Save a new file at:
-`A - A - Empire/Buyback System/[YYYY-MM-DD] - Perfect Week.md`
+`03 - OPERATIONS/Buyback System/[YYYY-MM-DD] - Perfect Week.md`
 
 Use this exact template:
 
@@ -206,3 +206,15 @@ After saving, confirm the file path and say:
 - The review date (4 weeks) is mandatory in the output. Perfect Weeks are iterated, not designed once and used forever.
 - If the operator has an existing planning plugin week structure, align day types to match.
 - Keep all output in English.
+
+---
+
+## Self-Improvement
+
+When the operator's stated "energy peak" conflicts with their actual schedule (e.g. they claim 9am peak but have recurring calls at 9am), surface the conflict directly: "Your stated peak time is blocked by a recurring commitment — the Perfect Week can't protect it until that meeting is moved or cancelled."
+
+When the same disruption type appears in the "Defend the Week" answer for two or more versions of the Perfect Week, elevate it to a Rules entry: "[Disruption type] is a recurring threat — add a standing prevention protocol."
+
+When the 4-week review reveals that no days matched the designed grid, flag this as a template redesign trigger — not just a discipline problem. The grid was unrealistic, not the person.
+
+When the operator's Production Quadrant (from Buyback Audit) contains tasks that are not assigned to peak hours in the designed grid, flag the mismatch before saving.

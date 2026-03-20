@@ -14,11 +14,11 @@ description: |
 allowed-tools: "Read, Write, Glob"
 metadata:
   author: Daniel Förster · Claude Cowork Consultants
-  version: 1.0.0
+  version: 1.1.0
   created: 2026-03-06
+  updated: 2026-03-20
   language: English
   framework: Buy Back Your Time — Dan Martell (DRIP Matrix + ICE + OCA scoring)
-distribution: marketplace-ready
 ---
 
 # Buyback Audit Skill
@@ -52,7 +52,7 @@ Your goal: ruthlessly move time from D, R, and I into P.
 ## Phase 0 — Context Load (automatic)
 
 Before asking anything:
-1. Check if a previous buyback audit exists: search for `*Buyback Audit*` in `A - A - Empire/Buyback System/`
+1. Check if a previous buyback audit exists: search for `*Buyback Audit*` in `03 - OPERATIONS/Buyback System/`
 2. If found, read it and surface: "I found a previous audit from [date]. I'll use it as a baseline — we're updating, not starting from scratch."
 3. If not found, note: "No previous audit found — we're building from scratch."
 
@@ -151,7 +151,7 @@ This usually surfaces a few tasks the operator missed in the dump phase.
 ## Phase 6 — Output
 
 Save a new file at:
-`A - A - Empire/Buyback System/[YYYY-MM-DD] - Buyback Audit.md`
+`03 - OPERATIONS/Buyback System/[YYYY-MM-DD] - Buyback Audit.md`
 
 Use this exact template:
 
@@ -233,6 +233,18 @@ These are your highest-value activities. The goal is to move more time here:
 
 After saving, confirm the file path and say:
 "Your delegation roadmap is saved. The top priority on your list is [#1 task]. Start there — one transfer at a time."
+
+---
+
+## Anti-Patterns
+
+| Situation | Error | Why it fails | Correct approach |
+|-----------|-------|--------------|-----------------|
+| Operator lists only 5–8 tasks | Accepting the short list without prompting | Short lists produce a shallow audit — real delegation opportunities stay hidden | Use the gap prompts (email? admin? sales? delivery?) to surface at least 15–20 tasks before scoring |
+| Operator agonises over every task score | Spending 2+ minutes per task during Phase 3 | Kills session momentum; DRIP is designed for fast intuitive scoring | Score in batches by category; remind the operator "this should feel fast — there are no wrong scores" |
+| Every task lands in "Produce" quadrant | Operator over-scores their own energy and return | If everything is high-value, nothing is a priority — the audit produces no delegation roadmap | Push back: "If everything is Produce, you have no delegation lever. Score against your Buyback Rate, not your feelings about the work." |
+| Operator scores admin as high-return (R=5) | "But someone has to do it" rationalisation | Admin is low-return by definition — only its *necessity* is high, not its strategic return | Reframe: "Return = what it returns in revenue or strategic leverage, not whether it's necessary. Admin is always low-return, even if it's essential." |
+| Priority Score phase is skipped | Moving straight from DRIP to output | The Priority Score is the entire point — without it, the operator doesn't know what to delegate *first* | Always complete Phase 4 before Phase 6. If time is short, score the top 5 Delegate tasks only. |
 
 ---
 

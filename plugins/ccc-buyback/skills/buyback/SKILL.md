@@ -15,11 +15,11 @@ description: |
 allowed-tools: "Read, Write, Glob"
 metadata:
   author: Daniel Förster · Claude Cowork Consultants
-  version: 1.0.0
+  version: 1.1.0
   created: 2026-03-06
+  updated: 2026-03-20
   language: English
   framework: Buy Back Your Time — Dan Martell (adapted for CCC operators)
-distribution: marketplace-ready
 ---
 
 # Buy Back Your Time — Entry & Assessment Skill
@@ -102,3 +102,13 @@ Then offer to launch the recommended skill in the same session.
 - Keep operator language throughout. No spiritual frameworks, no "journeys", no "alignment".
 - The vision skill is not a luxury — it's a decision-making accelerator. Frame it that way.
 - If the user asks what the Buyback System is, use the table above. Don't improvise a description.
+
+---
+
+## Self-Improvement
+
+When a routing recommendation leads to the wrong skill (operator finishes the sub-skill and says "that wasn't what I needed"), review which Q answer caused the mis-route and tighten the routing logic.
+
+When an operator at rung 2 (Marketing Admin) needs the Audit again after previously completing it, surface the previous audit date and offer to run it as an update rather than from scratch.
+
+When Q5 (goal horizon) produces ambiguous answers that could route to multiple skills, add a tiebreaker question: "If you could only fix one thing this month — schedule, direction, or team — which would it be?"
