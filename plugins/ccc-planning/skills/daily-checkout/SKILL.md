@@ -65,12 +65,13 @@ If the Drumbeat already has Carry-forward items, read them out and ask: "Anythin
 
 ---
 
-## Phase 3 — One Reflection (1 question)
+## Phase 3 — Reflection (3 questions)
 
-**Q3**
-"One thing: what would have made today better?"
+**Q3a** "What went well today?"
+**Q3b** "What needs work?"
+**Q3c** "What should never happen again?"
 
-Keep it to one sentence. This is for calibration, not self-critique.
+Keep each to one sentence. Calibration, not self-critique.
 
 ---
 
@@ -95,7 +96,9 @@ Update the End-of-Day section of today's check-in file:
 - [Task]
 - [Task]
 
-**One thing that would have made today better:** [sentence]
+**What went well:** [sentence]
+**What needs work:** [sentence]
+**Never again:** [sentence]
 ```
 
 Also update any Drumbeat rows that changed status during the checkout conversation.
