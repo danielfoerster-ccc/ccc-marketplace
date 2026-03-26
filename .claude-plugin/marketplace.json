@@ -5,7 +5,7 @@
     "email": "dafoerst87@googlemail.com"
   },
   "metadata": {
-    "description": "Claude Cowork Consultants plugin marketplace. Audit, planning, GTM, operations, and buyback plugins built for AI-first consultants and marketing agencies."
+    "description": "Claude Cowork Consultants plugin marketplace. Audit, planning, GTM, operations, buyback, and business validation plugins built for AI-first consultants and marketing agencies."
   },
   "plugins": [
     {
@@ -93,6 +93,25 @@
         "perfect-week",
         "vision",
         "dan-martell"
+      ]
+    },
+    {
+      "name": "48hr-launch-blueprint",
+      "source": "./plugins/48hr-launch-blueprint",
+      "description": "Five-skill business validation toolkit based on Noah Kagan's Million Dollar Weekend. Guides users from idea generation through offer crafting to getting 3 paying customers in 48 hours — before building anything. Mindset Reset, Idea Generator, Business Model Validator, Dream Ten Launcher, and Validation Debrief.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Claude Cowork Consultants"
+      },
+      "keywords": [
+        "validation",
+        "48hr-challenge",
+        "business-launch",
+        "preselling",
+        "dream-ten",
+        "million-dollar-weekend",
+        "noah-kagan",
+        "offer-crafting"
       ]
     }
   ]
