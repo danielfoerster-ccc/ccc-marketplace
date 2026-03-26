@@ -56,7 +56,7 @@ Daily and weekly planning that reads your vault — no redundant input.
 | Skill | What it does |
 |-------|-------------|
 | `daily-checkin` | 10-minute morning session: Revenue First, Daily Drumbeat, TOP 3, timeboxing, dependencies |
-| `daily-checkout` | End-of-day shutdown ritual: review TOP 3, carry-forward, one reflection |
+| `daily-checkout` | End-of-day shutdown ritual: review TOP 3, carry-forward, three-part reflection (what went well / what needs work / what should never happen again) |
 | `weekly-planning` | Weekly review + plan: wins, issues, TOP 3 goals, TOP 10 tasks, day assignments, delegation queue |
 | `90-day-sprint` | Quarterly OKR and sprint planning: Boulders → Rocks → Pebbles → Activities |
 | `handoff-prep` | 5-minute delegation brief builder for Claude or human team members |

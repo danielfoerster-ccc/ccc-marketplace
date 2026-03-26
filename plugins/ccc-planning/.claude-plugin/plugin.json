@@ -1,6 +1,6 @@
 {
   "name": "ccc-planning",
   "description": "Execution-first daily and weekly planning system. Daily check-in, checkout, weekly review, 90-day sprint planning, and delegation handoff prep — all reading from your vault to eliminate redundant input.",
-  "version": "1.0.0",
+  "version": "1.1.1",
   "author": { "name": "Claude Cowork Consultants", "url": "https://claudecowork-consultants.com" }
 }
