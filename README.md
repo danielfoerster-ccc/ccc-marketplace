@@ -16,6 +16,7 @@ Then install the plugins you need:
 /plugin install ccc-planning@ccc-marketplace
 /plugin install ccc-buyback@ccc-marketplace
 /plugin install ccc-operations@ccc-marketplace
+/plugin install 48hr-launch-blueprint@ccc-marketplace
 ```
 
 ---
@@ -86,6 +87,23 @@ Tools for creating CCC-standard SOPs and production-quality Claude skills.
 |-------|-------------|
 | `ccc-sop-creator` | Builds HEROIC-format SOPs from live CCC foundation docs. Covers all GTM channels and operational processes |
 | `skill-creator-pro` | Full skill engineering loop: draft → test → evaluate → iterate. Includes practitioner patterns and anti-patterns |
+| `framework-extractor` | Ingests books, courses, and methodologies → extracts structured frameworks → produces SOPs, skills, and plugins |
+
+---
+
+### 48hr-launch-blueprint — Rapid Business Validation (Noah Kagan)
+
+Validate any business idea by getting 3 paying customers in 48 hours — before building anything. Based on Noah Kagan's *Million Dollar Weekend*.
+
+| Skill | What it does |
+|-------|-------------|
+| `mindset-reset` | Calculate Freedom Number, build rejection tolerance via Rejection Goals + Coffee Challenge |
+| `idea-generator` | Customer First Approach (WHO/WHAT/WHERE) + 4 Idea Generators → shortlist of 3 validated ideas |
+| `business-model-validator` | Million-Dollar Opportunity Test + One-Minute Business Model + Revenue Dials → select ONE idea |
+| `dream-ten-launcher` | Name 10 real prospects, craft the offer, draft outreach messages — **48hr clock starts here** |
+| `validation-debrief` | Scorecard analysis, rejection diagnostics, hit/pivot/kill decision + next-action plan |
+
+**Recommended flow:** Run skills in order. Skip `mindset-reset` if you're already comfortable asking for money.
 
 ---
 
@@ -96,4 +114,4 @@ Questions or custom implementations: reach out via the website.
 
 ---
 
-*Last updated: 2026-03-14 | Version 1.1.0*
+*Last updated: 2026-03-26 | Version 1.2.0*
