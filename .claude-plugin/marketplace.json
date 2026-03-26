@@ -66,7 +66,7 @@
       "name": "ccc-operations",
       "source": "./plugins/ccc-operations",
       "description": "CCC internal operations toolkit. SOP Creator builds HEROIC-format SOPs. Skill Creator Pro builds and evaluates Claude skills. Framework Extractor ingests books, courses, and methodologies into structured SOPs, skills, and plugins.",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "author": {
         "name": "Claude Cowork Consultants"
       },
