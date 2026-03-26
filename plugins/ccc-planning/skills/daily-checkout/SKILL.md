@@ -15,7 +15,7 @@ metadata:
   author: Daniel Förster · Claude Cowork Consultants
   version: 1.1.0
   created: 2026-03-06
-  updated: 2026-03-26
+  updated: 2026-03-26 (v1.1.1)
   language: English
   framework: CCC Planning System — daily close-out
   distribution: marketplace-ready
@@ -72,6 +72,8 @@ If the Drumbeat already has Carry-forward items, read them out and ask: "Anythin
 Ask these three questions in sequence — never collapse them into one:
 
 **Q3a — What went well today?**
+
+Capture the answer in the operator's own words — preserve their exact language, emphasis, and phrasing. Don't clean it up, summarize it, or reformat it. This is a personal journal entry. It should sound exactly like them, because effectively it is them.
 
 **Q3b — What needs work?**
 
@@ -137,6 +139,7 @@ If there's an urgent carry-forward item for tomorrow, surface it once:
 4. If the operator just wants to close quickly ("done, checkout"), accept short answers and fill in what you can from the Drumbeat context. Still ask all three reflection questions, even briefly.
 5. Always update the file — even if the answers are minimal. A closed day has a record.
 6. Keep all output in English.
+7. Q3a answers are personal and voice-driven — they read like journal entries, not reports. Preserve the operator's exact words. Never summarize or paraphrase.
 
 ---
 
