@@ -65,8 +65,8 @@
     {
       "name": "ccc-operations",
       "source": "./plugins/ccc-operations",
-      "description": "CCC operations toolkit. Build and update SOPs in the HEROIC format for any repeatable business process — GTM channels, client onboarding, delivery, and internal workflows. Includes skill creation and improvement capabilities.",
-      "version": "1.0.0",
+      "description": "CCC internal operations toolkit. SOP Creator builds HEROIC-format SOPs. Skill Creator Pro builds and evaluates Claude skills. Framework Extractor ingests books, courses, and methodologies into structured SOPs, skills, and plugins.",
+      "version": "1.1.0",
       "author": {
         "name": "Claude Cowork Consultants"
       },
@@ -74,6 +74,7 @@
         "sop",
         "operations",
         "skill-creator",
+        "framework-extractor",
         "workflows",
         "documentation"
       ]
