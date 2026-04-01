@@ -2,7 +2,7 @@
 name: ccc-sop-creator
 description: >
   Creates and updates CCC Standard Operating Procedures (SOPs) in the HEROIC format.
-  USE THIS SKILL whenever Daniel or Heiko want to: build a new SOP, update an existing
+  USE THIS SKILL whenever the operator wants to: build a new SOP, update an existing
   SOP, or document any repeatable CCC business process — including GTM channels
   (LinkedIn outreach, cold email, cold calling, workshops, discovery calls) AND
   operational processes (client onboarding, project delivery, reporting, internal
@@ -30,9 +30,9 @@ This skill covers **all CCC business areas** — GTM channels, client delivery, 
 
 All SOPs go to:
 ```
-WELTENERNEUERER/A - A - Empire/Claude Cowork Consultants/03 - SOPs & Playbooks/
+02 - MISSION CONTROL/SOPs & Playbooks/
 ```
-Full path: `/sessions/admiring-relaxed-brahmagupta/mnt/WELTENERNEUERER/A - A - Empire/Claude Cowork Consultants/03 - SOPs & Playbooks/`
+Full path: find the vault root via CLAUDE.md, then: `02 - MISSION CONTROL/SOPs & Playbooks/`
 
 Filename convention: `SOP [Name] — CCC [YYYY-MM-DD].md`
 
@@ -71,10 +71,10 @@ Before asking any questions, always read:
 - Cold Calling → `references/cold-calling.md`
 
 **2. Live CCC foundation docs** (always read for any SOP):
-- ICP: `mnt/WELTENERNEUERER/A - A - Empire/Claude Cowork Consultants/00 - CCC Foundation/ICP.md`
-- Offer: `mnt/WELTENERNEUERER/A - A - Empire/Claude Cowork Consultants/00 - CCC Foundation/offer.md`
-- Positioning: `mnt/WELTENERNEUERER/A - A - Empire/Claude Cowork Consultants/00 - CCC Foundation/positioning.md`
-- Voice: `mnt/WELTENERNEUERER/A - A - Empire/Claude Cowork Consultants/00 - CCC Foundation/voice.md`
+- ICP: `03 - OPERATIONS/Claude Cowork Consultants/01 - GTM/icp.md`
+- Offer: `03 - OPERATIONS/Claude Cowork Consultants/01 - GTM/offer.md`
+- Positioning: `03 - OPERATIONS/Claude Cowork Consultants/01 - GTM/positioning.md`
+- Voice: `03 - OPERATIONS/Claude Cowork Consultants/01 - GTM/voice.md`
 
 Do NOT skip reading these — even operational or delivery SOPs must reflect CCC's actual offer, ICP, and approach.
 

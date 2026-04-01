@@ -555,7 +555,7 @@ If you're in Cowork, the main things to know are:
   zip -j /sessions/<session>/<skill-name>.skill /tmp/<skill-name>/SKILL.md
 
   # 5. Copy to the user's workspace folder so they can download it
-  cp /sessions/<session>/<skill-name>.skill "/sessions/<session>/mnt/WELTENERNEUERER/<destination>/"
+  cp /sessions/<session>/<skill-name>.skill "/sessions/<session>/mnt/[vault-root]/<destination>/"
   ```
 
   Then use `present_files` on the `.skill` file. The user clicks "Copy to your skills" to reinstall it — **Claude cannot install the skill directly**. This is the complete, correct workflow. Do not attempt to edit the installed path or skip the `chmod` step.
@@ -613,13 +613,14 @@ Install the `.plugin` file via the Cowork plugin manager. This puts skills into 
 If you edit a skill from within a Cowork session (e.g., fixing a vault path, adding a Self-Improvement section), copy the updated file back to the vault immediately:
 
 ```bash
-SESSION="/sessions/admiring-relaxed-brahmagupta"
+SESSION="/sessions/<current-session>"
+VAULT="[vault-root]"   # e.g. WELTENERNEUERER
 PLUGIN="planning"
 SKILL="daily-checkin"
 VERSION="1.0.0"
 
 cp "$SESSION/mnt/.claude/plugins/cache/$PLUGIN/$VERSION/skills/$SKILL/SKILL.md" \
-   "$SESSION/mnt/WELTENERNEUERER/02 - MISSION CONTROL/Claude Skills & Plugins/$PLUGIN/skills/$SKILL/SKILL.md"
+   "$SESSION/mnt/$VAULT/02 - MISSION CONTROL/Claude Skills & Plugins/$PLUGIN/skills/$SKILL/SKILL.md"
 ```
 
 Then commit to GitHub to close the loop.

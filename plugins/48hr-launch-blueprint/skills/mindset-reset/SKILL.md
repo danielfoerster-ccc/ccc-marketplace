@@ -89,7 +89,7 @@ The user now sets their weekly rejection goal — the number of "no"s they will 
 
 ## PHASE 4: COFFEE CHALLENGE EXPLANATION & COMMITMENT
 
-Explain the Coffee Challenge from [[WELTENERNEUERER/02 - MISSION CONTROL/SOPs & Playbooks/48hr-Launch-Blueprint/coffee-challenge]]:
+Explain the Coffee Challenge (read from the vault's `coffee-challenge` SOP if available, otherwise use the description below):
 
 - Simple: Invite 10 people to a brief call (15-20 min)
 - No slides, no pitch, no "offer" yet

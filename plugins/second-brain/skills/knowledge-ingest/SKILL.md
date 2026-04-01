@@ -1,7 +1,7 @@
 ---
 name: knowledge-ingest
 description: |
-  Ingests articles, essays, blog posts, or YouTube transcripts into Daniel's Knowledge Base vault.
+  Ingests articles, essays, blog posts, or YouTube transcripts into the operator's Knowledge Base vault.
   Fetches URLs automatically via Tavily, extracts key ideas, creates properly wikilinked notes,
   routes them to the right KB subfolder, and creates or updates thinker/author profiles.
   Use this skill whenever a URL is dropped for saving, reading, or research purposes — even if
@@ -106,7 +106,7 @@ Save to the routed subfolder determined in Phase 2.
 
 ## The Core Argument
 
-[2–4 sentences capturing the central thesis in Daniel's language. What is the author claiming? Why does it matter?]
+[2–4 sentences capturing the central thesis in the operator's own framing. What is the author claiming? Why does it matter?]
 
 ---
 
@@ -130,9 +130,9 @@ Save to the routed subfolder determined in Phase 2.
 
 ---
 
-## Connections to Daniel's Work
+## Connections to Your Work
 
-[1–3 sentences on how this connects to CCC, current projects, or active thinking. Make this specific — not generic "this is relevant to AI."]
+[1–3 sentences on how this connects to the operator's current projects, active thinking, or ongoing work. Make this specific — not generic "this is relevant to AI."]
 
 ---
 
@@ -173,7 +173,7 @@ Save to the routed subfolder determined in Phase 2.
 
 ## Who They Are
 
-[3–5 sentences on their background, intellectual contribution, and why they matter to Daniel's thinking.]
+[3–5 sentences on their background, intellectual contribution, and why they matter to the operator's thinking.]
 
 ---
 
@@ -246,15 +246,15 @@ Keep it brief. The user can open the files if they want detail.
 4. **Route to Inbox when uncertain** — don't block on classification.
 5. **Thinker profiles are for recurring figures only** — don't create one for every author.
 6. **Keep summaries shorter than the original** — never reproduce large blocks of source text. Extract ideas, don't transcribe.
-7. **Always connect to Daniel's current work** — a knowledge note with no "Connections to Daniel's Work" section is just a bookmark. Make it relevant.
+7. **Always connect to the operator's current work** — a knowledge note with no "Connections to Your Work" section is just a bookmark. Make it relevant.
 8. **Batch processing**: if given multiple URLs, process all in parallel via parallel Tavily calls, then save sequentially.
-9. **YouTube transcripts in the chat = token-heavy** — gently remind Daniel of the preferred flow: save file → skill reads it. Process current one but note the better path.
+9. **YouTube transcripts in the chat = token-heavy** — gently remind the operator of the preferred flow: save file → skill reads it. Process current one but note the better path.
 
 ---
 
 ## Self-Improvement
 
-When Daniel corrects a routing decision or wikilink: add a rule above.
+When the operator corrects a routing decision or wikilink: add a rule above.
 When a content type doesn't fit the routing table: add a new row.
 When a thinker appears repeatedly: create their profile proactively even if not prompted.
 When a note produces a strong "aha" connection: note what made the connection click and apply that framing to future notes in the same domain.

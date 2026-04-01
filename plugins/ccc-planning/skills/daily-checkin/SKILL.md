@@ -65,7 +65,7 @@ If it's already obvious from the Drumbeat (e.g., a booked call today), confirm i
 
 ## Phase 1.5 — Timeboxes (confirm or adjust)
 
-Daniel's default daily container — use this unless he says otherwise:
+Default daily container — adjust to the operator's actual schedule:
 
 | Block | Hours |
 |-------|-------|

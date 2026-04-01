@@ -12,7 +12,7 @@
       "name": "ccc-planning",
       "source": "./plugins/ccc-planning",
       "description": "CCC daily operating system. Structured daily check-ins, daily checkouts, weekly planning, 90-day sprints, and session handoff prep — all designed for solo founders and fractional executives running an AI-first business.",
-      "version": "1.0.0",
+      "version": "1.1.2",
       "author": {
         "name": "Claude Cowork Consultants"
       },
@@ -49,7 +49,7 @@
       "name": "ccc-gtm",
       "source": "./plugins/ccc-gtm",
       "description": "Go-to-market system for AI-first marketing agencies. Runs a structured GTM discovery session to define ICP, positioning, and offer — then produces a phased 90-day launch plan with weekly actions and a clear revenue hypothesis.",
-      "version": "1.0.0",
+      "version": "1.1.1",
       "author": {
         "name": "Claude Cowork Consultants"
       },
@@ -66,7 +66,7 @@
       "name": "ccc-operations",
       "source": "./plugins/ccc-operations",
       "description": "CCC internal operations toolkit. SOP Creator builds HEROIC-format SOPs. Skill Creator Pro builds and evaluates Claude skills. Framework Extractor ingests books, courses, and methodologies into structured SOPs, skills, and plugins.",
-      "version": "1.1.1",
+      "version": "1.1.2",
       "author": {
         "name": "Claude Cowork Consultants"
       },
@@ -100,7 +100,7 @@
       "name": "48hr-launch-blueprint",
       "source": "./plugins/48hr-launch-blueprint",
       "description": "Five-skill business validation toolkit based on Noah Kagan's Million Dollar Weekend. Guides users from idea generation through offer crafting to getting 3 paying customers in 48 hours — before building anything. Mindset Reset, Idea Generator, Business Model Validator, Dream Ten Launcher, and Validation Debrief.",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "author": {
         "name": "Claude Cowork Consultants"
       },
@@ -119,7 +119,7 @@
       "name": "second-brain",
       "source": "./plugins/second-brain",
       "description": "Second Brain tools for the WELTENERNEUERER vault. Two skills: Second Brain Setup & Audit (Three Brains framework — fresh setup or existing vault migration) and Knowledge Ingest (URL/transcript → wikilinked vault notes with thinker profiles).",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "author": {
         "name": "Daniel Förster · Claude Cowork Consultants"
       },

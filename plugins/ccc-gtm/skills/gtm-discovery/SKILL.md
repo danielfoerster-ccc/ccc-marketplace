@@ -325,7 +325,7 @@ This skill is never finished. The more it is used, the better it gets.
 - What the CCC run didn't surface, the ABS run did:
   1. **"ICP doesn't buy AI" pattern** — the professional services ICP (lawyers, dental, financial advisors) buys outcomes ("fill my calendar", "fix the pipeline") not categories ("AI tools", "automation"). This wasn't explicitly asked in Phase 2 — next run catches it with Q2.4.
   2. **Industry brainstorm was generative** — going beyond Justin's initial ICP document added strong industries (care homes, Seniorenheime) not in the original list. Now encoded as Q1.5.
-  3. **Partner timing required a correction** — initial context.md described Justin as "later stage cold calling partner." Daniel corrected: Justin joins with warm network from Day 1. Q5.3 now explicitly asks when each partner's contribution becomes active.
+  3. **Partner timing matters** — if the business has partners, explicitly ask when each partner's contribution becomes active (warm network from day 1 vs. later stage). Q5.3 now explicitly captures this.
 - Saved: `ABS/00 - ABS Foundation/` (five docs + context.md)
 
 ---
