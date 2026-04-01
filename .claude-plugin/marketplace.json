@@ -114,6 +114,27 @@
         "noah-kagan",
         "offer-crafting"
       ]
+    },
+    {
+      "name": "second-brain",
+      "source": "./plugins/second-brain",
+      "description": "Second Brain tools for the WELTENERNEUERER vault. Two skills: Second Brain Setup & Audit (Three Brains framework — fresh setup or existing vault migration) and Knowledge Ingest (URL/transcript → wikilinked vault notes with thinker profiles).",
+      "version": "1.1.0",
+      "author": {
+        "name": "Daniel Förster · Claude Cowork Consultants"
+      },
+      "keywords": [
+        "second-brain",
+        "knowledge-base",
+        "ingest",
+        "url",
+        "article",
+        "obsidian",
+        "vault",
+        "thinker",
+        "learning",
+        "three-brains"
+      ]
     }
   ]
 }
