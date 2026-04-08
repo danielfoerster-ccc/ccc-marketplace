@@ -1,7 +1,7 @@
 {
   "name": "second-brain",
   "description": "Knowledge Base tools for Daniel's Second Brain (WELTENERNEUERER vault). Two skills: (1) Second Brain Setup & Audit — sets up or audits Obsidian vaults using the Three Brains framework (Setup mode for fresh vaults, Audit mode for existing vaults with migration plan); (2) Knowledge Ingest — drop any URL or YouTube transcript and it is automatically fetched via Tavily, summarised, wikilinked, and routed to the right Knowledge Base subfolder with thinker profiles created or updated automatically.",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "author": {
     "name": "Daniel Förster · Claude Cowork Consultants"
   }

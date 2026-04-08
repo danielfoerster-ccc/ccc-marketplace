@@ -68,6 +68,7 @@ No vault scanning needed. Design the architecture based on their context from th
 2. A naming convention guide (numbered prefixes, CamelCase vs. kebab-case for notes)
 3. First 10 notes to create (priming the brain — starting with a few anchor notes in each layer makes it feel real)
 4. A "Week 1 ritual" — the smallest possible daily habit that starts putting the system to work
+5. **Context pre-loading (optional):** If the user wants to pre-load their vault with rich business and personal context from day one, offer a structured brain-dump covering: business overview, customers, positioning, brand voice, goals & strategy, operations & tools, key relationships, personal background, working style, and Claude preferences. The answers feed directly into foundational vault files (organization.md, brand.md, icp.md, strategy.md, stakeholders.md, Profile.md, CLAUDE.md). This step is optional but dramatically improves AI usefulness from the first session. Users can talk through the questions via voice transcription (~10 min talking beats 30 min typing). If they have existing docs (agency briefs, brand guides, SOPs), ingest those first and only ask about gaps.
 
 ### Audit Mode (Existing Vault)
 
