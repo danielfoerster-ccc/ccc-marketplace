@@ -17,6 +17,7 @@ Then install the plugins you need:
 /plugin install ccc-buyback@ccc-marketplace
 /plugin install ccc-operations@ccc-marketplace
 /plugin install 48hr-launch-blueprint@ccc-marketplace
+/plugin install ccc-seo-content-pipeline@ccc-marketplace
 ```
 
 ---
@@ -104,6 +105,20 @@ Validate any business idea by getting 3 paying customers in 48 hours — before 
 | `validation-debrief` | Scorecard analysis, rejection diagnostics, hit/pivot/kill decision + next-action plan |
 
 **Recommended flow:** Run skills in order. Skip `mindset-reset` if you're already comfortable asking for money.
+
+---
+
+
+### ccc-seo-content-pipeline
+
+| Skill | What it does |
+|-------|-------------|
+| `seo-competitor-analysis` | Runs structured competitor gap analysis for the CCC SEO Content Pipeline |
+| `seo-content-generate` | Orchestrates SEO article generation via Arvo API |
+| `seo-keyword-strategy` | Generates prioritized keyword list and 13-week content calendar from competitor gap analysis |
+| `seo-pipeline-setup` | Guided setup wizard for the CCC Automated SEO Content Pipeline |
+| `seo-social-repurpose` | Repurposes published SEO articles into platform-specific social posts and schedules via Blotato API |
+| `seo-weekly-review` | Weekly SEO performance review for the content pipeline |
 
 ---
 

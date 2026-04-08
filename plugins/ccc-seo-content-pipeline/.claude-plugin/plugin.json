@@ -1,0 +1,6 @@
+{
+  "name": "ccc-seo-content-pipeline",
+  "description": "Automated SEO content pipeline for CCC clients — competitor gap analysis, keyword strategy, content generation via Arvo, social repurposing via Blotato, and weekly performance monitoring. Adapted for Claude Cowork.",
+  "version": "0.1.0",
+  "author": "Daniel Förster / CCC"
+}
