@@ -65,8 +65,8 @@
     {
       "name": "ccc-operations",
       "source": "./plugins/ccc-operations",
-      "description": "CCC internal operations toolkit. SOP Creator builds HEROIC-format SOPs. Skill Creator Pro builds and evaluates Claude skills. Framework Extractor ingests books, courses, and methodologies into structured SOPs, skills, and plugins.",
-      "version": "1.1.2",
+      "description": "CCC internal operations toolkit. SOP Creator builds HEROIC-format SOPs for any repeatable business process. Skill Creator Pro builds and evaluates Claude skills to production quality. Marketplace Health Check runs a compliance scan across all marketplace plugins and skills.",
+      "version": "1.3.0",
       "author": {
         "name": "Claude Cowork Consultants"
       },
@@ -74,7 +74,7 @@
         "sop",
         "operations",
         "skill-creator",
-        "framework-extractor",
+        "marketplace",
         "workflows",
         "documentation"
       ]
@@ -118,8 +118,8 @@
     {
       "name": "second-brain",
       "source": "./plugins/second-brain",
-      "description": "Second Brain tools for the WELTENERNEUERER vault. Two skills: Second Brain Setup & Audit (Three Brains framework — fresh setup or existing vault migration) and Knowledge Ingest (URL/transcript → wikilinked vault notes with thinker profiles).",
-      "version": "1.1.2",
+      "description": "Knowledge management tools for building and maintaining a Second Brain vault. Three skills: Second Brain Setup & Audit (Three Brains framework — fresh setup or existing vault migration), Knowledge Ingest (URL/transcript → wikilinked vault notes with thinker profiles), and Framework Extractor (turns books, courses, and frameworks into structured Claude Cowork Skills and plugins).",
+      "version": "1.2.0",
       "author": {
         "name": "Daniel Förster · Claude Cowork Consultants"
       },
@@ -127,11 +127,11 @@
         "second-brain",
         "knowledge-base",
         "ingest",
+        "framework-extractor",
         "url",
         "article",
         "obsidian",
         "vault",
-        "thinker",
         "learning",
         "three-brains"
       ]

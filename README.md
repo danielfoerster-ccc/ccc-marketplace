@@ -91,7 +91,6 @@ Tools for creating CCC-standard SOPs and production-quality Claude skills.
 |-------|-------------|
 | `ccc-sop-creator` | Builds HEROIC-format SOPs from live CCC foundation docs. Covers all GTM channels and operational processes |
 | `skill-creator-pro` | Full skill engineering loop: draft → test → evaluate → iterate. Includes practitioner patterns and anti-patterns |
-| `framework-extractor` | Ingests books, courses, and methodologies → extracts structured frameworks → produces SOPs, skills, and plugins |
 | `ccc-marketplace-health-check` | Full compliance scan across all marketplace plugins and skills. Checks Rules, Self-Improvement, line limits, allowed-tools, README coverage, and client data leaks. Monthly scheduled task |
 
 ---
@@ -154,6 +153,7 @@ Knowledge management tools for Obsidian vaults built on the Three Brains framewo
 |-------|-------------|
 | `second-brain` | Set up a new vault or audit an existing one. Setup mode interviews the user and designs a 5-folder architecture. Audit mode scans structure and proposes a migration plan |
 | `knowledge-ingest` | Drop any URL or YouTube transcript → auto-fetched via Tavily, summarised, wikilinked, and routed to the right Knowledge Base subfolder |
+| `framework-extractor` | Ingests books, courses, and methodologies → decodes the framework skeleton → produces SOPs, skills, and plugins via a 5-phase decode-build-audit-architect workflow |
 
 ---
 
