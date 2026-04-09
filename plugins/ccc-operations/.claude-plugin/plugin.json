@@ -1,7 +1,7 @@
 {
   "name": "ccc-operations",
-  "description": "CCC internal operations toolkit. Three skills: CCC SOP Creator (HEROIC-format SOPs for any repeatable business process — GTM channels, delivery, internal workflows), Skill Creator Pro (full engineering loop for Claude skills and plugins — draft, test, evaluate, iterate), and Marketplace Health Check (compliance scan across all marketplace plugins and skills with scored report and fix list). Use these skills to build, improve, and maintain CCC's own systems.",
-  "version": "1.3.0",
+  "description": "CCC internal operations toolkit. Four skills: CCC SOP Creator (HEROIC-format SOPs for any repeatable business process), Skill Creator Pro (full engineering loop for Claude skills and plugins), Marketplace Health Check (compliance scan across all marketplace plugins and skills), and Marketplace Publisher (syncs vault plugins to GitHub, validates token, ensures marketplace.json is complete, and pushes — the single command that keeps the marketplace up to date).",
+  "version": "1.4.0",
   "author": {
     "name": "Daniel Förster · Claude Cowork Consultants"
   }

@@ -92,6 +92,7 @@ Tools for creating CCC-standard SOPs and production-quality Claude skills.
 | `ccc-sop-creator` | Builds HEROIC-format SOPs from live CCC foundation docs. Covers all GTM channels and operational processes |
 | `skill-creator-pro` | Full skill engineering loop: draft → test → evaluate → iterate. Includes practitioner patterns and anti-patterns |
 | `ccc-marketplace-health-check` | Full compliance scan across all marketplace plugins and skills. Checks Rules, Self-Improvement, line limits, allowed-tools, README coverage, and client data leaks. Monthly scheduled task |
+| `ccc-marketplace-publisher` | Syncs vault plugins to the GitHub marketplace repo in one command. Validates token, compares vault vs repo versions, copies updated skills, ensures marketplace.json is complete, commits, and pushes |
 
 ---
 
