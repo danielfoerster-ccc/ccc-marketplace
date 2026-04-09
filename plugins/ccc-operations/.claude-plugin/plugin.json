@@ -1,7 +1,7 @@
 {
   "name": "ccc-operations",
-  "description": "CCC internal operations toolkit. Three skills: CCC SOP Creator (builds and updates Standard Operating Procedures in the HEROIC format for any repeatable CCC business process — outreach, delivery, internal workflows), Skill Creator Pro (engineering loop for creating, improving, and evaluating Claude skills and plugins to production quality — includes CCC publishing workflow), and Second Brain (sets up and audits Obsidian knowledge systems using the Three Brains framework). Use these skills to build and improve CCC's own systems.",
-  "version": "1.1.2",
+  "description": "CCC internal operations toolkit. Four skills: CCC SOP Creator (HEROIC-format SOPs for any repeatable business process), Skill Creator Pro (full engineering loop for Claude skills and plugins), Framework Extractor (turns books and courses into structured skills and SOPs), and Marketplace Health Check (compliance scan across all marketplace plugins and skills). Use these skills to build, improve, and maintain CCC's own systems.",
+  "version": "1.2.0",
   "author": {
     "name": "Daniel Förster · Claude Cowork Consultants"
   }
