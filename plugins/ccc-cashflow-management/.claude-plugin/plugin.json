@@ -1,0 +1,20 @@
+{
+  "name": "ccc-cashflow-management",
+  "version": "1.1.0",
+  "description": "Complete Profit First cashflow management system for consultants and business owners. Run Instant Assessments, set up multi-account structures, classify expenses with the PRUN Formula, execute quarterly reviews with profit distribution, optimize across 12 Profit Points, generate client reports, onboard consulting clients, and prepare Cashflow Control workshops. Built on Mike Michalowicz's Profit First methodology, extended with Daniel Foerster's Cashflow Control System, 12 Profit Points, and PRUN Formula.",
+  "author": {
+    "name": "Daniel Foerster / Claude Cowork Consultants"
+  },
+  "keywords": [
+    "cashflow",
+    "profit-first",
+    "finance",
+    "consulting",
+    "assessment",
+    "budgeting",
+    "profit",
+    "cost-audit",
+    "quarterly-review",
+    "workshop"
+  ]
+}
