@@ -17,7 +17,9 @@ Then install the plugins you need:
 /plugin install ccc-buyback@ccc-marketplace
 /plugin install ccc-operations@ccc-marketplace
 /plugin install 48hr-launch-blueprint@ccc-marketplace
+/plugin install ccc-cashflow-management@ccc-marketplace
 /plugin install ccc-seo-content-pipeline@ccc-marketplace
+/plugin install second-brain@ccc-marketplace
 ```
 
 ---
@@ -47,6 +49,7 @@ Scored, actionable audit reports for you and your clients.
 | `ccc-instagram-audit` | Audits Instagram via live Chrome browser inspection. Scores 7 dimensions + 30-day action plan |
 | `ccc-seo-audit` | Full technical SEO audit using Seomator + live GSC data. Weighted scorecard + sourced action plan |
 | `gmb-audit` | Google My Business audit via Chrome. Scores 7 dimensions + competitor benchmarking |
+| `ccc-wordpress-seo-implementation` | Implements SEO audit fixes on WordPress sites. Covers robots.txt, meta descriptions, H1 tags, Yoast settings via WPCode bulk operations |
 | `gsc-cleanup-sop` | Automated Google Search Console cleanup for WordPress sites. Diagnoses indexing issues + produces robots.txt template |
 
 ---
@@ -109,6 +112,26 @@ Validate any business idea by getting 3 paying customers in 48 hours — before 
 ---
 
 
+### ccc-cashflow-management — Profit First Cashflow System
+
+Complete Profit First implementation for consultants and business owners. Built on Mike Michalowicz's methodology, extended with Daniel Foerster's Cashflow Control System, CBS Score, 12 Profit Points, and PRUN Formula.
+
+| Skill | What it does |
+|-------|-------------|
+| `ccc-cashflow-start` | Entry point: detects user context (consultant vs. self-service, new vs. returning) and routes to the right skill |
+| `ccc-cashflow-assessment` | Instant Assessment: revenue, TAPs comparison, CBS Score, gap analysis, rollout plan |
+| `ccc-cashflow-setup` | Multi-account structure setup: 5+2 accounts, bank selection, MwSt handling for DACH |
+| `ccc-cashflow-cost-audit` | PRUN Formula cost audit: classify every expense as Fat/Muscle/Bone, build cut list |
+| `ccc-cashflow-quarterly-review` | Quarterly review with 4R Framework, profit distribution, CBS tracking, CDT update |
+| `ccc-cashflow-profit-points` | Score and optimize across 12 Profit Points for continuous improvement |
+| `ccc-cashflow-report` | Generate client-ready reports with CBS headline, bilingual DACH tables, visualizations |
+| `ccc-cashflow-client-onboard` | Consultant-only: structured 10-12 meeting client onboarding with implementation benchmarks |
+| `ccc-cashflow-workshop-prep` | Consultant-only: prepare Cashflow Control workshops with M&M simulation and materials checklists |
+
+**Recommended flow:** Start with `ccc-cashflow-start`. For consultants: `assessment` → `setup` → `cost-audit` → `quarterly-review` cycle.
+
+---
+
 ### ccc-seo-content-pipeline
 
 | Skill | What it does |
@@ -122,6 +145,17 @@ Validate any business idea by getting 3 paying customers in 48 hours — before 
 
 ---
 
+### second-brain — Knowledge Base & Vault Management
+
+Knowledge management tools for Obsidian vaults built on the Three Brains framework.
+
+| Skill | What it does |
+|-------|-------------|
+| `second-brain` | Set up a new vault or audit an existing one. Setup mode interviews the user and designs a 5-folder architecture. Audit mode scans structure and proposes a migration plan |
+| `knowledge-ingest` | Drop any URL or YouTube transcript → auto-fetched via Tavily, summarised, wikilinked, and routed to the right Knowledge Base subfolder |
+
+---
+
 ## About
 
 Built by [Claude Cowork Consultants](https://claudecowork-consultants.com).
@@ -129,4 +163,4 @@ Questions or custom implementations: reach out via the website.
 
 ---
 
-*Last updated: 2026-03-26 | Version 1.2.0*
+*Last updated: 2026-04-09 | Version 1.3.0*

@@ -13,6 +13,16 @@ description: >
   For creating SEO pages at scale, see programmatic-seo.
   For GSC-only content optimization, see seo-optimizing.
 distribution: marketplace-ready
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Glob
+  - Grep
+  - Agent
+  - Skill
+  - mcp__Claude_in_Chrome__*
 ---
 
 # CCC SEO Audit Skill
@@ -449,3 +459,19 @@ If not blocked → re-install with `--ignore-scripts` and retry.
 - **gsc-cleanup-sop** — WordPress crawl budget cleanup; always recommend alongside SEO audit for WordPress + WooCommerce sites
 - **marketing:seo-optimizing** — GSC-data-driven content optimization (post-audit)
 - **marketing:programmatic-seo** — Creating SEO pages at scale
+
+---
+
+## Rules (Update When Things Go Wrong)
+
+- Seomator crawl results can take 2–5 minutes — never skip the wait or fabricate results
+- Content readability scores from Seomator are calibrated for English — flag this limitation for German-language sites
+- GSC data requires Chrome login — if user cannot authenticate, proceed with Seomator + direct inspection only
+- Never present estimated metrics as confirmed data — label clearly as [Estimated] or [Seomator] or [GSC]
+- WordPress sites should always get a gsc-cleanup-sop recommendation alongside the SEO audit
+
+---
+
+## Self-Improvement
+
+After every audit run, check whether any dimension produced unexpected scoring, missing data, or tool failures. Add the finding to the Rules section above and update the relevant phase instructions.

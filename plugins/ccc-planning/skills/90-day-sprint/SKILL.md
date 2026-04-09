@@ -239,3 +239,9 @@ Tell the user the file path and confirm it's saved. Then say:
 - If FULCRUM is not yet active, include it as a placeholder Rock under Revenue Generation with a note: "Activates when [trigger condition]."
 - If the user gives short answers, accept them. Don't push for elaboration unless something is clearly missing for the output to be useful.
 - Maximum session questions: 13 (phases 1–7). Skip any that are already answered.
+
+---
+
+## Self-Improvement
+
+After every sprint planning session, check whether any phase produced friction (too many questions, redundant input, misaligned Rock structure). Add the finding to the Rules section above.

@@ -370,107 +370,18 @@ Score each dimension 0–100. Apply weights. Sum for overall score.
 
 **This is what separates this skill from a generic audit. Every section below 85 gets ready-to-paste copy.**
 
-Generate copy using foundational docs as the source. Do not invent positioning that
-isn't documented — use positioning.md, voice.md, and ICP.md as the material.
+Full copy generation guide with templates: `references/copy-generation-guide.md`
 
-**Two hard rules for all copy in this phase:**
-1. **No fabricated conversion metrics.** Never write "+X% engagement", "+Y% conversion",
-   or "expected impact: Z%". Explain why copy works using Ben's framework criteria —
-   not made-up performance numbers.
-2. **No banned language.** See banned list in Section 5.3. This applies to all sections,
-   including English variants where the guard tends to slip.
+**Two hard rules for all copy:**
+1. **No fabricated conversion metrics.** Never write "+X% engagement" or "expected impact: Z%"
+2. **No banned language.** "consultant", "transform", "empower", "world-class", "next-level", "cutting-edge", or any outcome without a number
 
-### 5.1 — Headline Variants
-
-Follow Ben's formula: **[Identity] | [Offer for ICP] → [Specific Outcome]**
-
-For CCC Own Profile:
-- Identity: "Fractional GTM & Operations Strategist" (from context.md)
-- ICP: "Marketing & AI Automation Agencies" (from ICP.md)
-- Outcome: "20–100+ hours saved/week in 6 weeks, mehr Marge, ohne neue Leute"
-
-Generate **3 headline variants**:
-- **Variant A** — German-primary (DACH focus, ≤220 characters)
-- **Variant B** — English-primary (international reach, ≤220 characters)
-- **Variant C** — Bilingual or ICP-specific detail variant (≤220 characters)
-
-Label clearly and explain the strategic reasoning for each.
-
-**Do not generate conversion lift estimates** (e.g. "+15–20% visitor engagement",
-"+25–40% call conversion"). These are unverifiable. Explain *why* a variant works
-against Ben's framework criteria — not what percentage improvement it will deliver.
-
-### 5.2 — Banner Brief
-
-The banner is a visual, so provide a design brief rather than the file:
-- **Headline text** (3–7 words, the main message)
-- **Subline** (outcome statement, 10–15 words)
-- **Style direction** (colours, tone — use positioning.md or CCC brand)
-- **Recommended tool**: Canva
-- **Target size**: 1584 × 396 px (LinkedIn recommended)
-
-### 5.3 — About Section Rewrite
-
-Write the full About section using Ben's 5-part structure, populated from foundational docs:
-
-```
-[PART 1 — ABOVE THE FOLD, 2 lines max]
-[Who you help + what you build — immediately clear to the ICP]
-
-[PART 2 — PROOF STORY, 2–4 lines]
-[Credibility and context: what Daniel has built, where he's been, what he's doing now]
-
-[PART 3 — OFFERS + OUTCOMES]
-• [Offer 1] → [Specific outcome]
-• [Offer 2] → [Specific outcome]
-• [Offer 3] → [Specific outcome]
-
-[PART 4 — WHO I HELP]
-• [Client type 1]
-• [Client type 2]
-• [Client type 3]
-
-[PART 5 — STAY CONNECTED]
-→ [Primary CTA: "Book a free 20-min call → [Calendly link]"]
-→ [Lead magnet: "Get the free Claude Cowork Agency Toolkit → [URL]"]
-→ [Optional: Newsletter / YouTube link]
-```
-
-Apply voice.md rules strictly. **Banned language — never use in any generated copy:**
-- "consultant" / "Berater" (Daniel is a Strategist, not a consultant)
-- "transform" / "transformieren" — vague
-- "empower" / "befähigen" — vague
-- "world-class" — substance-free
-- "next-level" — vague
-- "cutting-edge" — cliché
-- Any outcome without a number: "significant savings", "better results", "improved performance"
-
-For every outcome statement, ask: *Is there a number? A timeline? A specific deliverable?*
-If not, add one or cut the claim.
-
-Generate both German and English versions if bilingual profile is planned.
-
-### 5.4 — Featured Section Copy
-
-For each Featured item, provide:
-- **Title** (what LinkedIn shows as the card title — 6–10 words)
-- **Description** (shown below title — 1–2 sentences, max 300 characters)
-- **Destination URL**
-- **Thumbnail brief** (what image should appear — design direction for Canva)
-
-**Item 1 — Book-a-Call CTA:**
-Goal: make the ask obvious. Direct benefit + low-friction framing.
-
-**Item 2 — Lead Magnet (Claude Cowork Agency Toolkit):**
-Goal: drive email signups. What they get, who it's for, why it's worth the email.
-
-### 5.5 — Experience Description
-
-Write the current role description (2–4 lines + CTA link):
-- First line: call out ICP explicitly ("If you run a marketing or AI automation agency...")
-- Second line: core offer in one sentence
-- Third line (optional): one proof point or outcome
-- Final line: link to primary CTA
+**5 copy sections to generate:**
+1. **Headline Variants** — 3 variants (German-primary, English-primary, bilingual) using Ben's formula: `[Identity] | [Offer for ICP] → [Specific Outcome]`
+2. **Banner Brief** — headline text, subline, style direction, 1584×396 px
+3. **About Section Rewrite** — Ben's 5-part structure (Above-fold → Proof → Offers → Who → CTA). Apply voice.md banned list to all variants including English
+4. **Featured Section Copy** — title, description, URL, thumbnail brief for each card
+5. **Experience Description** — ICP callout → core offer → proof point → CTA link
 
 ---
 
@@ -557,26 +468,15 @@ Proceed with context-informed rewrites based on answers.
 
 ---
 
-## Real-World Learnings Log
+## Rules (Update When Things Go Wrong)
 
-Improvements from actual audits. Add a row after every run where something surprising emerged.
-
-| # | Learning | Problem | Fix Applied |
-|---|----------|---------|-------------|
-| 1 | Login gate must be explicit, not a passive warning | Subagent scored profile from assumptions when LinkedIn login wasn't confirmed — scores were fabricated | Phase 1.2 rewritten as a hard STOP gate with explicit user instruction |
-| 2 | English copy variants slip on voice rules | "world-class GTM frameworks" appeared in English About rewrite despite being banned in voice.md | Banned list now explicitly listed in Phase 5.3; applies to all variants |
-| 3 | Copy phase generates fake conversion metrics | "+25–40% Experience → Call conversion" and similar ungrounded claims appeared in output | Hard rule added to Phase 5: no fabricated conversion lift estimates |
+- Login gate in Phase 1.2 is a HARD STOP — never score a profile from assumptions when login isn't confirmed
+- English copy variants slip on voice rules. Apply the banned language list to ALL variants, not just German
+- Never generate fabricated conversion metrics ("+25–40% conversion", "+15% engagement") — explain why copy works against framework criteria instead
+- If foundational docs (positioning.md, voice.md, ICP.md) are missing, generate observation-based copy only — never invent positioning
 
 ---
 
-## Version History
+## Self-Improvement
 
-| Version | Date | Notes |
-|---------|------|-------|
-| v1.0 | March 2026 | Initial skill — Ben's framework + CCC positioning standards |
-| v1.1 | March 2026 | Hard login gate in Phase 1.2; banned language list explicit in Phase 5.3; no fabricated conversion metrics rule added to Phase 5 |
-
----
-
-*Daniel Förster & Heiko Lube | Claude Cowork Consultants (CCC)*
-*claudecoworkconsultants.com*
+After every audit run, check whether any Phase produced unexpected output (wrong scoring, fabricated claims, missed sections). Add the finding to the Rules section above and update the relevant Phase instructions. Track learnings in `references/copy-generation-guide.md` if copy-specific.

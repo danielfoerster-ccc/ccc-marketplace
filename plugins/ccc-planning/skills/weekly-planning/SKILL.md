@@ -261,3 +261,9 @@ After saving, confirm the file path and say:
 - Parking Lot items go to the Braindump Vault as C-items, not into the weekly plan.
 - Keep all output in English.
 - If the user is short on time, Phase 1 can be compressed to Q1 + Q2 + Q6 + Q7 only.
+
+---
+
+## Self-Improvement
+
+After every weekly planning session, check whether the Braindump Vault carry-forward was smooth, whether Rock Health was accurate, and whether TOP 3 aligned with sprint priorities. Add findings to Rules above.

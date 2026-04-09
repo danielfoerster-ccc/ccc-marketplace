@@ -240,3 +240,9 @@ When updating: read the existing daily file → update status column → append 
 - The daily file is a live document — updated throughout the day, not just morning.
 - End-of-Day section stays blank at creation — filled via Drumbeat update or checkout.
 - Keep all output in English.
+
+---
+
+## Self-Improvement
+
+After every daily check-in, check whether Phase 0 loading was slow or redundant, whether question count stayed ≤3, and whether the Drumbeat carried forward correctly. Add findings to Rules above.

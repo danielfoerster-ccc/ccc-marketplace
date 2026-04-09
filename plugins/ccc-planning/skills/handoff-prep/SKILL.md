@@ -140,3 +140,9 @@ If yes, append to today's Daily Check-in file under a new section:
 - For human handoffs: flag any task that seems too vague or under-specified. Better to spend 2 more minutes clarifying than to get a wrong deliverable back.
 - Never suggest delegating tasks that require the operator's judgment, relationships, or unique knowledge — those stay with them. Flag this if relevant.
 - Keep all output in English.
+
+---
+
+## Self-Improvement
+
+After every handoff prep, check whether the Definition of Done was specific enough and whether the recipient needed clarification. Add findings to Rules above.
