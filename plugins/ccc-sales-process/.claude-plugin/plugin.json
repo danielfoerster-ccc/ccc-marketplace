@@ -2,7 +2,7 @@
   "name": "ccc-sales-process",
   "display_name": "CCC Sales Process",
   "description": "Daniel's end-to-end sales process for CCC consulting engagements: pre-call preparation, post-call logging, engagement pricing, and branded proposal generation with HTML-to-PDF rendering.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Claude Cowork Consultants",
   "skills": [
     "ccc-sales-prep",

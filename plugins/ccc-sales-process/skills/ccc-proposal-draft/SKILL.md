@@ -80,29 +80,31 @@ Confirm: "Markdown draft saved. Review content and confirm before I build the HT
 
 ## Phase 4: Build Branded HTML
 
-Only after Daniel confirms the Markdown content — take the approved content and render it as a CCC-branded HTML document. **Copy the text verbatim — including all punctuation, colons, em-dashes, and phrasing — exactly as written. Never make editorial changes.**
+Only after Daniel confirms the Markdown content — take the approved content and render it as a branded HTML document. **Copy the text verbatim — including all punctuation, colons, em-dashes, and phrasing — exactly as written. Never make editorial changes.**
 
-### Brand System
-- **Fonts**: Space Grotesk (700, 600 weights) + Inter (400, 500) — load from Google Fonts
-- **CCC Gold**: `#C9A84C`
-- **Background**: white (`#FFFFFF`) — required for clean PDF printing
-- **Dark pages** (cover + closing): `#1A1A1A` background, white text
-- **Body text**: `#2A2A2A`, 10.5–11pt, Inter
-- **Headings**: Space Grotesk 700, `#1A1A1A`
-- **Blockquotes**: left border in CCC Gold, italic, `#3A3A3A`
+### Load Brand Guidelines
 
-### Standard Page Structure (6 pages)
-1. **Dark cover** — proposal title, prepared for/by with LinkedIn link, valid until date, CCC branding
-2. **About Daniel** — who CCC is and why this engagement
-3. **What I Heard** — client's situation mirrored back, blockquoted key phrases, numbered priorities
-4. **The Engagement + Options** — option cards with pricing; recommended option gets a gold border
-5. **What Comes After + Next Steps** — long-term path and numbered action steps, italic WhatsApp closing
-6. **Dark closing** — tagline, name (LinkedIn link), role, CCC wordmark
+Before building the HTML, load the brand for this engagement:
+
+1. **Check the client folder first** — look for a `brand-guideline.md` or `brand.md` in the client's project folder (e.g., `03 - OPERATIONS/Claude Cowork Consultants/02 - Clients/[Name]/`)
+2. **Fall back to CCC brand** — `03 - OPERATIONS/Claude Cowork Consultants/00 - CCC Foundations/brand-guideline.md`
+
+The brand file provides: color palette, typography (fonts + weights + sizes), design language, logo usage rules, and document-specific guidance. Apply all of these to the HTML build.
+
+If no brand file exists for the client and none is specified, ask Daniel which brand to use before building.
+
+### Standard Page Structure (adapt per brand)
+1. **Dark cover** — proposal title, prepared for/by, valid until date, brand identity
+2. **About Daniel** — who the firm is and why this engagement
+3. **What I Heard** — client's situation mirrored back, key quotes, numbered priorities
+4. **The Engagement + Options** — option cards with pricing; recommended option gets a highlighted border
+5. **What Comes After + Next Steps** — long-term path and numbered action steps, closing line
+6. **Dark closing** — tagline, name, role, brand wordmark
 
 ### Layout Rules
 - Each page is a self-contained `<div class="page">` with `min-height: 297mm` and internal padding (~18–22mm)
-- Content pages have a footer: `<span>[CCC — Proposal Name]</span>` — label only, **no page numbers**
-- Option cards: `border: 1.5px solid #E0E0E0`; recommended card: `border-color: #C9A84C`
+- Content pages have a footer label (e.g., `[Brand] — Proposal Name`) — **no page numbers**
+- Option cards: light border by default; recommended card uses the brand's accent color for the border
 - Use `page-break-inside: avoid` on option cards so they don't split across PDF pages
 
 ### Puppeteer PDF Render
