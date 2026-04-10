@@ -20,6 +20,7 @@ Then install the plugins you need:
 /plugin install ccc-cashflow-management@ccc-marketplace
 /plugin install ccc-seo-content-pipeline@ccc-marketplace
 /plugin install second-brain@ccc-marketplace
+/plugin install ccc-ai-audit@ccc-marketplace
 ```
 
 ---
@@ -155,6 +156,19 @@ Knowledge management tools for Obsidian vaults built on the Three Brains framewo
 | `second-brain` | Set up a new vault or audit an existing one. Setup mode interviews the user and designs a 5-folder architecture. Audit mode scans structure and proposes a migration plan |
 | `knowledge-ingest` | Drop any URL or YouTube transcript → auto-fetched via Tavily, summarised, wikilinked, and routed to the right Knowledge Base subfolder |
 | `framework-extractor` | Ingests books, courses, and methodologies → decodes the framework skeleton → produces SOPs, skills, and plugins via a 5-phase decode-build-audit-architect workflow |
+
+---
+
+
+### ccc-ai-audit
+
+| Skill | What it does |
+|-------|-------------|
+| `ccc-audit-discovery` | Runs Phase 1+2 of the AI Automation Audit: scoped discovery and process documentation |
+| `ccc-audit-proposal` | Generates the Phase 5b tiered commercial proposal from audit findings |
+| `ccc-audit-report` | Generates the Phase 5a audit report: a professional 5-page findings document with executive summary, current state assessment, opportunity matrix, solution recommendations, and implementation roadmap |
+| `ccc-audit-scoring` | Runs Phase 3+4 of the AI Automation Audit: VALUE opportunity scoring and solution matching |
+| `ccc-audit-start` | Entry router for the CCC AI Automation Audit |
 
 ---
 

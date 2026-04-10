@@ -1,0 +1,8 @@
+{
+  "name": "ccc-ai-audit",
+  "description": "AI Automation Audit toolkit for CCC consulting engagements. Five skills covering the full audit lifecycle: entry routing, scoped discovery with process documentation, VALUE opportunity scoring with solution matching, professional audit report generation, and tiered commercial proposal creation. Based on the 5-Phase AI Audit Framework. Guides consultants through real-world audit engagements that span multiple sessions across days — including stakeholder interviews, process walkthroughs, and data collection between sessions.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Daniel Forster · Claude Cowork Consultants"
+  }
+}
