@@ -21,6 +21,7 @@ Then install the plugins you need:
 /plugin install ccc-seo-content-pipeline@ccc-marketplace
 /plugin install second-brain@ccc-marketplace
 /plugin install ccc-ai-audit@ccc-marketplace
+/plugin install ccc-sales-process@ccc-marketplace
 ```
 
 ---
@@ -169,6 +170,18 @@ Knowledge management tools for Obsidian vaults built on the Three Brains framewo
 | `ccc-audit-report` | Generates the Phase 5a audit report: a professional 5-page findings document with executive summary, current state assessment, opportunity matrix, solution recommendations, and implementation roadmap |
 | `ccc-audit-scoring` | Runs Phase 3+4 of the AI Automation Audit: VALUE opportunity scoring and solution matching |
 | `ccc-audit-start` | Entry router for the CCC AI Automation Audit |
+
+---
+
+
+### ccc-sales-process
+
+| Skill | What it does |
+|-------|-------------|
+| `ccc-sales-prep` | Pre-call brief for any prospect or client |
+| `ccc-post-call-log` | Post-call vault update and CRM logging |
+| `ccc-pricing` | Four-lens pricing framework for CCC engagements |
+| `ccc-proposal-draft` | Branded HTML→PDF proposal generation |
 
 ---
 
