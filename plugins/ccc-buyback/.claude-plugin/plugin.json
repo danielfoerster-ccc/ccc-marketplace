@@ -2,5 +2,9 @@
   "name": "ccc-buyback",
   "description": "Buy Back Your Time system by Dan Martell, implemented for AI-first operators. DRIP matrix audit, Perfect Week design, 10X Vision, Preloaded Year planning, and Replacement Ladder hiring roadmap.",
   "version": "1.0.0",
-  "author": { "name": "Claude Cowork Consultants", "url": "https://claudecowork-consultants.com" }
+  "author": {
+    "name": "Claude Cowork Consultants",
+    "url": "https://claudecowork-consultants.com"
+  },
+  "display_name": "CCC Buyback System"
 }

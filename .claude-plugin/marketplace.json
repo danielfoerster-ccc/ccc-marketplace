@@ -24,7 +24,8 @@
         "90-day-sprint",
         "productivity",
         "obsidian"
-      ]
+      ],
+      "display_name": "CCC Planning System"
     },
     {
       "name": "ccc-audits",
@@ -43,7 +44,8 @@
         "gsc",
         "wordpress",
         "marketing"
-      ]
+      ],
+      "display_name": "CCC Audits"
     },
     {
       "name": "ccc-gtm",
@@ -60,7 +62,8 @@
         "positioning",
         "launch-plan",
         "strategy"
-      ]
+      ],
+      "display_name": "CCC Go-To-Market"
     },
     {
       "name": "ccc-operations",
@@ -77,7 +80,8 @@
         "marketplace",
         "workflows",
         "documentation"
-      ]
+      ],
+      "display_name": "CCC Operations"
     },
     {
       "name": "ccc-buyback",
@@ -94,7 +98,8 @@
         "perfect-week",
         "vision",
         "dan-martell"
-      ]
+      ],
+      "display_name": "CCC Buyback System"
     },
     {
       "name": "48hr-launch-blueprint",
@@ -113,7 +118,8 @@
         "million-dollar-weekend",
         "noah-kagan",
         "offer-crafting"
-      ]
+      ],
+      "display_name": "48hr Launch Blueprint"
     },
     {
       "name": "second-brain",
@@ -134,7 +140,8 @@
         "vault",
         "learning",
         "three-brains"
-      ]
+      ],
+      "display_name": "Second Brain"
     },
     {
       "name": "ccc-cashflow-management",
@@ -155,7 +162,8 @@
         "cost-audit",
         "quarterly-review",
         "workshop"
-      ]
+      ],
+      "display_name": "CCC Cashflow Management"
     },
     {
       "name": "ccc-ai-audit",
@@ -169,13 +177,14 @@
         "ccc",
         "ai",
         "audit"
-      ]
+      ],
+      "display_name": "CCC AI Automation Audit"
     },
     {
       "name": "ccc-sales-process",
       "source": "./plugins/ccc-sales-process",
       "description": "Daniel's end-to-end sales process for CCC consulting engagements: pre-call preparation, post-call logging, engagement pricing, and branded proposal generation with HTML-to-PDF rendering.",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "author": {
         "name": "Claude Cowork Consultants"
       },
@@ -184,7 +193,8 @@
         "sales",
         "proposal",
         "pricing"
-      ]
+      ],
+      "display_name": "CCC Sales Process"
     }
   ]
 }
