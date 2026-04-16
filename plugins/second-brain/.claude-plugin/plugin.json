@@ -1,7 +1,7 @@
 {
   "name": "second-brain",
-  "description": "Knowledge management tools for building and maintaining a Second Brain vault. Three skills: (1) Second Brain Setup & Audit — sets up or audits Obsidian vaults using the Three Brains framework; (2) Knowledge Ingest — drop any URL or YouTube transcript and it is automatically fetched, summarised, wikilinked, and routed to the right Knowledge Base subfolder; (3) Framework Extractor — turns books, courses, and frameworks into structured Claude Cowork Skills and plugins via a 5-phase decode-build-audit-architect workflow.",
-  "version": "1.2.0",
+  "description": "Knowledge management tools for building and maintaining a Second Brain vault. Three skills: (1) Second Brain Setup & Audit — sets up or audits Obsidian vaults using the Three Brains framework; (2) Knowledge Distill — fetches any URL via Tavily, extracts key ideas, and routes wikilinked notes to the right vault subfolder with thinker profiles; (3) Knowledge Archive — preserves full article text in the vault with a summary header, supporting single-URL, paste-in (zero token cost), and bulk publication-feed scraping with date filtering.",
+  "version": "1.3.0",
   "author": {
     "name": "Daniel Förster · Claude Cowork Consultants"
   }

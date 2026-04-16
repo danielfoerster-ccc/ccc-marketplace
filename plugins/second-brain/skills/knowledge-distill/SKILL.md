@@ -1,22 +1,25 @@
 ---
-name: knowledge-ingest
+name: knowledge-distill
 description: |
-  Ingests articles, essays, blog posts, or YouTube transcripts into the operator's Knowledge Base vault.
-  Fetches URLs automatically via Tavily, extracts key ideas, creates properly wikilinked notes,
-  routes them to the right KB subfolder, and creates or updates thinker/author profiles.
-  Use this skill whenever a URL is dropped for saving, reading, or research purposes — even if
-  the user just says "save this", "add this to the vault", "summarize this article", or
-  "put this in the knowledge base". Also triggers on YouTube transcript files dropped into the
-  conversation or saved to the vault. Handles single URLs, batches of URLs, and local transcript files.
+  Distills articles, essays, blog posts, or YouTube transcripts into compact knowledge notes in the vault.
+  Extracts key ideas, core argument, and connections — output is always shorter than the original.
+  NOT for archiving full text (use knowledge-archive for that).
+  Fetches URLs automatically via Tavily, creates properly wikilinked notes,
+  routes to the right KB subfolder, and creates or updates thinker/author profiles.
+  Use this skill whenever a URL is dropped for learning and the user wants key ideas extracted —
+  "save this", "add to vault", "what's the key idea here", "summarize this article",
+  "distill this into the knowledge base". Also handles YouTube transcripts (pasted or file path).
+  Handles single URLs, batches of URLs, and local transcript files.
   Never asks the user to copy-paste — fetches content automatically.
 allowed-tools: "Read, Write, Glob, Grep, Bash"
 metadata:
   author: Daniel Förster · Claude Cowork Consultants
-  version: 1.0.0
+  version: 1.1.0
   created: 2026-04-01
+  updated: 2026-04-16
 ---
 
-# Knowledge Ingest Skill
+# Knowledge Distill Skill
 
 **Workflow: Fetch → Classify → Route → Save → Report**
 
