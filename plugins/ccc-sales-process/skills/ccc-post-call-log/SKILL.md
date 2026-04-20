@@ -188,6 +188,26 @@ The "Most important signal today" line is the skill's highest-leverage output �
 
 ---
 
+## Phase 7: Queue for Perspective Simulation (optional)
+
+After the person file has been updated with today's signals, append a queue marker at the top of the person file's `## Behavioural Profile` section (or create that section with the marker if it doesn't exist yet):
+
+```
+⟨pending-simulation: YYYY-MM-DD⟩
+```
+
+Where `YYYY-MM-DD` is today's date. This marker signals to the weekly [[Weekly Knowledge Sweep — Recipe Spec|Weekly Knowledge Sweep]] that Perspective Simulation should be run against this person file before the next call. The marker is removed by the weekly rhythm once Simulation runs.
+
+If a prior `⟨pending-simulation: ...⟩` marker already exists on the file, update the date to today — do not stack markers. The queue is a latest-pointer, not a list.
+
+**Why this phase exists.** Without an explicit queue, signals captured today don't reach Perspective Simulation until Daniel manually invokes [[second-brain-connect]]. That delay (D3 in the Systems Thinking operation of 2026-04-20) is where the reinforcing loop R2 stalls — behavioural signals pile up as dead stock in person files and never become sharper Simulation output. The queue marker makes the backlog visible to the weekly rhythm so the loop actually spins. See [[Third Brain Charter]] §5 for the loop terminal rule.
+
+**Skip this phase if:**
+- The person is not an active relationship (an old contact being logged for completeness, no upcoming interaction expected).
+- No new signals were extracted in Phase 4 (`none observed` across all eight categories).
+
+---
+
 ## Rules
 
 1. **Never create a meeting note without routing action items.** Decisions buried in text get forgotten.

@@ -186,8 +186,8 @@
     {
       "name": "ccc-sales-process",
       "source": "./plugins/ccc-sales-process",
-      "description": "Daniel's end-to-end sales process for CCC consulting engagements: pre-call preparation, post-call logging with behavioural signals intake (energy / trust / decision / power / priority / language / timing / cultural signals feeding downstream Perspective Simulation), engagement pricing, and branded proposal generation with HTML-to-PDF rendering.",
-      "version": "1.1.0",
+      "description": "Daniel's end-to-end sales process for CCC consulting engagements: pre-call preparation, post-call logging with behavioural signals intake (energy / trust / decision / power / priority / language / timing / cultural signals feeding downstream Perspective Simulation, plus Phase 7 queue marker for the Weekly Knowledge Sweep), engagement pricing, and branded proposal generation with HTML-to-PDF rendering.",
+      "version": "1.1.1",
       "author": {
         "name": "Claude Cowork Consultants"
       },
