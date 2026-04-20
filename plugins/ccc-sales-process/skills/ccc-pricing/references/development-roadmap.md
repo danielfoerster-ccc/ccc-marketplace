@@ -1,10 +1,10 @@
-*Last updated: April 10, 2026.*
+*Last updated: April 12, 2026.*
 
 # CCC Pricing Skill — Development Roadmap
 
-## Current State: v1.1
+## Current State: v1.2
 
-Now includes BenAI practitioner pricing data alongside consulting theory. Four-lens model: Value-Based → BenAI Market Reality → CCC Architecture → Market & Relationship.
+Adds discount governance (Check 6), price realization rate tracking in the pricing log, win rate calibration benchmarks, and Rule 8 (annual retainer increases). Core four-lens model unchanged from v1.1.
 
 ## Ingested Sources
 
@@ -12,6 +12,7 @@ Now includes BenAI practitioner pricing data alongside consulting theory. Four-l
 |--------|-------------|--------|
 | BenAI — *How to Price Your AI & Automation Services* | Pricing Power formula, market-tested price anchors (€2-5k fixed, €2-5k/mo subscription), case study phase guidance, 2x-5x markup model | ✅ Ingested v1.1 |
 | BenAI — *How to Plan, Scope & Build AI Automations* | 4-phase scoping model (Scope → Design → Build → Iterate), reality check for pricing all phases not just build | ✅ Ingested v1.1 |
+| SBI Growth — *Pricing Services* (sbigrowth.com) | Discount governance, price realization rate KPI, win rate calibration (40-60% healthy), margin leakage baseline (2-5%), annual retainer increase guidance (3-8%) | ✅ Ingested v1.2 |
 
 ## Planned Source Ingestion
 
@@ -27,13 +28,20 @@ Now includes BenAI practitioner pricing data alongside consulting theory. Four-l
 
 ## Planned Features
 
-### v1.2 — After first 5 engagements priced
+### v1.2 — ✅ Done (April 2026)
+- Discount governance check added (Check 6)
+- Price realization rate added to pricing log template
+- Win rate calibration benchmarks added
+- Rule 8: annual retainer increases
+- SBI Growth framework ingested
+
+### v1.3 — After first 5 engagements priced
 - Calibrate framework weights based on actual pricing log data
 - Add industry-specific adjustments (agency vs. SaaS vs. e-commerce)
 - Refine the Weiss 1% ranges based on what actually converts
 - Track BenAI anchor accuracy vs. value-based calculations
 
-### v1.3 — After book ingestion
+### v1.4 — After book ingestion
 - Full Blair Enns options model (4 options, not just 2)
 - Weiss conceptual agreement integration
 - Hormozi value stack builder

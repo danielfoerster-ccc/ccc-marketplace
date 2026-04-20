@@ -1,0 +1,23 @@
+{
+  "skill_name": "second-brain",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "I've been using Obsidian for about a year but honestly it's become a mess. I've got hundreds of notes just dumped at the root level, three different folders that all have stuff about my business, and I can never find anything. My vault is at /sessions/inspiring-awesome-feynman/mnt/WELTENERNEUERER. Can you do an audit and tell me what's actually wrong and how to fix it?",
+      "expected_output": "A Second Brain Vault Audit .md document saved to the vault containing: (1) a backup warning as the first prominent section, (2) diagnostic stats (file counts, homeless notes, folder analysis), (3) top 3-5 structural problems clearly explained, (4) the proposed 5-folder architecture with migration mapping, (5) a phased migration plan (not all at once), and (6) a Three Brains explanation tailored to the user's context.",
+      "files": []
+    },
+    {
+      "id": 1,
+      "prompt": "I want to start building a second brain but I have no idea where to begin. I'm an entrepreneur running two small businesses — a marketing agency and an online course. I don't have Obsidian yet. What should my structure look like and how do I get started?",
+      "expected_output": "A Second Brain Setup Guide .md document containing: (1) a 'Why This Matters' section explaining Three Brains for an entrepreneur context, (2) the 5-folder architecture with entrepreneur-specific sub-folder suggestions, (3) how each layer works in daily life with concrete examples relevant to running businesses, (4) a step-by-step setup guide, and (5) a Week 1 ritual that's small and actionable.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "hey so I've heard about this second brain thing and I'm a PhD student studying cognitive science. I take a ton of notes from papers, lectures, and books but they're all over the place — some in Notion, some in a physical notebook, some just in my Downloads folder as PDFs. I want to get this properly organized once and for all. Where do I even start?",
+      "expected_output": "After 3 clarifying questions (existing vault or fresh start → fresh/mixed, context → student/researcher, biggest pain → disorganized across tools), produces a Setup Guide tailored to a PhD student: Knowledge Base is emphasized as the primary asset, architecture reflects research/study workflows, Week 1 ritual accounts for the fact they're migrating from multiple tools rather than starting completely fresh.",
+      "files": []
+    }
+  ]
+}

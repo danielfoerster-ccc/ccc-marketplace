@@ -1,0 +1,45 @@
+{
+  "skill_name": "knowledge-archive",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Archive this article for me: https://blockbuster.thoughtleader.school/p/the-chat-trap-why-the-smartest-ai — I want the full text in my vault, not a summary.",
+      "expected_output": "A full-text archive file saved to 01 - KNOWLEDGE BASE/Concepts & Ideas/ with: YAML frontmatter (source, author, publication, published, ingested, type, tags), a 3-5 sentence Summary section, a Full Article section with complete text, wikilinks throughout. Michael Simmons thinker profile updated with new Key Works entry.",
+      "assertions": [
+        "File created in 01 - KNOWLEDGE BASE/Concepts & Ideas/",
+        "File contains '## Full Article' section",
+        "File contains '## Summary' section before the Full Article",
+        "YAML frontmatter includes source, author, published, ingested, type fields",
+        "type field equals 'full-text-archive'",
+        "Summary section contains [[wikilinks]]",
+        "Full Article section is longer than the Summary section",
+        "Michael Simmons thinker profile updated with new entry"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I want to scrape all posts from Michael Simmons' Blockbuster Blueprint newsletter from the last 6 months. The Substack is at https://blockbuster.thoughtleader.school",
+      "expected_output": "Mode 2 triggered. Skill fetches the RSS feed, counts posts, filters to last 6 months, asks for confirmation ('Found X articles. Filter: last 6 months = Y articles. Proceed?'), then after confirmation archives each article as a separate full-text MD file. Reports total archived + skipped (duplicates). Updates last_scraped on Michael Simmons thinker profile.",
+      "assertions": [
+        "Skill attempts to fetch RSS feed at blockbuster.thoughtleader.school/feed",
+        "Skill asks for confirmation before fetching ('Found X articles. Proceed?')",
+        "After confirmation, at least one archive file is created",
+        "Files have type: full-text-archive in frontmatter",
+        "last_scraped updated on Michael Simmons thinker profile",
+        "Skill reports how many were archived vs skipped"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Save the full text of this article to my vault: https://fs.blog/feynman-technique/ — I want to be able to re-read it later.",
+      "expected_output": "Non-Substack URL (Farnam Street blog). Mode 1. Full article fetched, saved to appropriate KB subfolder (Mental Models or Concepts & Ideas), full text preserved with summary header. Thinker profile for Shane Parrish created or updated if he's identifiable as a recurring figure.",
+      "assertions": [
+        "File created in 01 - KNOWLEDGE BASE/ (any subfolder)",
+        "File contains '## Full Article' section",
+        "File contains '## Summary' section",
+        "YAML frontmatter includes type: full-text-archive",
+        "File name follows pattern '[Title] — [Author Last Name].md'"
+      ]
+    }
+  ]
+}

@@ -8,7 +8,7 @@ allowed-tools: Read, Write
 
 **Workflow: Load → Assess → Calculate → Check → Recommend → Log.** Gather all client and engagement context, assess the value of the outcome to the client, calculate a price using three converging frameworks, run sanity checks against CCC positioning and market reality, present a recommendation with reasoning, and log the decision for future learning.
 
-**This skill is v1.1 — now includes BenAI practitioner pricing data (2 years of AI automation pricing from 100+ engagements) alongside the consulting theory frameworks. Future versions will incorporate full book ingestion from Tier 1-3 sources. See `references/development-roadmap.md` for the planned evolution.**
+**This skill is v1.2 — adds discount governance checks, price realization rate tracking, and win rate calibration benchmarks from SBI Growth's enterprise pricing research. Core four-lens model unchanged. See `references/development-roadmap.md` for the planned evolution.**
 
 ---
 
@@ -185,6 +185,16 @@ Will the client feel ripped off? If the value delivered doesn't clearly exceed t
 ### Check 5: The Professional Standards Check
 Read `00 - COMMAND CENTER/Foundational Docs/Professional Standards.md` — are any standards being violated? "Pricing is fixed. Intensity is negotiable." Are we adjusting price or scope?
 
+### Check 6: Discount Governance
+Any discount above 20% of the recommended option price requires a documented strategic reason — not client pressure, but a deliberate choice (case study phase, high-profile reference client, specific relationship context).
+
+**Win rate calibration:** Track conversion rates across engagements.
+- Winning >70% of quotes → likely underpriced. The market is saying yes too easily.
+- Winning 40-60% → healthy tension. Price is in the right zone.
+- Winning <30% → either overpriced, wrong-fit clients, or a value communication problem (not necessarily the price).
+
+**Margin leakage reality:** Uncontrolled discounting erodes 2-5% of total revenue on a portfolio basis (SBI Growth, B2B consulting benchmark). On a retainer book of €20k/month, that's €400-1,000/month in silent losses. Every "just this once" discount compounds.
+
 ---
 
 ## Step 5 — Recommend
@@ -215,6 +225,7 @@ Reasoning: [Why this number]
 - Daniel regret test: [Assessment]
 - Client regret test: [Assessment]
 - Professional standards: [Pass/Flag]
+- Discount governance: [Pass/Flag — note if >20% discount and why]
 
 ### Confidence Level
 [High / Medium / Low] — [Why. What could change this?]
@@ -234,12 +245,16 @@ After Daniel confirms the price, append to `03 - OPERATIONS/Claude Cowork Consul
 **Engagement:** [Type and scope]
 **Options presented:** Option A: €[X] / Option B: €[X]
 **Final price:** €[X] ([which option])
+**Price realization rate:** [Final price ÷ Option A price — e.g. 0.85 = 15% below full rate]
 **Key factors:** [What drove the price — 2-3 bullet points]
 **Value basis:** Annual problem cost €[X], price = [X]% of value
 **Relationship stage:** [New / Case Study / Proven / Premium]
+**Discount applied:** [Yes/No — if yes: % and documented reason]
 **Conversion:** [Pending / Converted / Lost — update when known]
 **Notes:** [Anything relevant for future pricing decisions]
 ```
+
+**Price Realization Rate explained:** This is `final price ÷ Option A (full-rate) price`. A rate of 1.0 means Daniel charged full rate. A rate of 0.75 means a 25% effective discount. Track this across all engagements — the rolling average reveals whether pricing discipline is holding or eroding over time.
 
 This log is the skill's long-term memory. Over time, it reveals patterns: what price points convert for which engagement types, which adjustments matter most, where Daniel's gut diverges from the framework (and who's usually right).
 
@@ -254,6 +269,7 @@ This log is the skill's long-term memory. Over time, it reveals patterns: what p
 5. Trust Daniel's gut when it diverges from the framework. His Spleen authority (first impulse) has been right before. But document the divergence so we can learn from the pattern.
 6. The case study phase is real, and it's strategic. Lower pricing during the first 5 engagements isn't discounting — it's investment in social proof. But it must be conscious and time-bound, not a permanent habit.
 7. Currency matters. CCC prices in EUR for European clients. Adjust framework examples (which use USD) to EUR before presenting.
+8. Raise retainer rates annually, 3-8% when value-justified. Failing to raise retainer pricing is silent margin erosion — the client's business grows, the value delivered increases, but CCC absorbs the inflation. Build in a review clause or just do it proactively at the 12-month mark.
 
 ---
 

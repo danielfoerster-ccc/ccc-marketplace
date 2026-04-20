@@ -93,8 +93,8 @@ Tools for creating CCC-standard SOPs and production-quality Claude skills.
 |-------|-------------|
 | `ccc-sop-creator` | Builds HEROIC-format SOPs from live CCC foundation docs. Covers all GTM channels and operational processes |
 | `skill-creator-pro` | Full skill engineering loop: draft → test → evaluate → iterate. Includes practitioner patterns and anti-patterns |
-| `ccc-marketplace-health-check` | Full compliance scan across all marketplace plugins and skills. Checks Rules, Self-Improvement, line limits, allowed-tools, README coverage, and client data leaks. Monthly scheduled task |
-| `ccc-marketplace-publisher` | Syncs vault plugins to the GitHub marketplace repo in one command. Validates token, compares vault vs repo versions, copies updated skills, ensures marketplace.json is complete, commits, and pushes |
+
+**Note:** Framework Extractor moved to the `second-brain` plugin in v1.6.0 — it's a knowledge-extraction tool and now lives with the rest of the Second Brain stack.
 
 ---
 
@@ -148,14 +148,16 @@ Complete Profit First implementation for consultants and business owners. Built 
 
 ---
 
-### second-brain — Knowledge Base & Vault Management
+### second-brain — Cognitive Exoskeleton for Obsidian
 
-Knowledge management tools for Obsidian vaults built on the Three Brains framework.
+Tools for the cognitive-exoskeleton era, built on Michael Simmons' Three Brains framework. Turns an Obsidian vault into an active thinking partner — substrate, capture, synthesis, and framework extraction.
 
 | Skill | What it does |
 |-------|-------------|
-| `second-brain` | Set up a new vault or audit an existing one. Setup mode interviews the user and designs a 5-folder architecture. Audit mode scans structure and proposes a migration plan |
-| `knowledge-ingest` | Drop any URL or YouTube transcript → auto-fetched via Tavily, summarised, wikilinked, and routed to the right Knowledge Base subfolder |
+| `second-brain` | Setup mode: interview → 5-folder Layer-1 substrate + Three Brains primer. Audit mode: scans vault structure and runs operation-readiness diagnostics (wikilink density, root CLAUDE.md, category grammar, person profiles, Decisions & Rules). Proposes a migration plan — backup-first |
+| `knowledge-distill` | Drop any URL or YouTube transcript → Tavily-fetched, distilled to key ideas, wikilinked, and routed to the right KB subfolder. Creates or updates thinker profiles automatically |
+| `knowledge-archive` | Full-text article archiving — opposite of distill. Preserves complete content with summary header. Single URL or bulk publication feed (Substack, Ghost, Beehiiv, WordPress, any RSS) with date filtering |
+| `second-brain-connect` | Runs Simmons' 9 cognitive operations — Analogical, Abductive, Counterfactual, Falsification, Bayesian, First Principles, Dialectical, Systems, Perspective Simulation — against vault clusters. Returns numbered proposal file with human approval gate before writing connections |
 | `framework-extractor` | Ingests books, courses, and methodologies → decodes the framework skeleton → produces SOPs, skills, and plugins via a 5-phase decode-build-audit-architect workflow |
 
 ---
@@ -174,14 +176,16 @@ Knowledge management tools for Obsidian vaults built on the Three Brains framewo
 ---
 
 
-### ccc-sales-process
+### ccc-sales-process — End-to-End Sales Process for Consulting Engagements
+
+Daniel's personal sales workflow: pre-call preparation, post-call logging with 8-category behavioural signal capture (feeding downstream Perspective Simulation), four-lens pricing, and branded proposal generation.
 
 | Skill | What it does |
 |-------|-------------|
-| `ccc-sales-prep` | Pre-call brief for any prospect or client |
-| `ccc-post-call-log` | Post-call vault update and CRM logging |
-| `ccc-pricing` | Four-lens pricing framework for CCC engagements |
-| `ccc-proposal-draft` | Branded HTML→PDF proposal generation |
+| `ccc-sales-prep` | Pre-call brief: reads person file from vault, loads CCC positioning, outputs profile snapshot, opening hook, 5 key questions, 3 objections + responses, recommended CCC service angle, and the next step to close for |
+| `ccc-post-call-log` | Post-call vault update: structures raw call notes into meeting note, captures 8 behavioural signals (energy / trust / decision style / power / priority / language / timing / cultural), updates person file interaction log, routes decisions to Decisions & Rules. Signals feed downstream Perspective Simulation inside `second-brain-connect` |
+| `ccc-pricing` | Four-lens pricing analysis: value-based (Weiss/Enns), Hormozi value equation, CCC offer architecture, BenAI market reality (2 years AI automation pricing data). Outputs recommendation with full reasoning + maintains pricing log for compounding learning |
+| `ccc-proposal-draft` | Drafts a cost proposal → reviews as CCC-branded HTML → renders to PDF only after approval. Reads person file + call notes, asks 2-3 scoping questions, produces engagement summary, deliverables, timeline, pricing, next step |
 
 ---
 
@@ -192,4 +196,4 @@ Questions or custom implementations: reach out via the website.
 
 ---
 
-*Last updated: 2026-04-09 | Version 1.3.0*
+*Last updated: 2026-04-19 | Version 1.4.0*

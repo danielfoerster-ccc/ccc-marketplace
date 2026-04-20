@@ -1,59 +1,64 @@
 ---
 name: second-brain
-description: "Sets up and audits Second Brain knowledge systems in Obsidian (and other PKM tools) using the Three Brains framework. Two modes: Setup (fresh vault — interviews the user, designs a 5-folder architecture, outputs a step-by-step guide + Why This Matters primer the human executes themselves) and Audit (existing vault — scans folder structure, diagnoses fragmentation, proposes a migration plan with mandatory backup-first protocol). USE THIS SKILL when user says set up my second brain, organize my Obsidian, second brain setup, vault audit, reorganize my notes, help me build a second brain, my Obsidian is a mess, PKM setup, knowledge management system, digital brain, organize my knowledge, second brain for Obsidian, Three Brains setup, or any request to set up or improve a personal knowledge management system."
+description: "Sets up or audits a Second Brain as a cognitive exoskeleton — Layer 1 infrastructure in the Four-Layer Architecture (Simmons): a substrate where the 9 cognitive operations can actually execute, not just notes that can be retrieved. Two modes: Setup (fresh vault — interviews the user, designs the five-folder architecture with wikilink density, category grammar, and stable folder semantics, outputs a human-executed setup guide + Why This Matters primer) and Audit (existing vault — scans structure AND operation-readiness, diagnoses fragmentation and storage-only patterns, proposes a phased migration with mandatory backup-first protocol). USE THIS SKILL when user says set up my second brain, organize my Obsidian, vault audit, reorganize my notes, build a second brain, my Obsidian is a mess, PKM setup, knowledge management system, digital brain, Three Brains setup, cognitive exoskeleton, or my vault is just storage."
 allowed-tools: Read, Write, Bash
 ---
 
 # Second Brain — Setup & Audit Skill
 
 **Workflow: Assess → Architect → Deliver.**
-Ask a few targeted questions to understand context, design the right architecture for this specific person, then produce a document they can act on immediately. Claude never touches the vault directly — the human always owns the physical setup.
+Ask a few targeted questions to understand context, design an architecture specific to this person, then produce a document they can act on immediately. Claude never touches the vault directly — the human always owns the physical setup.
 
 ---
 
-## The Framework This Skill Builds On
+## The reframe — what this skill actually builds
 
-Every output from this skill is rooted in Michael Simmons' **Three Brains** model, adapted for Obsidian (or any PKM tool). Embed this in your output — don't assume the user knows it.
+Most Second Brain guides treat the vault as **storage**: a place to put notes so they can be retrieved later. That's necessary but not sufficient. A storage vault is a filing cabinet; a filing cabinet doesn't think.
 
-The Three Brains are:
+This skill builds a **cognitive exoskeleton** — the Layer 1 infrastructure that makes the other three layers of the [[Simmons Under-the-Hood Pattern — Reconstruction|Four-Layer Architecture]] executable:
 
-- **First Brain — Command Center:** Your strategic operating layer. Where you think, decide, and direct. Daily notes, weekly plans, quarterly goals, your vision and identity documents. You visit this every day.
-- **Second Brain — Knowledge Base:** Your permanent, compounding memory. Mental models, ideas, thinkers, concepts, health knowledge, culture. Everything you want to know forever lives here and grows richer over time. In the AI era, this is also the data layer your AI agents query.
-- **Third Brain — Mission Control:** Your execution architecture. SOPs, Claude skills, prompt templates, playbooks, workflows. This is where you build the factory — not just do the work.
+- **Layer 1 — Persistent Knowledge Infrastructure:** the substrate (this skill)
+- **Layer 2 — 9 Cognitive Operations:** the verbs that run against the substrate (Analogical, Abductive, Counterfactual, Falsification, Bayesian, First Principles, Dialectical, Systems, Perspective)
+- **Layer 3 — program.md + The Arena:** declarative contracts for how AI should act on the substrate
+- **Layer 4 — Orchestration:** many AI instances running program.md against the substrate in parallel
 
-The operational layer (active projects, ongoing life responsibilities, archived work) sits below these three cognitive layers. Together, the full structure is five folders:
+The vault is the floor everything else stands on. If Layer 1 is broken, Layers 2–4 can't compound. That's the diagnostic frame of this skill.
+
+**What "executable substrate" means in practice:** AI can navigate the vault by folder semantics alone; every concept, person, and framework is wikilinked so neighbourhood search works; notes are categorised (Lens / Operation / Recipe / Concept / Reference / Reflection / Trademark-candidate) so AI knows what kind of move each note affords; nothing lives in an orphan directory.
+
+Embed this reframe in every output. The user should leave understanding they're not organising notes — they're building the substrate AI runs on.
+
+---
+
+## The Three Brains framing (keep in the output, not just in your head)
+
+Simmons' Three Brains, adapted for the vault:
+
+- **First Brain — Command Center:** the human's strategic operating layer. Daily notes, weekly plans, quarterly goals, identity documents, decisions log. Visited every day.
+- **Second Brain — Knowledge Base:** permanent, compounding memory. Mental models, concepts, thinkers, distills, archives. What you want to know forever. In the AI era this is also the data layer AI queries.
+- **Third Brain — Mission Control:** execution architecture. SOPs, Claude skills, prompt templates, playbooks. Where the factory is built — not where the work is done.
+
+The operational layer (active projects, ongoing life) sits below these three cognitive layers. Together:
 
 ```
-00 - COMMAND CENTER       ← First Brain
-01 - KNOWLEDGE BASE       ← Second Brain
-02 - MISSION CONTROL      ← Third Brain
-03 - OPERATIONS           ← Active projects + ongoing life areas
+00 - COMMAND CENTER       ← First Brain — extension
+01 - KNOWLEDGE BASE       ← Second Brain — conceptual memory
+02 - MISSION CONTROL      ← Third Brain — interface
+03 - OPERATIONS           ← Active projects + ongoing life areas (Second Brain — operational memory)
 04 - ARCHIVE              ← Everything retired or completed
 ```
 
-Numbers always sort to the top regardless of PKM tool. This replaces informal prefix hacks (like `A -`, `_`, `!`) with a clean, stable system.
-
-**Tool note:** This architecture works in any PKM tool. Obsidian implements it with folders and `[[wikilinks]]`. Notion implements it with pages and databases. Logseq with namespaces. The skill output notes Obsidian specifics where relevant but the architecture is universal.
+Numbered prefixes sort to the top in any PKM tool. The architecture is tool-agnostic; Obsidian implements it with folders and wikilinks, Notion with pages and databases, Logseq with namespaces. Note Obsidian specifics where relevant, but don't tie the architecture to one tool.
 
 ---
 
 ## Phase 1: Assess
 
-Start with exactly **three questions** — not more. You want to understand who this person is, what they already have, and what's broken. Don't ask for a tour of their current system; the audit does that.
+Three questions — not more. You want to understand who this person is, what they already have, and what's broken. Don't ask for a tour; the audit does that.
 
-**Question 1:** "Do you have an existing vault/knowledge base, or are you starting fresh?"
-- If **fresh** → go to Setup Mode
-- If **existing** → go to Audit Mode
-
-**Question 2:** "What's the primary context? (Professional knowledge worker, entrepreneur/business owner, student, creative, or a mix?)"
-
-This shapes the architecture's emphasis — an entrepreneur's Operations folder looks very different from a student's.
-
-**Question 3:** "What's the one thing most broken or missing right now? If you have no vault, what's your biggest fear about building one?"
-
-This surfaces the real pain and makes the output feel tailored, not generic.
-
-If the user gave you their vault path or you can see it from context, skip Question 1 — you already know it's existing. Don't ask questions you can already answer.
+1. **"Existing vault, or starting fresh?"** — fresh → Setup Mode; existing → Audit Mode. If you already know from context (path provided, files listed), skip this question.
+2. **"What's the primary context? (Professional knowledge worker, entrepreneur/business owner, student, creative, or a mix?)"** — shapes what goes in Operations and how to talk about Command Center.
+3. **"What's the one thing most broken or missing right now? If fresh, what's your biggest fear about building this?"** — surfaces real pain so the output feels tailored.
 
 ---
 
@@ -61,42 +66,39 @@ If the user gave you their vault path or you can see it from context, skip Quest
 
 ### Setup Mode (Fresh Vault)
 
-No vault scanning needed. Design the architecture based on their context from the three questions.
+No scanning. Design the architecture from the three answers.
 
-**Produce:**
-1. The five-folder structure with personalized sub-folder suggestions (see reference file `references/architecture-patterns.md` for context-specific variants)
-2. A naming convention guide (numbered prefixes, CamelCase vs. kebab-case for notes)
-3. First 10 notes to create (priming the brain — starting with a few anchor notes in each layer makes it feel real)
-4. A "Week 1 ritual" — the smallest possible daily habit that starts putting the system to work
-5. **Context pre-loading (optional):** If the user wants to pre-load their vault with rich business and personal context from day one, offer a structured brain-dump covering: business overview, customers, positioning, brand voice, goals & strategy, operations & tools, key relationships, personal background, working style, and Claude preferences. The answers feed directly into foundational vault files (organization.md, brand.md, icp.md, strategy.md, stakeholders.md, Profile.md, CLAUDE.md). This step is optional but dramatically improves AI usefulness from the first session. Users can talk through the questions via voice transcription (~10 min talking beats 30 min typing). If they have existing docs (agency briefs, brand guides, SOPs), ingest those first and only ask about gaps.
+Produce:
+
+1. The five-folder structure with personalised sub-folders (see `references/architecture-patterns.md` for context-specific variants).
+2. A naming convention guide — numbered prefixes; wikilink-first ethos; category grammar tags in frontmatter (`type: Lens|Operation|Recipe|Concept|Reference|Reflection|Trademark-candidate`).
+3. The first 10 anchor notes to create — one per layer minimum, plus a `CLAUDE.md` at root that tells any AI agent the folder semantics. Without the CLAUDE.md, AI loses orientation on every session.
+4. A "Week 1 ritual" — the smallest possible daily habit (10 min max) that starts activating the system. Usually: one daily note + one wikilinked inbox capture.
+5. **Context pre-loading (optional but strongly recommended):** offer a structured brain-dump covering business overview, customers, positioning, brand voice, goals & strategy, operations & tools, key relationships, personal background, working style, and Claude preferences. Answers feed directly into foundational files (`organization.md`, `brand.md`, `icp.md`, `strategy.md`, `stakeholders.md`, `Profile.md`, `CLAUDE.md`). This step is what makes AI useful from session one. If existing docs exist (agency briefs, brand guides, SOPs), ingest those first and only ask about gaps. Voice transcription beats typing (~10 min talking vs. 30 min typing).
 
 ### Audit Mode (Existing Vault)
 
-Before analyzing, always:
-
-> ⚠️ **BACKUP FIRST.** Before any reorganization, create a complete backup of your vault. In Obsidian: copy the entire vault folder to a backup location, or use the Obsidian Git plugin to commit everything. **Do this before moving a single file.** Personal manuscripts, years of diary entries, proprietary business documents — none of this is worth risking.
-
-Before analyzing or presenting any architecture recommendation, always output the backup + disclaimer block **immediately after the diagnostic stats table** — before the problems list, before the architecture, before anything actionable:
+Before analysing anything, output the backup block — and keep it prominent. Then scan structure AND operation-readiness.
 
 > ⚠️ **STOP. BACKUP FIRST — THIS IS NOT OPTIONAL.**
 >
-> Before any reorganization, create a complete backup of your entire vault folder. Copy it to an external drive, cloud storage, or commit everything with Obsidian Git. **Do this before moving a single file.**
+> Before any reorganisation, create a complete backup of your entire vault folder. Copy it to an external drive, cloud storage, or commit everything with Obsidian Git. **Do this before moving a single file.**
 >
 > Your vault may contain book manuscripts, years of personal and professional diary entries, proprietary business documents, and intellectual property that cannot be recreated. No structural improvement is worth that risk.
 >
-> **⚖️ Liability notice:** This skill provides structural analysis and recommendations only. Every file operation described in this document is performed by you, the human operator — not by Claude or any automated agent. Neither this skill, its author, nor Anthropic can be held responsible for any data loss, corruption, or unintended changes resulting from reorganization activities you choose to undertake. By proceeding, you confirm that you have created a verified backup.
+> **⚖️ Liability notice:** This skill provides structural analysis and recommendations only. Every file operation described in this document is performed by you, the human operator — not by Claude or any automated agent. Neither this skill, its author, nor Anthropic can be held responsible for any data loss, corruption, or unintended changes resulting from reorganisation activities you choose to undertake. By proceeding, you confirm that you have created a verified backup.
 
-Then scan the vault structure using `Bash` (tree or find commands) to map:
+Then scan using `Bash` (`tree`, `find`, `wc`) to map:
 
 - Total note count
 - Root-level loose files (homeless notes — the most reliable chaos indicator)
-- Top-level folder count and their file distributions
+- Top-level folder count and their file distribution
 - Folder naming patterns (any existing prefix system?)
 - Nesting depth (anything beyond 4 levels is a navigation problem)
 - Fragmented topics (same subject spread across multiple folders)
-- **Published/versioned folder pairs** — folders that appear to be internal/external duplicates (e.g., a "publish", "public", or "site" subfolder; or near-identical folder names where one was likely created for Obsidian Publish, a website, or external sharing). These must be flagged explicitly — they are NOT safe to merge or delete without understanding which is live.
+- **Published/versioned folder pairs** — folders that may be internal/external duplicates (`publish`, `public`, `site`, or near-identical folder names where one was likely created for Obsidian Publish, a website, or external sharing). Flag explicitly — never recommend merge without the human verifying which is live.
 
-**Run the diagnostic checklist:**
+**Structural diagnostic checklist:**
 
 | Check | Healthy | Flag |
 |-------|---------|------|
@@ -104,105 +106,128 @@ Then scan the vault structure using `Bash` (tree or find commands) to map:
 | Top-level folder count | 4–8 | >12 or <3 |
 | Max nesting depth | ≤4 levels | >5 levels |
 | Single topic in multiple folders | 0 | Any |
-| Published/versioned folder pairs detected | None | Any |
+| Published/versioned folder pairs | None | Any |
 | Consistent naming convention | Yes | Mixed |
 | Three Brains layers present | All 3 | Missing any |
 | Archive folder exists | Yes | No |
 
-Surface the **top 3–5 structural problems** only — don't list every flaw. Prioritize by impact on daily navigation and AI-agent usability (because the vault is also a data layer for Claude).
+**Operation-readiness diagnostic (the reframe):**
+
+| Check | Healthy | Flag | Why it matters |
+|-------|---------|------|----------------|
+| Wikilink density (avg links per note) | ≥3 | <1 | Without links, AI can't traverse neighbourhoods — it sees isolated files, not a graph. |
+| Root `CLAUDE.md` exists and describes folder semantics | Yes | No | Every session starts cold. No CLAUDE.md = AI re-infers the vault each time and gets it wrong. |
+| Category grammar used (`type:` in frontmatter or consistent folders) | Yes | No | AI can't tell a Lens from a Reflection without tags. Category tells it which Operation applies. |
+| Orphan directories (no CLAUDE.md, no README, unlinked) | 0 | Any | Dead zones. AI skips them; humans forget them. |
+| Thinker / person profiles exist as first-class notes | Yes | No | Enables Perspective Simulation (one of the 9 Operations). |
+| Decisions / Rules file exists and is appended to | Yes | No | Enables the teaching loop: corrections become codified. |
+
+Surface the **top 3–5 structural problems AND the top 2–3 operation-readiness gaps** — don't list every flaw. Prioritise by impact on daily navigation and on whether Layers 2–4 can actually execute.
 
 ---
 
 ## Phase 3: Deliver
 
 Output a single `.md` document saved to the vault root (or a specified output folder). Name it:
+
 - Setup: `Second Brain — Setup Guide.md`
 - Audit: `Second Brain — Vault Audit [YYYY-MM-DD].md`
 
-### Document structure for Setup output:
+### Setup output structure
 
 ```
 # Second Brain Setup Guide
-*[Date] — [Their name/context if known]*
+*[Date] — [Name / context]*
 
-## Why You're Building This
-[2–3 paragraphs on Three Brains — written for a human, not a framework doc]
+## Why You're Building This (the reframe)
+[2–3 paragraphs on cognitive exoskeleton + Three Brains — specific to this person]
 
 ## Your Architecture
-[The five folders with their personalized sub-folder suggestions]
+[Five folders with personalised sub-folder suggestions]
 
 ## How Each Layer Works in Daily Life
-[Short, concrete description of each layer — what goes there, when you visit it]
+[Short, concrete: what goes there, when you visit, which Operations it enables]
+
+## Category Grammar
+[type: Lens|Operation|Recipe|Concept|Reference|Reflection|Trademark-candidate — what each means and when to use it]
 
 ## Setting It Up: Step-by-Step
-[Numbered list — folder creation, first notes, naming conventions]
+[Numbered list — folder creation, first 10 anchor notes, root CLAUDE.md template, naming conventions]
 [Obsidian-specific: enable core plugins, set daily note template location]
 
 ## Your Week 1 Ritual
-[Concrete daily habit — 10 minutes max — that starts activating the system]
+[10-min daily habit that activates the system]
 
 ## What Comes Next
-[Brief pointer to Phase 2: note capture, internal linking, AI integration]
+[Phase 2: content capture with knowledge-distill / knowledge-archive; Phase 3: interlinking via second-brain-connect]
 ```
 
-### Document structure for Audit output:
+### Audit output structure
 
 ```
 # Second Brain Vault Audit
 *[Date]*
 
 ## The Diagnosis
-[2–3 sentence summary of the vault's current state — honest, not harsh]
+[2–3 sentences — honest, not harsh. Is this a storage vault or a cognitive exoskeleton?]
 
 ## By The Numbers
-[Stats: total notes, root-level homeless files, folder count, deepest nesting]
+[Total notes, root-level homeless files, folder count, deepest nesting, wikilink density, CLAUDE.md presence]
 
-## The Top Problems
-[3–5 problems with brief explanation of why each one matters]
+[⚠️ BACKUP + LIABILITY BLOCK — HERE, NOT LATER]
+
+## The Top Structural Problems
+[3–5 problems with why each matters]
+
+## The Operation-Readiness Gaps
+[2–3 gaps — what Layer 2/3/4 capability is blocked by this]
 
 ## Your New Architecture
-[The five-folder structure with migration mapping — what currently goes where]
+[Five-folder structure with migration mapping]
 
 ## Migration Plan
-[Backup instruction (PROMINENT), then phased migration — 4 weeks max, don't try to do it all at once]
+[Phased — 4 weeks max. One zone per week.]
 
-## Why This Structure
-[2–3 paragraphs on Three Brains — make the framework real for this specific person's context]
+## Why This Structure (the reframe)
+[2–3 paragraphs: cognitive exoskeleton + Three Brains, specific to their context]
 
 ## What Comes Next
-[Phase 2: content capture skill, internal linking, AI agent integration]
+[Phase 2 capture skills; Phase 3 interlinking via second-brain-connect]
 ```
 
 ---
 
 ## Rules
 
-1. **Never skip the backup + liability block in audit mode, and never bury it.** It must appear immediately after the diagnostic stats — before the architecture proposal, before the problems list, before anything the user might act on. If it's in the migration section, someone eager to start will move files before they read it. Position is everything here. The liability notice is not optional language — it makes explicit that Claude recommends, the human acts, and the human bears responsibility for outcomes.
+1. **Never skip or bury the backup + liability block in audit mode.** It appears immediately after the diagnostic stats — before problems, before architecture, before anything actionable. If it's buried in the migration section, someone eager to start will move files before they read it. Position is everything.
 
-2. **Never assume a duplicate folder is safe to merge.** When two folders cover the same topic (e.g., "EXINN Intelligence" and "EXINN Intelligence - Build Up", or any folder pair where one may be a published/external version), flag them explicitly with a warning: "⚠️ Possible published or versioned pair — verify before merging or deleting." Obsidian Publish, static site generators, and manual "public-facing" copies are common. Merging one into the other could silently break a live website or destroy an intentional separation. Let the human investigate and confirm before recommending any action.
+2. **Never assume a duplicate folder is safe to merge.** When two folders cover the same topic (published/versioned pairs, manual internal/external copies), flag them with: "⚠️ Possible published or versioned pair — verify before merging or deleting." Obsidian Publish, static site generators, and manual public-facing copies are common. Merging can silently break a live site. Let the human investigate.
 
-3. **Never produce a generic output.** The setup guide for an entrepreneur building an AI consulting empire should feel completely different from one for a student. Use what you learned in Phase 1. Names, contexts, specific folder examples — all of it.
+3. **Never produce a generic output.** An entrepreneur building an AI consulting empire needs a completely different setup than a student. Use what Phase 1 surfaced — names, contexts, specific examples.
 
-4. **Don't audit note content — only structure.** Scanning filenames and folder trees is fast and non-invasive. Reading thousands of note bodies is slow, invasive, and out of scope for v1. The structural audit reveals 80% of what's broken. Content analysis (linking, atomic note quality) is a future skill.
+4. **Don't audit note content — only structure and operation-readiness.** Scanning filenames, folder trees, wikilink counts, and CLAUDE.md presence is fast and non-invasive. Reading thousands of note bodies is slow, invasive, and out of scope. The structural + operation-readiness audit reveals 90% of what's broken. Atomic-note quality audits are a future skill.
 
-5. **Keep the migration plan phased.** A big-bang "reorganize everything this weekend" recommendation will not be followed. Four weeks, one zone per week. The human needs to feel safe and in control.
+5. **Keep the migration plan phased.** "Reorganise everything this weekend" will not be followed. Four weeks, one zone per week. The human needs to feel safe and in control.
 
-6. **Three Brains goes in the output, not just in your head.** Every person using this skill deserves to understand the *why* behind the structure. Two or three well-written paragraphs on the framework — specific to their context — makes the difference between a system they set up and forget and one they actually use.
+6. **The reframe goes in the output every time.** Without it, the user treats the vault as storage and the architecture never compounds. Two paragraphs on cognitive exoskeleton + Three Brains, specific to their context — this is what makes the difference between a system they set up once and forget, and one they actually use.
 
-7. **Don't get into internal linking or backlinks.** When users bring up Obsidian's linking features, acknowledge it's powerful and note it's Phase 2 — but don't try to handle it in this skill. It's a separate, substantial workflow.
+7. **Don't get into internal linking, backlinks, or cognitive operations.** When users ask about linking, neighbourhood search, or running operations against their vault, acknowledge it's powerful and point at the [[second-brain-connect]] skill. This skill builds the substrate; that one executes against it.
 
-8. **The architecture is the architecture.** Don't negotiate the five folders down to three or inflate them to ten based on user preference. The numbered 00–04 structure is the prescription. Sub-folders inside each layer can be customized freely; the top-level structure should not.
+8. **The architecture is the architecture.** Don't negotiate the five folders down to three or inflate them to ten based on preference. The numbered 00–04 structure is the prescription. Sub-folders inside each layer can be customised freely; the top-level structure is stable because AI needs predictable semantics across every session.
+
+9. **Include a root CLAUDE.md in every setup, and flag its absence in every audit.** It's the single highest-leverage operation-readiness lever. Without it, every AI session starts blind.
 
 ---
 
 ## Self-Improvement
 
-When a user pushes back on the architecture or a section of the output consistently needs revision:
+When a user pushes back on the architecture or a section consistently needs revision:
 - Add the failure mode to the Rules section above
 - Note what framing or language fixed it
 
 When an output is approved without major edits:
-- Note which specific framing of Three Brains resonated
+- Note which specific framing of cognitive exoskeleton / Three Brains resonated
 - Note which migration plan structure the user found most actionable
+- Save approved outputs as reference examples (anonymised) in `references/`
 
 This skill gets better every time it's used. The Rules section is a living document.

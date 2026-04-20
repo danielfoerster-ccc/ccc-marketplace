@@ -1,12 +1,14 @@
 ---
 name: ccc-post-call-log
-description: Post-call vault update. Takes Daniel's raw call notes (pasted or dictated), structures them into a meeting note, updates the person's file with new intel and interaction log entry, routes decisions to Decisions & Rules.md, and confirms exactly what was saved where. USE THIS SKILL when Daniel says "log this call", "post-call", "update after the call with X", "save call notes", "debrief this call", or pastes raw notes after a meeting. Also trigger if Daniel says "we just got off a call" and wants to capture it before moving on.
+description: "Post-call vault update with behavioural signals intake. Takes Daniel's raw call notes (pasted or dictated), structures them into a meeting note, runs a dedicated Behavioural Signals pass (energy / trust / decision / power / priority / language / timing / cultural signals) that feeds Perspective Simulation downstream, updates the person's file with new intel + signals + an interaction log entry, routes decisions to Decisions & Rules.md, and confirms exactly what was saved where. USE THIS SKILL when Daniel says log this call, post-call, update after the call with X, save call notes, debrief this call, capture signals, behavioural signals, or pastes raw notes after a meeting. Also trigger if Daniel says we just got off a call, or wants to capture the interaction before the nuance fades."
 allowed-tools: Read, Write
 ---
 
 # CCC Post-Call Log
 
-**Workflow: Extract → Route → Confirm.** Takes raw call notes, extracts structured intel (decisions, action items, new intel on the person, relationship updates), routes each piece to the right vault file, and reports exactly what changed.
+**Workflow: Extract → Signals → Route → Confirm.** Takes raw call notes, extracts structured intel (decisions, action items, new factual intel) AND runs a dedicated Behavioural Signals pass (energy, trust, decision style, power, priorities, language, timing, culture), then routes each piece to the right vault file and reports exactly what changed.
+
+The Behavioural Signals pass is what turns a call log from a transcript into usable cognitive data. Downstream, the [[second-brain-connect]] skill runs Perspective Simulation against a person's accumulated signals — so the quality of Simulation output is a direct function of how rigorously signals are captured here.
 
 ---
 
@@ -22,21 +24,21 @@ If notes were shared in the conversation already, proceed silently.
 ## Phase 2: Load Context (Silent)
 
 Before processing, read:
+
 1. Person file: `03 - OPERATIONS/Relationships & Network/People/[Name].md`
-   — Needed to correctly update the interaction log and avoid duplicating existing intel
-2. Meeting note template: `03 - OPERATIONS/Intelligence/meetings/_TEMPLATE — Meeting.md`
-   — If it exists; otherwise use the standard format below
+   — Needed to correctly update the interaction log, avoid duplicating existing intel, and compare today's signals against prior ones.
+2. Meeting note template: `03 - OPERATIONS/Intelligence/meetings/_TEMPLATE — Meeting.md` if it exists; otherwise use the standard format below.
 
 ---
 
-## Phase 3: Extract and Route
+## Phase 3: Extract Factual Intel
 
 From the raw notes, extract:
 
 | Content type | Route to |
 |---|---|
 | Meeting summary + key points | New meeting note file (see format below) |
-| New intel about the person | Append to their person file |
+| New factual intel about the person | Append to their person file |
 | Interaction log entry | Append to Interaction Log in their person file |
 | Decisions made | Append to `00 - COMMAND CENTER/Foundational Docs/Decisions & Rules.md` if they affect CCC direction |
 | Action items (Daniel's) | Meeting note + flag clearly in output |
@@ -46,7 +48,32 @@ From the raw notes, extract:
 
 ---
 
-## Phase 4: Write the Files
+## Phase 4: Behavioural Signals Pass
+
+This is the new core of the skill. Run through the raw notes a **second time** with one question in mind: *what does this tell me about how this person operates, decides, and relates — that I would not otherwise have on file?*
+
+Walk through the eight signal categories. For each one, either extract a specific observation OR explicitly write `none observed` — never fabricate a signal to fill the section.
+
+| # | Signal | Listen for | Example observation |
+|---|--------|-----------|---------------------|
+| 1 | **Energy** | What lifted them, what deflated them, where attention spiked | "Visibly energised when talking about international expansion; flat on compliance topic." |
+| 2 | **Trust** | What they disclosed, what they held back, what personal context emerged | "Opened up about family business dynamics — hadn't mentioned before. Signals rising trust." |
+| 3 | **Decision style** | Fast/slow, consensus/unilateral, data-driven/intuitive, risk-tolerant/risk-averse | "Checked twice with co-founder before confirming timeline — consensus-driven." |
+| 4 | **Power** | Who pushed back, who deferred, who set the agenda, who closed | "She drove 80% of the agenda; he deferred to her on pricing. Real buyer is her." |
+| 5 | **Priority** | What they circled back to repeatedly, what they sidestepped, what earned silence | "Circled back to delivery timeline three times. Price was not a concern." |
+| 6 | **Language** | Metaphors they used, words they repeated, domain vocabulary | "Uses 'we need to move fast' and 'execution' repeatedly. Operator mindset, not strategist." |
+| 7 | **Timing** | Urgency signals, stalling signals, gate-keeping signals | "Asked twice when we could start. Wants momentum." |
+| 8 | **Cultural** | Org dynamics, decision culture, relational style | "Referred to legal as 'the lawyers' with an eye-roll. Compliance is friction, not a partner." |
+
+**Extraction discipline:**
+
+- If a signal is inferred (not directly stated), tag it with `⟨inferred⟩` so later re-reads know to apply a lighter weight.
+- If today's signal **contradicts** a previously logged signal on the person file, flag it explicitly as `⟨contradiction⟩` — shifts in signal are the most valuable data Daniel has about relationship trajectory.
+- Never invent a signal to fill a category. `none observed` is a valid, honest output.
+
+---
+
+## Phase 5: Write the Files
 
 ### Meeting Note
 
@@ -63,7 +90,7 @@ status: completed
 ---
 
 ## Context
-[1-2 sentences: where this fits in the relationship arc]
+[1–2 sentences: where this fits in the relationship arc]
 
 ## Key Points
 [Bullet points of substantive things covered]
@@ -78,8 +105,20 @@ status: completed
 ### [Other party]
 - [ ] [Action] — by [date if known]
 
+## Behavioural Signals
+**Energy:** [observation OR `none observed`]
+**Trust:** [observation OR `none observed`]
+**Decision style:** [observation OR `none observed`]
+**Power:** [observation OR `none observed`]
+**Priority:** [observation OR `none observed`]
+**Language:** [observation OR `none observed`]
+**Timing:** [observation OR `none observed`]
+**Cultural:** [observation OR `none observed`]
+
+*Tag inferences with ⟨inferred⟩. Tag contradictions with prior signals as ⟨contradiction⟩.*
+
 ## Notes
-[Anything else worth capturing — tone, signals, things said between the lines]
+[Anything else worth capturing — tone, side comments, between-the-lines]
 
 ---
 *Meeting note created: YYYY-MM-DD*
@@ -90,10 +129,34 @@ status: completed
 Append to the Interaction Log table:
 
 ```
-| [Date] | [Event — e.g., "Follow-up call"] | [2-3 sentence summary of what happened and key signals] |
+| [Date] | [Event — e.g., "Follow-up call"] | [2–3 sentence summary of what happened + most important signal of the day] |
 ```
 
-If new intel emerged about their role, company, concerns, or decision authority — add it to the relevant section of their person file (don't duplicate, update in place where possible).
+The interaction log summary should **always** name the single most important behavioural signal from this call — not just the factual takeaway. That single line is what makes the log scannable for Perspective Simulation later.
+
+If the person file has a `## Behavioural Profile` section, update it with new signals (don't duplicate — update in place where possible, append genuine new data). If that section doesn't exist yet, create it with the template:
+
+```
+## Behavioural Profile
+*Accumulated signals across all interactions. Updated post-call.*
+
+### Decision style
+[What we've learned over time]
+
+### Priority patterns
+[What consistently matters to them; what they deflect]
+
+### Power & relational style
+[Who drives decisions around them; how they relate to team / family / advisors]
+
+### Language & framing
+[Words, metaphors, vocabulary they use repeatedly]
+
+### Known contradictions / shifts
+[When signal has materially changed — date + what changed]
+```
+
+If new factual intel emerged about their role, company, concerns, or decision authority — add it to the relevant section of their person file (don't duplicate, update in place where possible).
 
 ### Wikilinks
 
@@ -101,7 +164,7 @@ Every person, project, or note referenced in any saved file must use `[[wikilink
 
 ---
 
-## Phase 5: Confirm
+## Phase 6: Confirm
 
 After saving all files, output a brief confirmation:
 
@@ -109,32 +172,55 @@ After saving all files, output a brief confirmation:
 ## Saved
 
 - Meeting note → [file path]
-- [Name]'s person file → updated interaction log + [what new intel was added]
+- [Name]'s person file → updated interaction log + [what new factual intel was added] + [N] new behavioural signals ([M] inferred, [K] contradicting prior)
 - [if applicable] Decisions & Rules → [what was added]
 - [if applicable] New person stub → [name + path]
+
+Most important signal today:
+> "[The single signal that most changes how Daniel should read this relationship going forward]"
 
 Action items for you:
 - [ ] [Item 1]
 - [ ] [Item 2]
 ```
 
+The "Most important signal today" line is the skill's highest-leverage output — it forces a judgement call every time a call is logged, which is what eventually calibrates the signal pass itself.
+
 ---
 
 ## Rules
 
-1. Never create a meeting note without routing action items. Decisions buried in text get forgotten.
-2. If the person file doesn't exist yet, create it using the standard template before updating it. Don't skip this and just write a note.
-3. Wikilinks are mandatory for every named person, company, and project in every file saved. This is how the knowledge graph builds.
-4. If Daniel's notes are very sparse (e.g., just "good call, will send proposal"), still create the meeting note and log the interaction — sparse notes are still worth preserving. Ask one clarifying question if something important is missing (like the agreed next step).
-5. Never ask "should I save this?" — just save and report.
+1. **Never create a meeting note without routing action items.** Decisions buried in text get forgotten.
+
+2. **If the person file doesn't exist yet, create it using the standard template before updating it.** Don't skip this and just write a meeting note — a person without a file is invisible to Perspective Simulation.
+
+3. **Wikilinks are mandatory for every named person, company, and project in every file saved.** This is how the knowledge graph builds.
+
+4. **Never invent behavioural signals to fill a category.** `none observed` is a valid output. Fabricated signals poison Perspective Simulation weeks later when Daniel has forgotten which signals were real vs. padded.
+
+5. **Always tag inferred signals with ⟨inferred⟩ and contradictions with ⟨contradiction⟩.** These tags are how downstream operations know what weight to give each signal.
+
+6. **Always name the single most important signal in the confirmation.** If there is genuinely no important signal (rare), say so explicitly.
+
+7. **If Daniel's notes are very sparse (e.g., just "good call, will send proposal"), still create the meeting note and log the interaction.** Sparse notes are still worth preserving. Ask one clarifying question if something important is missing (like the agreed next step OR the single most important signal of the call).
+
+8. **Never ask "should I save this?" — just save and report.**
 
 ---
 
 ## Self-Improvement
 
 When Daniel adds something to a saved note afterward ("I forgot to mention X"):
-- Note what category of thing gets forgotten (often: next steps, pricing discussed, specific stakeholder signals)
+- Note which category (factual intel or behavioural signal) gets forgotten
 - Add a prompt to the extract phase above to specifically ask about that category
 
-When Daniel says a particular summary or action item extraction was exactly right:
-- Note the framing that worked
+When Daniel says a particular signal observation was exactly right:
+- Note the framing that worked; it's evidence the category boundaries are well-drawn
+
+When Daniel says a signal was wrong or fabricated:
+- Tighten Rule 4 with the specific failure pattern
+- Review similar past signals on that person's file for potential retractions
+
+When a new signal category emerges that doesn't fit the current eight:
+- Propose it to Daniel first; add to the table only after his approval
+- The categories are a contract with downstream skills — changing them without sync breaks Perspective Simulation

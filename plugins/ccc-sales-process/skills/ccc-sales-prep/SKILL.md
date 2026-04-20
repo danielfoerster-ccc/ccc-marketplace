@@ -21,7 +21,7 @@ Read all of the following before generating anything. Do not ask Daniel for info
 **CCC foundations:**
 - `03 - OPERATIONS/Claude Cowork Consultants/00 - CCC Foundations/context.md`
 - `03 - OPERATIONS/Claude Cowork Consultants/01 - GTM/ICP.md`
-- `03 - OPERATIONS/Claude Cowork Consultants/01 - GTM/offer.md`
+- `03 - OPERATIONS/Claude Cowork Consultants/00 - CCC Foundations/offer.md`
 
 **Recent meeting notes (if any):**
 Check `03 - OPERATIONS/Intelligence/meetings/client-calls/` for existing notes on this person. If found, extract last interaction + any open action items.
