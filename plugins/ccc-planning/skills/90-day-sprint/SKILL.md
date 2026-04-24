@@ -12,7 +12,8 @@ description: |
 allowed-tools: "Read, Write, Glob"
 metadata:
   author: Daniel Förster · Claude Cowork Consultants
-  version: 1.0.0
+  version: 1.1.0
+  updated: 2026-04-24
   created: 2026-03-06
   language: English
   framework: Flashhub Boulders/Rocks/Pebbles + OKR hybrid
@@ -26,6 +27,24 @@ metadata:
 Lean, execution-focused quarterly planning. No spiritual frameworks. Pure operator logic.
 
 Session time: ~45 minutes.
+
+## Elicitation Widget
+
+Collect the Quarter Review inputs (Q1–Q3) in **one widget** — not question by question. This is the required approach for the review phase.
+
+**Steps (every sprint planning session):**
+1. Complete Phase 0 (context load) first — surface the compact summary
+2. Call `mcp__visualize__read_me` with `modules: ["elicitation"]` (silent — no output)
+3. Build and call `mcp__visualize__show_widget` with a form that has:
+   - A read-only context card inside `.elicit-body` showing: last sprint objectives, rocks + status, quarter theme
+   - Q1 what moved: textarea (revenue, clients signed, milestones, wins)
+   - Q2 what didn't move and why: textarea (honest one-sentence-per-item diagnosis)
+   - Q3 what changes this quarter: textarea (single most important change)
+4. Submit button label: **"Start the sprint"**
+5. Wait for submission, parse, then continue to Phase 2 (Vision Anchors) and goal-setting phases in conversation
+
+Use the widget for the **quarter review phase only**. Vision Anchors and goal-setting phases flow naturally as conversation after the form is submitted.
+
 
 ---
 

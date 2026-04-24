@@ -14,7 +14,7 @@ metadata:
   author: Daniel Förster · Claude Cowork Consultants
   version: 2.2.0
   created: 2026-03-06
-  updated: 2026-03-18
+  updated: 2026-04-18
   language: English
   distribution: marketplace-ready
 ---
@@ -24,6 +24,23 @@ metadata:
 **Workflow: Context Load → Rock Health → Revenue First → TOP 3 → Skill Scan → Dependencies → Output**
 
 10-minute morning session. No bloat.
+
+## Elicitation Widget
+
+Collect all phase inputs in **one widget** — not question by question. This is the required approach: more token-efficient and gives the operator a full context overview as they fill it in.
+
+**Steps (every check-in):**
+1. Complete Phase 0 (context load) first
+2. Call `mcp__visualize__read_me` with `modules: ["elicitation"]` (silent — no output)
+3. Build and call `mcp__visualize__show_widget` with a form that has:
+   - A read-only context card inside `.elicit-body` showing: today's date + sprint week, rock health (colored dots for 🟡/🔴/🟢), week's TOP 3, drumbeat counts (total / done / to do)
+   - Q0 day-shape pills: `Full work day` / `Light session` / `Truly off`
+   - Q1 revenue-first pills: pre-suggest the obvious from the Drumbeat + `Other` with text reveal
+   - Q2 TOP 3 multi-select pills: carry-forwards from the Drumbeat; add `data-accent="danger"` on urgent items
+   - Q3 dependencies textarea: pre-fill placeholder hints from the last dependencies section
+4. Submit button label: **"Lock the day"**
+5. Wait for the single-line submission, parse answers, then create the daily work notes file
+
 
 ---
 

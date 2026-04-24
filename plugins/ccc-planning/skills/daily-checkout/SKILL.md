@@ -13,9 +13,9 @@ description: |
 allowed-tools: "Read, Write, Glob"
 metadata:
   author: Daniel Förster · Claude Cowork Consultants
-  version: 1.1.0
+  version: 1.2.0
   created: 2026-03-06
-  updated: 2026-03-26 (v1.1.1)
+  updated: 2026-04-26 (v1.1.1)
   language: English
   framework: CCC Planning System — daily close-out
   distribution: marketplace-ready
@@ -26,6 +26,24 @@ metadata:
 **Workflow: Load Today → Review Progress → Close Out → Update File**
 
 3-minute end-of-day ritual. No bloat. Close the day, protect tomorrow.
+
+## Elicitation Widget
+
+Collect all phase inputs in **one widget** — not question by question. This is the required approach: more token-efficient and gives the operator a full-day overview as they fill it in.
+
+**Steps (every checkout):**
+1. Complete Phase 0 (context load) first
+2. Call `mcp__visualize__read_me` with `modules: ["elicitation"]` (silent — no output)
+3. Build and call `mcp__visualize__show_widget` with a form that has:
+   - A read-only context card inside `.elicit-body` showing: today's TOP 3 with current status, drumbeat done/carry/to-do count, Revenue First status
+   - Q1 per-task status pills: for each TOP 3 task, one pill group — `Done` / `Partial` / `Not done`
+   - Q2 carry-forward textarea (urgent for tomorrow vs. next week)
+   - Q3a went-well textarea — label it clearly as a personal journal entry; preserve exact operator language
+   - Q3b needs-work textarea
+   - Q3c never-again textarea (optional — operator can skip)
+4. Submit button label: **"Close the day"**
+5. Wait for the single-line submission, parse answers, then update the End-of-Day section
+
 
 ---
 

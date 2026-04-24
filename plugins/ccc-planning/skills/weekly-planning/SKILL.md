@@ -12,9 +12,9 @@ description: |
 allowed-tools: "Read, Write, Glob, Bash"
 metadata:
   author: Daniel Förster · Claude Cowork Consultants
-  version: 2.0.0
+  version: 2.1.0
   created: 2026-03-06
-  updated: 2026-03-15
+  updated: 2026-04-15
   language: English
   framework: HEROIC SOP + Flashhub cadence hybrid
   distribution: marketplace-ready
@@ -25,6 +25,28 @@ metadata:
 **Workflow: Context Load → Week Review → Braindump → Week Plan → Output**
 
 Session time: ~25 minutes.
+
+## Elicitation Widget
+
+Collect the Week Review inputs (Q1–Q7) in **one widget** — not question by question. This is the required approach for the review phase.
+
+**Steps (every weekly planning session):**
+1. Complete Phase 0 (context load) first — surface the compact summary block
+2. Call `mcp__visualize__read_me` with `modules: ["elicitation"]` (silent — no output)
+3. Build and call `mcp__visualize__show_widget` with a form that has:
+   - A read-only context card inside `.elicit-body` showing: sprint name, week N of 13, rocks with colored status dots, last week's carry-forwards, braindump A/B counts
+   - Q1 wins: textarea
+   - Q2 what didn't move: textarea
+   - Q3 what changes next week: textarea (the single most important change)
+   - Q4 key learnings: textarea (1–3 things max)
+   - Q5 routines maintained: pills — `Held` / `Partial` / `Broke down`
+   - Q6 current issues: textarea
+   - Q7 dependencies: textarea
+4. Submit button label: **"Start the plan"**
+5. Wait for submission, parse, then continue to Phase 1b (Braindump) and Phase 2 (Week Plan) in conversation
+
+Use the widget for the **review phase only**. Braindump and Week Plan phases flow naturally as conversation after the form is submitted.
+
 
 ---
 
