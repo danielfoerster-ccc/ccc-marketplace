@@ -119,6 +119,30 @@ Output format is identical to Mode 1. The only differences: content source, and 
 
 **If the source is paywalled or gated → stop and ask the user** whether they have access (existing subscription, institutional access, or a copy they can paste as Mode 0). Do not scrape partial text and pretend it's the article.
 
+### Phase 1.5 — Attribution Check (added 2026-04-26)
+
+**This step runs before Classify & Route. It applies the [[Attribution Convention]] codified in Decisions & Rules.**
+
+For every framework, lens, recipe, or named concept the source introduces, ask:
+
+1. **Is this an existing CCC-original Trademark Idea or vault Lens?** If yes → cite its existing vault location; treat the source as deepening or illustrating it, not creating it.
+2. **Is this substantially the source author's framework?** If yes → name with author attribution (e.g., "Simmons-LOR-Taxonomy", "Stutz Three Qualities of Tools-Readiness", "Kübler-Ross Grief Cycle"). Even when CCC coins the term, if the work is substantially the author's, the naming reflects that.
+3. **Is this CCC's discovery surfacing in this source?** Rare but possible — only mark as Trademark-candidate when the framework genuinely emerged from CCC's vault work (not the source). Default: assume the framework is the author's unless specific evidence says otherwise.
+
+**Flag for the operator at distill-time** when an extracted framework needs an attribution decision. Do not silently auto-name. Add to the Report:
+```
+Attribution flags requiring decision:
+- [Framework Name] — possible names: [author-attributed form] | [CCC-coined form] | [keep as-is in source]
+  Recommendation: [author-attributed] because [reasoning]
+```
+
+**Frontmatter additions:**
+- `paid_source: true` — when source is paywalled (Substack paid, paid courses, Mastery Manuals, paid PDFs). Triggers IP caveats at use-time (no full-text quoting in client deliverables or public CCC content without explicit licensing).
+- `attribution_status: author-ip-canonical | ccc-original | parallel-developed-attribution-deferred | imported-with-attribution`
+- `attribution_target: "[[Author Name]]"` (when applicable)
+
+**Operator-decision rule (per [[Decisions & Rules]]):** Daniel decides distill vs. archive per-instance. Never default to one based on paid status alone. The `paid_source: true` flag is documentation, not a routing trigger.
+
 ### Phase 2 — Classify & Route
 
 Determine the content domain and route to the appropriate subfolder. The routes below assume the default WELTENERNEUERER layout — if the vault uses a different structure (or no prefix numbers), adapt and ask when uncertain.
@@ -182,6 +206,9 @@ author: [[Author Name]]
 publication: [Publication name if applicable]
 published: [YYYY if known, else omit]
 ingested: [YYYY-MM-DD]
+paid_source: [true | false]                           # added v1.5.1
+attribution_status: [author-ip-canonical | ccc-original | parallel-developed-attribution-deferred | imported-with-attribution]   # added v1.5.1
+attribution_target: "[[Author Name]]"                 # when applicable, added v1.5.1
 stance: [resonates | expands | dialectical | entertaining]
 archiving_lens: [pass | unsure-inbox]
 category: [Lens | Operation | Recipe | Concept | Reference | Reflection | Trademark-candidate]

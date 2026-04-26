@@ -11,7 +11,7 @@
     {
       "name": "ccc-planning",
       "source": "./plugins/ccc-planning",
-      "description": "CCC daily operating system. Structured daily check-ins, daily checkouts, weekly planning, 90-day sprints, and session handoff prep \u2014 all designed for solo founders and fractional executives running an AI-first business.",
+      "description": "CCC daily operating system. Structured daily check-ins, daily checkouts, weekly planning, 90-day sprints, and session handoff prep — all designed for solo founders and fractional executives running an AI-first business.",
       "version": "1.2.0",
       "author": {
         "name": "Claude Cowork Consultants"
@@ -30,7 +30,7 @@
     {
       "name": "ccc-audits",
       "source": "./plugins/ccc-audits",
-      "description": "Full-stack audit toolkit for AI consultants and marketing agencies. Covers LinkedIn profiles, Instagram, SEO, WordPress SEO implementation, Google My Business, and Google Search Console \u2014 each producing a scored, actionable report.",
+      "description": "Full-stack audit toolkit for AI consultants and marketing agencies. Covers LinkedIn profiles, Instagram, SEO, WordPress SEO implementation, Google My Business, and Google Search Console — each producing a scored, actionable report.",
       "version": "1.1.0",
       "author": {
         "name": "Claude Cowork Consultants"
@@ -50,7 +50,7 @@
     {
       "name": "ccc-gtm",
       "source": "./plugins/ccc-gtm",
-      "description": "Go-to-market system for AI-first marketing agencies. Runs a structured GTM discovery session to define ICP, positioning, and offer \u2014 then produces a phased 90-day launch plan with weekly actions and a clear revenue hypothesis.",
+      "description": "Go-to-market system for AI-first marketing agencies. Runs a structured GTM discovery session to define ICP, positioning, and offer — then produces a phased 90-day launch plan with weekly actions and a clear revenue hypothesis.",
       "version": "1.1.1",
       "author": {
         "name": "Claude Cowork Consultants"
@@ -68,7 +68,7 @@
     {
       "name": "ccc-operations",
       "source": "./plugins/ccc-operations",
-      "description": "CCC internal operations toolkit. Two public skills: SOP Creator (HEROIC-format SOPs) and Skill Creator Pro (full Claude skill engineering loop). Framework Extractor moved to the second-brain plugin as of v1.6.0 \u2014 it is a knowledge-extraction tool and belongs with the Second Brain stack.",
+      "description": "CCC internal operations toolkit. Two public skills: SOP Creator (HEROIC-format SOPs) and Skill Creator Pro (full Claude skill engineering loop). Framework Extractor moved to the second-brain plugin as of v1.6.0 — it is a knowledge-extraction tool and belongs with the Second Brain stack.",
       "version": "1.6.0",
       "author": {
         "name": "Claude Cowork Consultants"
@@ -86,7 +86,7 @@
     {
       "name": "ccc-buyback",
       "source": "./plugins/ccc-buyback",
-      "description": "Dan Martell's Buyback Principle applied to AI-first consultants. Audit your time, build a replacement ladder, plan your perfect week, define your preloaded year, and align your vision \u2014 all structured for founders reclaiming their time.",
+      "description": "Dan Martell's Buyback Principle applied to AI-first consultants. Audit your time, build a replacement ladder, plan your perfect week, define your preloaded year, and align your vision — all structured for founders reclaiming their time.",
       "version": "1.0.0",
       "author": {
         "name": "Claude Cowork Consultants"
@@ -104,7 +104,7 @@
     {
       "name": "48hr-launch-blueprint",
       "source": "./plugins/48hr-launch-blueprint",
-      "description": "Five-skill business validation toolkit based on Noah Kagan's Million Dollar Weekend. Guides users from idea generation through offer crafting to getting 3 paying customers in 48 hours \u2014 before building anything. Mindset Reset, Idea Generator, Business Model Validator, Dream Ten Launcher, and Validation Debrief.",
+      "description": "Five-skill business validation toolkit based on Noah Kagan's Million Dollar Weekend. Guides users from idea generation through offer crafting to getting 3 paying customers in 48 hours — before building anything. Mindset Reset, Idea Generator, Business Model Validator, Dream Ten Launcher, and Validation Debrief.",
       "version": "1.0.1",
       "author": {
         "name": "Claude Cowork Consultants"
@@ -124,10 +124,10 @@
     {
       "name": "second-brain",
       "source": "./plugins/second-brain",
-      "description": "Second Brain tools for the cognitive-exoskeleton era. Five skills: Second Brain Setup & Audit (five-folder Layer-1 substrate + Three Brains framework + operation-readiness diagnostics), Knowledge Distill (URL/YouTube \u2192 key-idea notes with thinker profiles), Knowledge Archive (full-text archiving + bulk publication feed), Second Brain Connect (runs Simmons' 9 cognitive operations \u2014 Analogical, Abductive, Counterfactual, Falsification, Bayesian, First Principles, Dialectical, Systems, Perspective \u2014 against vault clusters and returns human-approved connection proposals), and Framework Extractor (decodes books, courses, and frameworks into structured Claude Cowork Skills and plugins via a 5-phase decode-build-audit-architect workflow).",
-      "version": "1.5.0",
+      "description": "Second Brain tools for the cognitive-exoskeleton era. Five skills: Second Brain Setup & Audit (five-folder Layer-1 substrate + Three Brains framework + operation-readiness diagnostics), Knowledge Distill (URL/YouTube → key-idea notes with thinker profiles), Knowledge Archive (full-text archiving + bulk publication feed), Second Brain Connect (runs Simmons' 9 cognitive operations — Analogical, Abductive, Counterfactual, Falsification, Bayesian, First Principles, Dialectical, Systems, Perspective — against vault clusters and returns human-approved connection proposals), and Framework Extractor (decodes books, courses, and frameworks into structured Claude Cowork Skills and plugins via a 5-phase decode-build-audit-architect workflow).",
+      "version": "1.5.1",
       "author": {
-        "name": "Daniel F\u00f6rster \u00b7 Claude Cowork Consultants"
+        "name": "Daniel Förster · Claude Cowork Consultants"
       },
       "keywords": [
         "second-brain",
@@ -152,7 +152,7 @@
       "description": "Complete Profit First cashflow management system for consultants and business owners. Run Instant Assessments, set up multi-account structures, classify expenses with the PRUN Formula, execute quarterly reviews with profit distribution, optimize across 12 Profit Points, generate client reports, onboard consulting clients, and prepare Cashflow Control workshops.",
       "version": "1.1.0",
       "author": {
-        "name": "Daniel F\u00f6rster \u00b7 Claude Cowork Consultants"
+        "name": "Daniel Förster · Claude Cowork Consultants"
       },
       "keywords": [
         "cashflow",
@@ -171,7 +171,7 @@
     {
       "name": "ccc-ai-audit",
       "source": "./plugins/ccc-ai-audit",
-      "description": "AI Automation Audit toolkit for CCC consulting engagements. Five skills covering the full audit lifecycle: entry routing, scoped discovery with process documentation, VALUE opportunity scoring with solution matching, professional audit report generation, and tiered commercial proposal creation. Based on the 5-Phase AI Audit Framework. Guides consultants through real-world audit engagements that span multiple sessions across days \u2014 including stakeholder interviews, process walkthroughs, and data collection between sessions.",
+      "description": "AI Automation Audit toolkit for CCC consulting engagements. Five skills covering the full audit lifecycle: entry routing, scoped discovery with process documentation, VALUE opportunity scoring with solution matching, professional audit report generation, and tiered commercial proposal creation. Based on the 5-Phase AI Audit Framework. Guides consultants through real-world audit engagements that span multiple sessions across days — including stakeholder interviews, process walkthroughs, and data collection between sessions.",
       "version": "1.0.0",
       "author": {
         "name": "Claude Cowork Consultants"

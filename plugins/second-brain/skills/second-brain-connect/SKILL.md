@@ -17,17 +17,25 @@ See [[Simmons Under-the-Hood Pattern — Reconstruction]] for the full architect
 
 Each operation is a move performed **on** existing notes, not a new note written from scratch. The output format is consistent across all nine: target → move → result → proposed vault edits.
 
-| # | Operation | The move | Output shape |
-|---|-----------|----------|--------------|
-| 1 | **Analogical Reasoning** | Map structure from a known domain to an unknown one. | "X behaves like Y because both have structure Z." Proposes wikilinks between domains. |
-| 2 | **Abductive Reasoning** | Infer the most likely explanation from incomplete evidence. | "Given A, B, C, the simplest explanation is D." Flags what would need to be true. |
-| 3 | **Counterfactual Analysis** | Run "what if this had been different" to isolate the real cause. | "If X hadn't happened, Y would/wouldn't." Isolates necessary vs. incidental. |
-| 4 | **Falsification** | Ask what would prove this wrong; look for that evidence. | "This claim fails if [test]. Evidence against: [list]." |
-| 5 | **Bayesian Updating** | Move belief gradually in proportion to new evidence. | "Prior: P. New evidence: E. Posterior: P'. Magnitude of update: [small/medium/large]." |
-| 6 | **First Principles** | Strip assumptions; rebuild from axioms. | "Assumed: A1, A2, A3. Axioms: X, Y. Rebuild: …" |
-| 7 | **Dialectical Synthesis** | Hold two opposing positions; find the move that contains both. | "Thesis vs Antithesis → Synthesis that respects both constraints." |
-| 8 | **Systems Thinking** | Map feedback loops, stocks, flows, delays. | Reinforcing vs balancing loops; leverage points; time delays. |
-| 9 | **Perspective Simulation** | Model another mind and reason from inside it. | "From [person/role]'s vantage: priorities / blind spots / likely move." |
+The 9 operations are organised into **4 functions** per [[Michael Simmons]]' canonical clustering. The function tag is a selection heuristic: it tells you what *kind* of cognitive work you're doing, before you pick the specific operation.
+
+| # | Operation | Function | The move | Output shape |
+|---|-----------|----------|----------|--------------|
+| 1 | **Analogical Reasoning** | GENERATE | Map structure from a known domain to an unknown one. | "X behaves like Y because both have structure Z." Proposes wikilinks between domains. |
+| 2 | **Abductive Reasoning** | GENERATE | Infer the most likely explanation from incomplete evidence. | "Given A, B, C, the simplest explanation is D." Flags what would need to be true. |
+| 3 | **Counterfactual Analysis** | EVALUATE | Run "what if this had been different" to isolate the real cause. | "If X hadn't happened, Y would/wouldn't." Isolates necessary vs. incidental. |
+| 4 | **Falsification** | EVALUATE | Ask what would prove this wrong; look for that evidence. | "This claim fails if [test]. Evidence against: [list]." |
+| 5 | **Bayesian Updating** | EVALUATE | Move belief gradually in proportion to new evidence. | "Prior: P. New evidence: E. Posterior: P'. Magnitude of update: [small/medium/large]." |
+| 6 | **First Principles** | DECONSTRUCT | Strip assumptions; rebuild from axioms. | "Assumed: A1, A2, A3. Axioms: X, Y. Rebuild: …" |
+| 7 | **Dialectical Synthesis** | INTEGRATE | Hold two opposing positions; find the move that contains both. | "Thesis vs Antithesis → Synthesis that respects both constraints." |
+| 8 | **Systems Thinking** | INTEGRATE | Map feedback loops, stocks, flows, delays. | Reinforcing vs balancing loops; leverage points; time delays. |
+| 9 | **Perspective Simulation** | INTEGRATE | Model another mind and reason from inside it. | "From [person/role]'s vantage: priorities / blind spots / likely move." |
+
+**The 4 functions** (Simmons-canonical, attributed to [[Lenses Operations Recipes — Manual Appendix — Simmons|Simmons paid bonus]]):
+- **GENERATE** — create new possibilities. When stuck for novel options, work here. (Analogical, Abductive)
+- **EVALUATE** — test against reality. When over-confident or in a high-stakes choice, work here. (Counterfactual, Falsification, Bayesian Updating)
+- **DECONSTRUCT** — strip to foundations. When the framing itself feels wrong, work here. (First Principles)
+- **INTEGRATE** — combine across boundaries. When holding tension between perspectives, work here. (Dialectical Synthesis, Systems Thinking, Perspective Simulation)
 
 Detailed prompts for each Operation live in `references/operations.md` (lazy-loaded only when an Operation is executed — keeps this SKILL.md short).
 
@@ -50,7 +58,15 @@ For cluster mode, build a file list using `Glob` + `Grep`. For recent captures, 
 
 ## Phase 2: Operate — pick which operation(s) to run
 
-If Daniel named the operation → run it. If not, suggest 1–3 operations that fit the target, briefly explain why each is appropriate, and let him choose:
+If Daniel named the operation → run it. If not, the suggestion logic is two-step.
+
+**Step 2a — Identify the function first** (Simmons' GENERATE / EVALUATE / DECONSTRUCT / INTEGRATE meta-grouping). Ask: what *kind* of cognitive work does this target need?
+- Stuck for new options? → **GENERATE** (Analogical, Abductive)
+- Over-confident / high-stakes / new evidence arrived? → **EVALUATE** (Falsification, Counterfactual, Bayesian Updating)
+- Framing feels wrong? → **DECONSTRUCT** (First Principles)
+- Holding tension across perspectives or systems? → **INTEGRATE** (Dialectical Synthesis, Systems Thinking, Perspective Simulation)
+
+**Step 2b — Within that function, suggest 1–3 specific operations** that fit the target, briefly explain why each is appropriate, and let him choose:
 
 - Conflicting notes or an argument → **Falsification** or **Dialectical Synthesis**
 - New information arrived → **Bayesian Updating**
@@ -62,6 +78,8 @@ If Daniel named the operation → run it. If not, suggest 1–3 operations that 
 - Unexplained pattern in the data → **Abductive**
 
 Load the operation-specific prompt from `references/operations.md`. Run the operation against the loaded notes.
+
+**Why the two-step suggestion:** the function tag prevents category errors. A "evaluate" task being mismatched to a "generate" operation produces vague output. Naming the function first forces the right family of moves before the specific tool.
 
 ---
 

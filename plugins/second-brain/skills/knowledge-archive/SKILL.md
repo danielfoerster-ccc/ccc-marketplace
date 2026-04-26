@@ -102,6 +102,30 @@ Use `mcp__e331d111-426d-43aa-b42f-7a747635bf2a__tavily_extract` with:
 
 If Tavily is unavailable, stop and ask the user to reconnect it before proceeding. Do not fall back to Bash/curl/Python or WebFetch. Connectors must be reconnected, not bypassed.
 
+### Phase 1.5: Attribution Check (added 2026-04-26)
+
+**This step runs before Classify & Route. It applies the [[Attribution Convention]] codified in Decisions & Rules.**
+
+For every framework, lens, recipe, or named concept the article introduces:
+
+1. **Existing CCC-original Trademark Idea or vault Lens?** Cite its existing vault location; treat the source as deepening it.
+2. **Substantially the source author's framework?** Name with author attribution (e.g., "Simmons-LOR-Taxonomy", "Stutz Tools", "Kübler-Ross Grief Cycle"). Even when CCC coins the term, if the work is substantially the author's, the naming reflects that.
+3. **CCC's discovery surfacing in this source?** Rare — only mark as Trademark-candidate when the framework genuinely emerged from CCC's vault work.
+
+**Flag for the operator at archive-time** when an extracted framework needs an attribution decision. Do not silently auto-name. Add to the Report:
+```
+Attribution flags requiring decision:
+- [Framework Name] — possible names: [author-attributed] | [CCC-coined] | [keep as-is]
+  Recommendation: [author-attributed] because [reasoning]
+```
+
+**Frontmatter additions:**
+- `paid_source: true` — when source is paywalled. Triggers IP caveats at use-time (no full-text quoting in client deliverables or public CCC content without explicit licensing).
+- `attribution_status: author-ip-canonical | ccc-original | parallel-developed-attribution-deferred | imported-with-attribution`
+- `attribution_target: "[[Author Name]]"` (when applicable)
+
+**Operator-decision rule (per [[Decisions & Rules]]):** Daniel decides distill vs. archive per-instance. Never default to one based on paid status alone. The `paid_source: true` flag is documentation, not a routing trigger.
+
 ### Phase 2: Classify and Route
 
 Determine the content domain and route to the appropriate Knowledge Base subfolder. The paths below follow the standard second-brain folder structure — adapt them if the vault uses a different layout, and ask the user if you're unsure where things should go.
@@ -156,6 +180,9 @@ author: [[Author Name]]
 publication: [Publication Name]
 published: [YYYY-MM-DD if known, else omit]
 ingested: [YYYY-MM-DD]
+paid_source: [true | false]                           # added v1.5.1
+attribution_status: [author-ip-canonical | ccc-original | parallel-developed-attribution-deferred | imported-with-attribution]   # added v1.5.1
+attribution_target: "[[Author Name]]"                 # when applicable, added v1.5.1
 stance: [resonates | expands | dialectical | entertaining]
 type: full-text-archive
 tags: [3-5 relevant lowercase tags]

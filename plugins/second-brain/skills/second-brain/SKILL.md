@@ -71,7 +71,7 @@ No scanning. Design the architecture from the three answers.
 Produce:
 
 1. The five-folder structure with personalised sub-folders (see `references/architecture-patterns.md` for context-specific variants).
-2. A naming convention guide — numbered prefixes; wikilink-first ethos; category grammar tags in frontmatter (`type: Lens|Operation|Recipe|Concept|Reference|Reflection|Trademark-candidate`).
+2. A naming convention guide — numbered prefixes; wikilink-first ethos; category grammar tags in frontmatter (`type: Lens|Operation|Recipe|Concept|Reference|Reflection|Trademark-candidate`); **author-primary discipline + `[Title] — [Author Last Name].md` filenames** (see "Author-Primary Discipline" section below — added v1.5.1).
 3. The first 10 anchor notes to create — one per layer minimum, plus a `CLAUDE.md` at root that tells any AI agent the folder semantics. Without the CLAUDE.md, AI loses orientation on every session.
 4. A "Week 1 ritual" — the smallest possible daily habit (10 min max) that starts activating the system. Usually: one daily note + one wikilinked inbox capture.
 5. **Context pre-loading (optional but strongly recommended):** offer a structured brain-dump covering business overview, customers, positioning, brand voice, goals & strategy, operations & tools, key relationships, personal background, working style, and Claude preferences. Answers feed directly into foundational files (`organization.md`, `brand.md`, `icp.md`, `strategy.md`, `stakeholders.md`, `Profile.md`, `CLAUDE.md`). This step is what makes AI useful from session one. If existing docs exist (agency briefs, brand guides, SOPs), ingest those first and only ask about gaps. Voice transcription beats typing (~10 min talking vs. 30 min typing).
@@ -123,6 +123,30 @@ Then scan using `Bash` (`tree`, `find`, `wc`) to map:
 | Decisions / Rules file exists and is appended to | Yes | No | Enables the teaching loop: corrections become codified. |
 
 Surface the **top 3–5 structural problems AND the top 2–3 operation-readiness gaps** — don't list every flaw. Prioritise by impact on daily navigation and on whether Layers 2–4 can actually execute.
+
+---
+
+## Naming & Routing Discipline (added v1.5.1)
+
+These are the principles that prevent a knowledge graph from decaying into a calendar log. Bake them into the Setup Guide (Phase 3) so the operator inherits them from day one.
+
+**Author-primary for recurring thinkers (≥3 pieces); topic-primary for single-source captures.**
+
+| Rule | Statement |
+|------|-----------|
+| 1 | When the same author appears in the vault 3 or more times, that author owns a folder under `Thinkers & Philosophers/[Name]/`. ALL their material lives there — articles, distills, archives, courses, books, mastery manuals as subfolders. |
+| 2 | Mental Models is the **cross-author synthesis layer** (Lenses / Operations / Recipes). Author folders cross-link to it; Mental Models doesn't get author content. |
+| 3 | Topic folders (`Business & Marketing/`, `Politics & History/`, etc.) hold **single-source captures** and topic synthesis. Once a source-author becomes recurring, their content migrates to a Thinker folder. |
+| 4 | **Naming: `[Title] — [Author Last Name].md`. No date prefix.** Date lives in `published:` and `ingested:` frontmatter. Date-prefixed filenames make the folder a calendar log instead of a knowledge graph. |
+| 5 | **`_Index.md`** at the root of each Thinker folder is the MOC for that thinker (was previously a profile file at `Thinkers & Philosophers/` root). Single-thinker profiles for occasional thinkers (1–2 pieces) sit at the folder root as `[Name].md` until they cross the ≥3 threshold. |
+| 6 | **Daniel-personal content** (therapy notes, identity work, M.A.N.N. material) leaves the KB → `00 - COMMAND CENTER/Foundational Docs/Personal/`. |
+| 7 | **Daniel-CCC content** (methodology authored by the operator) leaves the KB → `03 - OPERATIONS/[venture]/`. |
+
+**Why this matters:** without an enforced organising principle on the *where* (not just the *what*), every author with ≥3 pieces produces a contradiction between "I have all of X's material" and "I can find any specific piece by X." The fix isn't smarter search — it's one canonical home per author.
+
+**For Audit Mode:** if the existing vault violates these rules at scale (e.g., the same author scattered across 4+ folders), the audit report MUST surface this as a structural problem and propose a phased migration (don't dump 200 files at once; stage by author, with a backup-first protocol).
+
+**Reference:** see [[2026-04-26 — KB Reorg Plan]] in Daniel's WELTENERNEUERER vault for a worked example of converting a 654-file pre-discipline vault to author-primary structure (executed 2026-04-26, 12 Thinker folders consolidated, 16 wikilink rewrites).
 
 ---
 

@@ -1,6 +1,6 @@
 # Recipes — Pre-composed Operation Sequences
 
-*Last updated: 2026-04-19. Append new recipes here when an ad-hoc sequence has been used 3+ times.*
+*Last updated: 2026-04-21. Append new recipes here when an ad-hoc sequence has been used 3+ times.*
 
 A Recipe is a named sequence of cognitive operations applied in a deliberate order for a recurring use case. Each recipe specifies: target type, operations in order, and what the combined output should reveal that no single operation could.
 
@@ -79,6 +79,8 @@ A Recipe is a named sequence of cognitive operations applied in a deliberate ord
 3. **Falsification** — what would invalidate it? Is there a single counter-example that breaks the entire concept?
 
 **Combined output reveals:** Whether this is a genuine Trademark candidate or a derivative idea that should stay internal. Includes a "differentiation statement" if it graduates.
+
+**Expected verdict shape:** Conditional graduation with named clauses is the common case; unconditional graduation is the exception. See [[Autarky Fallacy in AI Adoption]] (graduated 2026-04-21) for the reference pattern — Falsification surfaced two structural clauses (alignment + non-tradable cognition) that got absorbed into the claim rather than breaking it. When Falsification returns zero counter-evidence, treat that as a yellow flag: the claim is probably under-specified, not universally true. The verdict should read like *"Graduates conditional on [Clause A] + [Clause B]"* rather than a clean yes/no.
 
 ---
 
