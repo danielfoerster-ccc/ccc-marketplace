@@ -1,14 +1,14 @@
 ---
 name: ccc-post-call-log
-description: "Post-call vault update with behavioural signals intake. Takes Daniel's raw call notes (pasted or dictated), structures them into a meeting note, runs a dedicated Behavioural Signals pass (energy / trust / decision / power / priority / language / timing / cultural signals) that feeds Perspective Simulation downstream, updates the person's file with new intel + signals + an interaction log entry, routes decisions to Decisions & Rules.md, and confirms exactly what was saved where. USE THIS SKILL when Daniel says log this call, post-call, update after the call with X, save call notes, debrief this call, capture signals, behavioural signals, or pastes raw notes after a meeting. Also trigger if Daniel says we just got off a call, or wants to capture the interaction before the nuance fades."
+description: "Post-call vault update with behavioural signals + Gap Selling pipeline-state capture. Takes Daniel's raw call notes (pasted or dictated), structures them into a meeting note, runs a Behavioural Signals pass (energy / trust / decision / power / priority / language / timing / cultural), runs a Pipeline State pass (Current State / Future State / Gap math / Intrinsic Motivation / Decision Criteria / Buying Process / Next Yes), runs the CRM Challenge self-test on the resulting notes, updates the person's file with new intel + signals + an interaction log entry, routes decisions to Decisions & Rules.md, and confirms exactly what was saved where. USE THIS SKILL when Daniel says log this call, post-call, update after the call with X, save call notes, debrief this call, capture signals, behavioural signals, or pastes raw notes after a meeting. Also trigger if Daniel says we just got off a call, or wants to capture the interaction before the nuance fades."
 allowed-tools: Read, Write
 ---
 
 # CCC Post-Call Log
 
-**Workflow: Extract → Signals → Route → Confirm.** Takes raw call notes, extracts structured intel (decisions, action items, new factual intel) AND runs a dedicated Behavioural Signals pass (energy, trust, decision style, power, priorities, language, timing, culture), then routes each piece to the right vault file and reports exactly what changed.
+**Workflow: Extract → Signals → Pipeline State → CRM Challenge → Route → Confirm.** Takes raw call notes, extracts structured intel (decisions, action items, new factual intel), runs a dedicated Behavioural Signals pass (8 categories), runs a Pipeline State pass (Gap Selling fields — Current/Future/Gap/Why/DC/BP/Next-Yes), runs the CRM Challenge self-test, then routes each piece to the right vault file and reports exactly what changed.
 
-The Behavioural Signals pass is what turns a call log from a transcript into usable cognitive data. Downstream, the [[second-brain-connect]] skill runs Perspective Simulation against a person's accumulated signals — so the quality of Simulation output is a direct function of how rigorously signals are captured here.
+The Behavioural Signals pass turns a call log into cognitive data for Perspective Simulation. The Pipeline State pass turns it into deal-progression data for [[ccc-sales-prep]] (next call prep), [[ccc-proposal-draft]] (gap-anchored proposals), and `ccc-deal-rescue` (re-engagement when deals stall). The CRM Challenge ensures both passes are deep enough to be useful — if the notes can't pass it, discovery was too shallow and the next call needs to fix that.
 
 ---
 
@@ -73,6 +73,26 @@ Walk through the eight signal categories. For each one, either extract a specifi
 
 ---
 
+## Phase 4.5: Pipeline State Capture (Gap Selling fields)
+
+This pass turns the call log into deal-progression data. Run only if the call had a sales/engagement intent (discovery, follow-up, scoping, proposal review). For pure relationship calls, skip this phase.
+
+Walk through the seven Gap-Selling pipeline fields. For each, either extract specifics from the notes OR mark `not surfaced — for next call`. Don't fabricate.
+
+| Field | What to capture | If not surfaced |
+|-------|-----------------|-----------------|
+| **Current State (5 elements)** | Quantified facts + the 1-3 most material problems + their impact in the prospect's currency + the root cause + their emotional state | Mark `current state thin — re-discover next call` |
+| **Future State (3 layers)** | Layer 1 (technical) + Layer 2 (business, quantified) + Layer 3 (intrinsic motivation, the personal WHY) | If only Layer 1+2: mark `Layer 3 not surfaced — explicit goal next call`. Layer 3 is where deals close. |
+| **The Gap** | Future − Current, in their currency. e.g., "from 22% to 25% growth = €X over 12 months" | Mark `gap math pending — surface next call` |
+| **Decision Criteria** | What they said matters most when they decide. Flag any that don't align with their stated future state. | Mark `DC unknown — ask "How are you going to decide what's the best solution for you?" next call` |
+| **Buying Process** | Literal steps from now to signed contract. RFP? Committee? CFO? Partner sign-off? Number of decision-makers (per Gartner: 5.4 average). | Mark `BP unknown — ask "Walk me through how a purchase like this gets approved at your company"` |
+| **Next Yes** | The smallest specific commitment we're working toward right now (e.g., "intro to CFO by Friday", "approve scope for kickoff", "sign mutual NDA"). Not "follow up." | Mark `next Yes unclear — Daniel must define before close` |
+| **Active Kanter threat (if any)** | Which of the 10 change-resistance threats appeared in this call (loss-of-control, excess uncertainty, surprises, too-much-at-once, loss-of-face, insecurity, extra work, ripple, past resentments, real danger). See `references/kanter-10-threats.md`. | Mark `none active` if no threat surfaced |
+
+These fields populate a structured `## Pipeline State` block in the meeting note (see Phase 5 below). They feed [[ccc-sales-prep]] for the next call's brief and `ccc-deal-rescue` if the deal subsequently goes dark.
+
+---
+
 ## Phase 5: Write the Files
 
 ### Meeting Note
@@ -116,6 +136,17 @@ status: completed
 **Cultural:** [observation OR `none observed`]
 
 *Tag inferences with ⟨inferred⟩. Tag contradictions with prior signals as ⟨contradiction⟩.*
+
+## Pipeline State (Gap Selling — only if sales intent)
+**Current State:** [quantified facts + 1-3 problems + impact + root cause + emotional state]
+**Future State:** Layer 1: [technical] · Layer 2: [business, quantified] · Layer 3: [intrinsic motivation]
+**The Gap:** [Future − Current, in their currency]
+**Decision Criteria:** [list — flag misalignments with stated future state]
+**Buying Process:** [steps + named players + estimated timeline]
+**Next Yes:** [the specific smallest commitment we're working toward]
+**Active Kanter threat:** [which of the 10, or `none active`]
+
+*Mark any field as `not surfaced — for next call` if it didn't come up. Don't fabricate.*
 
 ## Notes
 [Anything else worth capturing — tone, side comments, between-the-lines]
@@ -164,6 +195,24 @@ Every person, project, or note referenced in any saved file must use `[[wikilink
 
 ---
 
+## Phase 5.5: CRM Challenge Self-Test (silent — gate to Phase 6)
+
+Before confirming, run the CRM Challenge from [[Gap Selling — Keenan]] Ch. 8: *if a peer read these notes anonymously — without the prospect's name or company — would they be able to identify which prospect this is?*
+
+Test against these specific cuts:
+- **Pipeline State block alone**: would the Gap math + Future State + Intrinsic Motivation uniquely identify this prospect? Or could it describe any operator?
+- **Behavioural Signals + Pipeline State together**: now is it unique?
+
+If the answer is *no* on the first cut, the discovery was thin in measurable ways. **Don't fail silently.** In the confirmation message, surface the specific gap:
+
+> "**CRM Challenge result:** the Pipeline State block reads generic — [specific weakness, e.g., 'gap math is missing because future state Layer 2 wasn't quantified']. **Action for Daniel:** before the next call, [specific question to ask, e.g., 'press for the actual revenue number behind their growth target']."
+
+This isn't punitive — it's a feedback loop. Per the framework, the depth of post-call notes determines the quality of every subsequent step (proposal, pricing, deal-rescue). Naming the weakness now is what fixes it on the next call.
+
+If the notes pass the Challenge, just note `CRM Challenge: passed` in the confirmation.
+
+---
+
 ## Phase 6: Confirm
 
 After saving all files, output a brief confirmation:
@@ -178,6 +227,14 @@ After saving all files, output a brief confirmation:
 
 Most important signal today:
 > "[The single signal that most changes how Daniel should read this relationship going forward]"
+
+Pipeline State (if sales intent):
+- The Gap: [Future − Current, in their currency, OR "not yet quantified"]
+- Next Yes: [the specific commitment to pursue OR "needs definition"]
+- Active Kanter threat: [which one OR "none active"]
+
+CRM Challenge: [passed | weak — see action]
+[If weak: "Action for next call: [specific question to ask to fix the weakness]"]
 
 Action items for you:
 - [ ] [Item 1]
@@ -225,6 +282,10 @@ If a prior `⟨pending-simulation: ...⟩` marker already exists on the file, up
 7. **If Daniel's notes are very sparse (e.g., just "good call, will send proposal"), still create the meeting note and log the interaction.** Sparse notes are still worth preserving. Ask one clarifying question if something important is missing (like the agreed next step OR the single most important signal of the call).
 
 8. **Never ask "should I save this?" — just save and report.**
+
+9. **Never fabricate Pipeline State fields.** `not surfaced — for next call` is the correct, honest output when discovery didn't reach a field. Fabricated gap math, invented intrinsic motivation, or invented decision criteria poison [[ccc-sales-prep]] briefs and `ccc-deal-rescue` messages downstream.
+
+10. **Always run the CRM Challenge silently before confirming.** Surface weaknesses in the confirmation message, not generically — name the specific field that reads thin and the specific question Daniel should ask next call. This is how the discovery loop tightens over time.
 
 ---
 

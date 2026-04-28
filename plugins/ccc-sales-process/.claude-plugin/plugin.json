@@ -1,8 +1,8 @@
 {
   "name": "ccc-sales-process",
   "display_name": "CCC Sales Process",
-  "description": "Daniel's end-to-end sales process for CCC consulting engagements: pre-call preparation, post-call logging with behavioural signals intake (energy / trust / decision / power / priority / language / timing / cultural signals feeding downstream Perspective Simulation, plus Phase 7 queue marker for the Weekly Knowledge Sweep), engagement pricing, and branded proposal generation with HTML-to-PDF rendering.",
-  "version": "1.1.1",
+  "description": "Daniel's end-to-end Gap-Selling-grounded sales process for CCC consulting engagements: pre-call preparation with Current/Future-state hypotheses + Kanter-threat objection mapping, discovery-roleplay rehearsal scoring against the 4-step discovery + CRM Challenge, post-call logging with Behavioural Signals + Pipeline State (Current / Future / Gap / Intrinsic Motivation / Decision Criteria / Buying Process / Next Yes), gap-anchored proposal drafting with HTML-to-PDF rendering, value-based pricing analysis, and deal-rescue messaging using the I'm-confused-you-said reframe for stalled, dark, and price-objection situations. Built on Keenan's Gap Selling (2018) integrated with CCC's Problem Identification Chart.",
+  "version": "2.0.0",
   "author": {
     "name": "Daniel Förster · Claude Cowork Consultants"
   }
