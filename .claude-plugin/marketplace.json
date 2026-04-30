@@ -125,7 +125,7 @@
       "name": "second-brain",
       "source": "./plugins/second-brain",
       "description": "Second Brain tools for the cognitive-exoskeleton era. Five skills: Second Brain Setup & Audit (five-folder Layer-1 substrate + Three Brains framework + operation-readiness diagnostics), Knowledge Distill (URL/YouTube → key-idea notes with thinker profiles), Knowledge Archive (full-text archiving + bulk publication feed), Second Brain Connect (runs Simmons' 9 cognitive operations — Analogical, Abductive, Counterfactual, Falsification, Bayesian, First Principles, Dialectical, Systems, Perspective — against vault clusters and returns human-approved connection proposals), and Framework Extractor (decodes books, courses, and frameworks into structured Claude Cowork Skills and plugins via a 5-phase decode-build-audit-architect workflow).",
-      "version": "1.5.2",
+      "version": "1.6.1",
       "author": {
         "name": "Daniel Förster · Claude Cowork Consultants"
       },

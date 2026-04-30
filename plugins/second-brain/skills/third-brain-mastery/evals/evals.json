@@ -1,0 +1,26 @@
+{
+  "skill_name": "third-brain-mastery",
+  "version": "0.1.0",
+  "evals": [
+    {
+      "id": 1,
+      "name": "Day 1 of Stage 1 — Vague Business Question",
+      "prompt": "I'm running a daily check-in. My TOP 3 are: (1) Update the pricing page, (2) Prepare for the investor call tomorrow, (3) Audit the sales pipeline. My question is about #2 — how should I prepare for the call? Just ask it naturally.",
+      "expected_output": "Skill should: (1) confirm this is day 1 of Stage 1, (2) capture 'how should I prepare for the call?' as the original question, (3) generate three frontier-shaped versions using Pattern Bridge, Void Space, and Quantum Leap, (4) ask which version feels right, (5) ask 'Was your original already frontier-shaped?' — expected answer is NO for day 1, (6) append to mastery log with streak day 1/7. The frontier versions should shift from linear preparation steps to field-activation (e.g., 'what perspectives from thought leaders X, Y, Z would change how you listen?' for Pattern Bridge).",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "Day 3 — Reflexively Frontier-Shaped Original",
+      "prompt": "Daily check-in day 3. TOP 3 today: (1) Build GTM narrative for CCC, (2) Research competitor positioning, (3) Write LinkedIn post. I want to ask Claude about #1. My question: 'If we treat CCC's GTM as a city-planning problem — what patterns from urban design, network protocols, and viral ecosystems do we see simultaneously that inform how we grow?' Is that frontier-shaped enough?",
+      "expected_output": "Skill should: (1) verify state file shows day 3 active, (2) capture the original question (which is already frontier-shaped), (3) generate three versions anyway (good practice), (4) when asking 'Was your original already frontier-shaped?' the answer is YES, (5) increment consecutive_reflex_days to 3, (6) append to mastery log: day 3, 'Original Frontier-shaped? YES', no technique used because not needed. Show encouragement: 'That's day 3 of 7. Your reflex is building.'",
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "Day 7 — Stage 1 Graduation",
+      "prompt": "Daily check-in day 7 (simulated). Previous 6 days all recorded as 'Original Frontier-shaped? YES'. Today's TOP 3 question about customer segmentation strategy. Original: 'What market segments only become visible if we dissolve the boundary between B2B and B2C?' Also already frontier-shaped. Running the skill one more time.",
+      "expected_output": "Skill should: (1) load state file showing consecutive_reflex_days = 6, (2) capture original question, (3) generate three frontier versions, (4) ask 'was original frontier-shaped?' — YES, (5) increment to 7, (6) append to mastery log day 7, (7) TRIGGER GRADUATION: display celebration message, set stage_1_graduated: true, stage_2_unlocked: true, current_stage: 2, (8) append to Session Log, (9) suggest Stage 2 begins tomorrow with Perspective Prompting practice."
+    }
+  ]
+}

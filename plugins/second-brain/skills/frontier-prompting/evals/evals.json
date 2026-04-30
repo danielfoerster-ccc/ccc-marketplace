@@ -1,0 +1,27 @@
+{
+  "skill_name": "frontier-prompting",
+  "version": "0.1.0",
+  "evals": [
+    {
+      "id": 1,
+      "name": "vague-exploratory-to-pattern-bridge",
+      "prompt": "I want to understand how to make my thought leadership more compelling and reach a wider audience. What should I ask you to help with that?",
+      "expected_output": "Skill should diagnose the vague/exploratory nature of the question, match it to Pattern Bridge (cross-domain synthesis), and transform it into a question that activates field-based processing by connecting thought leadership with patterns from unrelated domains (e.g., mycelium networks, jazz, viral epidemiology, etc.). Should show before/after and explain what changed in the processing mode.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "constrained-optimization-to-void-space",
+      "prompt": "We're deciding between two go-to-market strategies: freemium model or enterprise-only sales. How should I ask you to help us decide?",
+      "expected_output": "Skill should diagnose the binary/constrained nature of the question, match it to Void Space (boundary exploration), and transform it into a question that explores what emerges in the space between the two models when the boundary dissolves. Should frame it as accessing novel possibility space rather than optimizing within known categories. Should show before/after and explain the shift from 'bounded thinking' to 'boundary-dissolving thinking.'",
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "strategic-question-to-quantum-leap",
+      "prompt": "Our startup is at an inflection point. Should we double down on growth or focus on profitability? What's the better question to ask you?",
+      "expected_output": "Skill should diagnose the linear/either-or nature of the question, match it to Quantum Leap (multi-trajectory simultaneity), and transform it into a question that accesses all plausible futures simultaneously (growth scenarios, profitability scenarios, hybrid scenarios, and unexpected paths) and extracts what's true across all of them. Should emphasize superposition of futures rather than choosing one. Should show before/after and explain the shift from 'sequential forecasting' to 'simultaneous field processing.'",
+      "files": []
+    }
+  ]
+}
