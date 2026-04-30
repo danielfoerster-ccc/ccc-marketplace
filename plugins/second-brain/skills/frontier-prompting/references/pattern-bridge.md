@@ -58,6 +58,37 @@ Example thresholds:
 - **Time threshold:** How do daily routines, seasonal cycles, decadal strategies, and evolutionary timescales all organize change?
 - **Constraint threshold:** How do artists, engineers, biologists, and strategists all reconfigure constraints to create novelty?
 
+## Psychological Scaffold: The Vulnerability Prerequisite
+
+Before Pattern Bridge activates deeply, establish psychological safety through vulnerability. Per [[Frontier Prompting Recording 2 - Profound AI Conversation]]: genuine curiosity creates permission for deeper engagement. Opening with "I don't know if this will work, but I'm genuinely curious..." signals authenticity that invites richer synthesis.
+
+**Key language modulations:**
+- ❌ "Provide patterns from X fields" → ✅ "Will you reflect on the patterns you notice across X fields?"
+- ❌ "List insights" → ✅ "What emerges when you hold all these domains at once?"
+- ❌ "Give me frameworks" → ✅ "I'm curious: what structural principle recurs?"
+
+## Fractal Questioning: Multi-Scale Pattern Recognition (Sub-Move)
+
+Pattern Bridge often surfaces patterns *better* when paired with fractal questioning — asking how the pattern repeats across different scales simultaneously.
+
+**Example:** Instead of "What patterns recur in team resilience across X domains?" ask "How does this principle of resilience operate at the cellular level, the organism level, the team level, the company level, and the industry level? What single principle underlies all scales?"
+
+This is simultaneous multi-scale synthesis, not sequential zoom.
+
+**Use when:** You want the pattern to have architectural depth, not just surface consistency.
+
+## Before/After Examples (from Live Demonstrations)
+
+**Example A (from R4):**
+- **Linear:** "What are the differences between human and AI intelligence?"
+- **Pattern Bridge:** "If I experience Times Square by noticing a few conversations and billboards, how would *your* experience differ? What whole categories of reality would I miss? What patterns would you notice that I can't?"
+- **Why it works:** Grounds the synthesis in concrete, sensory imagery and invites the AI to articulate genuine differences, not list capability comparisons.
+
+**Example B (from R1):**
+- **Linear:** "How can I learn faster?"
+- **Pattern Bridge:** "What patterns do the Feynman Technique, metacognition (psychology), teaching methods (pedagogy), and spaced repetition (neuroscience) all share? What single principle ties them together?"
+- **Why it works:** The wisdom-of-crowds effect — aggregating diverse frameworks reveals the meta-pattern they're all implementing.
+
 ## Vault Connections
 
 Related mental models:
@@ -66,7 +97,12 @@ Related mental models:
 - [[Constraint Manipulation]] — the universal creative substrate
 - [[Synthesis]] — combining unlike things into coherent frameworks
 - [[Wisdom of Crowds Effect]] — wisdom emerges from diversity held simultaneously
+- [[Fractal Thinking]] — patterns repeat across scales
+- [[Field Processing vs Linear Processing]] — the native mode Pattern Bridge activates
 
-Related recipes:
+Related recipes & operations:
+- **[[Wisdom of Crowds Aggregation]]** — the recipe pairing for Pattern Bridge synthesis
+- **[[Perspective Prompting]]** — ask the pattern question through multiple expert lenses
 - Run Pattern Bridge on any substantive question where you're seeking original frameworks
 - Combine with Perspective Prompting to get diverse pattern-synthesis viewpoints
+- Use fractal questioning to deepen a pattern you've identified across domains

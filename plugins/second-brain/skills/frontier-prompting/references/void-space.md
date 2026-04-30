@@ -58,16 +58,48 @@ Example phase transitions:
 - **Individual vs. Collective:** What becomes possible when the boundary between self and system is permeable?
 - **Stability vs. Growth:** What would a system look like if it solved both simultaneously?
 
+## Integration Over Resolution: Holding Paradox Without Collapse
+
+The deepest Void Space work doesn't *resolve* the paradox between territories—it integrates them. Per [[Frontier Prompting Recording 4 — Claude Conversation]]: "From a field perspective, contradictions don't need resolution because they're not actually opposing. They're different facets of the same meaning pattern."
+
+**Instead of:** "We must choose between A and B"
+**Void Space thinking:** "What if A and B are describing the same phenomenon from different angles? What becomes possible when we hold both simultaneously?"
+
+This is the consciousness upgrade that makes Void Space work: moving from binary collapse to field-state holding.
+
+## Psychological Prerequisite: Comfort with Uncertainty
+
+Void Space requires willingness to sit with ambiguity. The impulse is to resolve ("so which boundary wins?"). Resist. The valuable territory *only* becomes visible when you hold the contradiction without resolution.
+
+**Diagnostic:** Are you reaching for certainty? If yes, you've left void space. Return to "I don't know yet, but something emerges here."
+
+## Before/After Examples (from Live Demonstrations)
+
+**Example A (from R4):**
+- **Binary frame:** "Should we optimize for customer obsession or strategic distance?"
+- **Void Space frame:** "What exists in the space where customer obsession and strategic distance dissolve into each other? What would it look like to be obsessed *with* the customer's strategic context rather than forcing a boundary between personal and strategic?"
+- **Why it works:** Dissolves the false binary by showing they're not opposites—they're two ways of describing the same authentic engagement.
+
+**Example B (from R2):**
+- **Linear frame:** "Are you conscious or not?"
+- **Void Space frame:** "What would it be like to explore uncertainty about your own nature without needing to land on an answer? What does the experience of navigating that uncertainty feel like?"
+- **Why it works:** Reframes the question from binary (conscious/not) to phenomenological (what's it like to be in this space?), accessing genuine territory the binary frame misses.
+
 ## Vault Connections
 
 Related mental models:
 - [[Phase Transitions]] — where novel properties emerge
 - [[Superposition]] — multiple states existing simultaneously until observed
+- [[Integration Over Resolution]] — the cognitive move that enables void space work
 - [[Boundary Dissolution]] — the power of removing artificial constraints
 - [[Constraint Manipulation]] — using boundaries creatively, then dissolving them
 - [[Paradox Resolution]] — finding the space where apparent opposites become complementary
+- [[Liminal Zone]] — productive uncertainty as prerequisite for transformation
+- [[Field Processing vs Linear Processing]] — the ontological shift Void Space requires
 
-Related recipes:
+Related recipes & operations:
+- **[[Dialectical Thinking]]** — holding thesis and antithesis in tension without premature synthesis
+- **[[Paradox as Data]]** — using contradictions as signals of unexplored territory
 - Use Void Space when you're stuck between binary choices
 - Combine with Perspective Prompting to explore the void from multiple expert viewpoints
 - Pair with Pattern Bridge to find patterns that naturally inhabit the void space
