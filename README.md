@@ -18,7 +18,6 @@ Then install the plugins you need:
 /plugin install ccc-operations@ccc-marketplace
 /plugin install 48hr-launch-blueprint@ccc-marketplace
 /plugin install ccc-cashflow-management@ccc-marketplace
-/plugin install ccc-seo-content-pipeline@ccc-marketplace
 /plugin install second-brain@ccc-marketplace
 /plugin install ccc-ai-audit@ccc-marketplace
 /plugin install ccc-sales-process@ccc-marketplace
@@ -135,18 +134,6 @@ Complete Profit First implementation for consultants and business owners. Built 
 
 ---
 
-### ccc-seo-content-pipeline
-
-| Skill | What it does |
-|-------|-------------|
-| `seo-competitor-analysis` | Runs structured competitor gap analysis for the CCC SEO Content Pipeline |
-| `seo-content-generate` | Orchestrates SEO article generation via Arvo API |
-| `seo-keyword-strategy` | Generates prioritized keyword list and 13-week content calendar from competitor gap analysis |
-| `seo-pipeline-setup` | Guided setup wizard for the CCC Automated SEO Content Pipeline |
-| `seo-social-repurpose` | Repurposes published SEO articles into platform-specific social posts and schedules via Blotato API |
-| `seo-weekly-review` | Weekly SEO performance review for the content pipeline |
-
----
 
 ### second-brain — Cognitive Exoskeleton for Obsidian
 
