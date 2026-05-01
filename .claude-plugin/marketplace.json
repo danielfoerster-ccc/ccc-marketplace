@@ -87,7 +87,7 @@
       "name": "ccc-buyback",
       "source": "./plugins/ccc-buyback",
       "description": "Dan Martell's Buyback Principle applied to AI-first consultants. Audit your time, build a replacement ladder, plan your perfect week, define your preloaded year, and align your vision — all structured for founders reclaiming their time.",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "author": {
         "name": "Claude Cowork Consultants"
       },
