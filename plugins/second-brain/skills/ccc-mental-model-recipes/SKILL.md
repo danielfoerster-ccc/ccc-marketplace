@@ -9,6 +9,7 @@ description: >
   (Simmons-canonical + CCC-original Lenses). Run substantive reasoning work (decisions,
   strategy, diagnosis, IP development) through the library automatically. Bypass for routine
   ops (file moves, status checks, bash commands, simple lookups).
+allowed-tools: Read
 version: 1.0.0
 ---
 
@@ -254,3 +255,28 @@ Don't read all reference files upfront. Read them on-demand:
 ---
 
 *Forked from Michael Simmons' Mental Model Recipes skill (Simmons Learning Company). Vault integration, dual-mode logic, and CCC-original content are Claude Cowork Consultants extensions.*
+
+---
+
+## Rules
+
+1. **Inline mode is the default — never default to the 4-artifact format.** Use Mode 2 only when Daniel explicitly says "run the recipe" or the task is a high-stakes single decision that genuinely warrants it. Producing 4 artifacts on routine strategic questions is overhead, not value.
+2. **Always name the recipe upfront.** "Running R13: Root Cause Excavator" — before step 1. Never run recipe logic silently. The naming is part of the teaching loop.
+3. **Make the reformulate-vs-answer decision explicit.** State it in the output: "Your framing is sound — answering directly" or "The recipe surfaces a different frame — here's why I'm reframing." Never default to reformulation without naming the move.
+4. **Output length is bounded.** If the vault already has the relevant Lens or Trademark, the recipe output must be at most 1.5× what baseline-with-vault would produce. Procedural narration ("Step 1: I am now applying First Principles...") is the most common padding offender — cut it.
+5. **Bypass for routine ops — no exceptions.** File moves, status checks, bash commands, simple lookups, calendar queries: respond directly. Do not name a recipe, do not consult the library. The bypass is unconditional.
+6. **Abandon when surprised.** If a recipe step produces something you couldn't have predicted from the framing, stop. Surface the surprise explicitly. Let Daniel decide whether to pursue it or resume the recipe. Continuing overwrites the insight.
+7. **Attribution must be precise.** Simmons-canonical, Simmons-extended, or CCC-original — never blur the source. The operator must know at a glance where a Lens comes from.
+8. **Cognitive signature (in Mode 2) must be specific.** "You tend toward First Principles" is weak. "You decomposed this into parts before considering interactions — Systems Thinking is underrepresented" is strong. Generic signatures are worse than no signature.
+
+---
+
+## Self-Improvement
+
+When a recipe step consistently produces shallow output for a particular problem shape, add the failure mode to the Rules section above with the fix.
+
+When Daniel says a reformulation missed the mark (he needed the binary answered, not reframed), note the context and add it as a constraint to Rule 3.
+
+When a recipe is abandoned mid-run because of surprise — capture what the surprise was and what it unlocked. That pattern is worth preserving as a named insight for future sessions on similar problem shapes.
+
+When output length consistently exceeds 1.5× baseline, audit which section is generating the padding and add a targeted rule. The output-length discipline is fragile — it needs active maintenance as new recipe content is added.
