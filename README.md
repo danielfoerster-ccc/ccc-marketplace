@@ -21,6 +21,7 @@ Then install the plugins you need:
 /plugin install second-brain@ccc-marketplace
 /plugin install ccc-ai-audit@ccc-marketplace
 /plugin install ccc-sales-process@ccc-marketplace
+/plugin install ccc-seo-suite@ccc-marketplace
 ```
 
 ---
@@ -173,6 +174,40 @@ Daniel's personal sales workflow: pre-call preparation, post-call logging with 8
 | `ccc-post-call-log` | Post-call vault update: structures raw call notes into meeting note, captures 8 behavioural signals (energy / trust / decision style / power / priority / language / timing / cultural), updates person file interaction log, routes decisions to Decisions & Rules. Signals feed downstream Perspective Simulation inside `second-brain-connect` |
 | `ccc-pricing` | Four-lens pricing analysis: value-based (Weiss/Enns), Hormozi value equation, CCC offer architecture, BenAI market reality (2 years AI automation pricing data). Outputs recommendation with full reasoning + maintains pricing log for compounding learning |
 | `ccc-proposal-draft` | Drafts a cost proposal → reviews as CCC-branded HTML → renders to PDF only after approval. Reads person file + call notes, asks 2-3 scoping questions, produces engagement summary, deliverables, timeline, pricing, next step |
+
+---
+
+
+### ccc-seo-suite
+
+| Skill | What it does |
+|-------|-------------|
+| `ccc-seo` | Entry router for the CCC SEO AI Suite |
+| `ccc-seo-analyze-cohort` | The cohort attribution engine |
+| `ccc-seo-brand-presence` | Off-site brand-presence audit + recommendations |
+| `ccc-seo-classify-urls` | Crawls a client's site (or accepts an existing URL list) and classifies every URL into a structural role: Pillar / Silo / Sub-Silo / Product / Category / BOFU / MOFU / TOFU / Legal / Landing / Homepage / About / Other |
+| `ccc-seo-dashboard` | Generates a live HTML dashboard artifact (via mcp__cowork__create_artifact) for any CCC SEO client |
+| `ccc-seo-ideate-topics` | Generates child topics from a parent (Pillar → Silos, Silo → Sub-Silos, BOFU → MOFU, MOFU → TOFU) using extracted BenAI prompts (BOFO_to_MOFO, MOFU_to_TOFU_Topics, GeneralCategory, Create_Sub_SoloTopics) CCC-voiced for Claude |
+| `ccc-seo-link-internal` | Cross-article internal linking |
+| `ccc-seo-onboard` | Engagement-start orchestrator |
+| `ccc-seo-publish-next` | The weekly content session — orchestrator that ships ONE complete article end-to-end |
+| `ccc-seo-publish-wp` | Pushes a draft article from the vault to WordPress via REST API |
+| `ccc-seo-quarterly-review` | Quarterly review session — operator-facing orchestrator |
+| `ccc-seo-rescue` | Engagement-start retrofit orchestrator for clients with substantial existing content |
+| `ccc-seo-research-brief` | Research subagent that produces a complete brief for an article before it's written |
+| `ccc-seo-strategy-session` | The full strategy build / refresh orchestrator |
+| `ccc-seo-tools-audit` | Full technical SEO audit using Seomator CLI — 16 categories, 148 rules |
+| `ccc-seo-tools-content` | E-E-A-T quality gate for every article published through ccc-seo-suite |
+| `ccc-seo-tools-geo` | AI-citation readiness quality gate |
+| `ccc-seo-tools-optimize` | GSC-driven SEO optimization |
+| `ccc-seo-tools-page` | Single-page deep SEO audit for any URL — on-page, content quality, technical meta tags, schema, images, performance |
+| `ccc-seo-tools-plan` | Strategic SEO planning — competitive analysis, content strategy templates, implementation roadmap |
+| `ccc-seo-tools-schema` | Detect, validate, and generate Schema |
+| `ccc-seo-tools-sitemap` | Analyze existing XML sitemaps or generate new ones with industry templates |
+| `ccc-seo-tools-technical` | Technical SEO audit covering 9 categories — crawlability, indexability, security, URL structure, mobile, Core Web Vitals, structured data, JavaScript rendering, and IndexNow |
+| `ccc-seo-trigger-rewrite` | The decision layer of the closed GSC loop |
+| `ccc-seo-weekly-review` | Weekly GSC + opportunity review session — operator-facing orchestrator |
+| `ccc-seo-write-article` | Produces a complete Sirion-quality article from a research brief |
 
 ---
 
