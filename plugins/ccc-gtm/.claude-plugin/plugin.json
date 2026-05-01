@@ -1,10 +1,21 @@
 {
   "name": "ccc-gtm",
   "description": "Go-To-Market foundation for AI automation consultants. Runs a structured GTM discovery interview to build your ICP, positioning, offer, and voice — then produces a phased 90-day launch plan with week-by-week actions.",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "author": {
     "name": "Claude Cowork Consultants",
     "url": "https://claudecowork-consultants.com"
   },
-  "display_name": "CCC Go-To-Market"
+  "display_name": "CCC Go-To-Market",
+  "keywords": [
+    "go-to-market",
+    "GTM",
+    "ICP",
+    "positioning",
+    "offer design",
+    "niche",
+    "AI consulting",
+    "launch plan",
+    "90 days"
+  ]
 }
