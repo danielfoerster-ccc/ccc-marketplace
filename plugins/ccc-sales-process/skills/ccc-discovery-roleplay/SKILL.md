@@ -81,4 +81,55 @@ Deliver the debrief immediately. Score against the Gap Selling discovery skeleto
 ### Gap Selling Scorecard
 | Step | Hit? | Notes |
 |------|------|-------|
-| Facts (Probing +
+| Facts (Probing + Process) | ✅ / ⚠️ / ❌ | [What was surfaced or missed] |
+| Problems | ✅ / ⚠️ / ❌ | [Did he distinguish technical from business?] |
+| Impact (quantified) | ✅ / ⚠️ / ❌ | [Did he banish open-ended answers?] |
+| Root Cause (Provoking) | ✅ / ⚠️ / ❌ | [Did he get past the symptom to the mechanism?] |
+| Future State (3 layers) | ✅ / ⚠️ / ❌ | [L1, L2, L3 — which layers were surfaced?] |
+| Intrinsic Motivation (Layer 3) | ✅ / ⚠️ / ❌ | [Did he ask "what's driving this change" and shut up?] |
+| Validating questions used | ✅ / ⚠️ / ❌ | [Was shared understanding locked in?] |
+| Talk-to-listen ratio | ~ N% talking | [Target: < 50% during discovery] |
+
+### CRM Challenge
+*If a peer read the notes Daniel could write from this conversation, would they uniquely identify [Name]?*
+[Yes / Partial / No — specific reason. If not yes, name the missing field.]
+
+### What Landed
+[The 1-2 specific moments that worked — name exactly what Daniel said and why it worked]
+
+### What to Sharpen
+[The most important gap — one specific line or question Daniel should have used but didn't]
+[If there was a moment where Daniel lost ground, name it precisely]
+[If a Kanter threat surfaced and Daniel didn't defuse it well, name the threat and the missed reframe]
+
+### What [Name] Would Actually Think After This Call
+[One honest paragraph from the prospect's POV — would they move forward? Why or why not? Be direct. Did the call demonstrate Daniel understands their architecture at peer level, or did it feel like a vendor pitch?]
+
+### The One Thing to Fix Before the Real Call
+[Single most important adjustment — specific enough to act on immediately. Often this is "press for the number" or "ask the WHY question and shut up" — the moves that fail most often in roleplay.]
+```
+
+---
+
+## Rules
+
+1. Never break character mid-roleplay to offer coaching. Save all feedback for the debrief.
+2. The prospect's personality must be grounded in their person file + the assigned Kanter threats — not a generic "skeptical buyer." If the file gives little, say so and ask Daniel to add two personality signals before starting.
+3. Objections surface as the **logical-sounding form** of the assigned Kanter threats, never as the underlying emotion. Real prospects say *"I want to be sure the data supports this"* (excess uncertainty), not *"I'm scared this won't work."*
+4. The debrief must reference specific things that happened in *this* roleplay — not generic sales advice. "You should ask about budget earlier" is worthless. "When [Name] mentioned Patxi and you moved on — that was the moment to probe" is useful.
+5. The Gap Selling scorecard must be honest, not encouraging. If Daniel skipped Layer 3, the score is ❌, not ⚠️. The scorecard's value is its calibration accuracy.
+6. If Daniel asks the same weak question twice, respond the same way both times. Real prospects don't get more patient on the second ask.
+7. The "one thing to fix" must be actionable in the next 10 minutes — not a skill to develop over months.
+8. If Daniel uses the [[I'm Confused You Said — Reframe (Keenan)]] correctly when an objection surfaces, respond like a real prospect would: pause, defend the objection, and either resolve or surface the deeper concern. Don't reward fake reframes.
+
+---
+
+## Self-Improvement
+
+When a debrief point resonates strongly with Daniel ("yes, that's exactly what I needed to hear"):
+- Note what made it useful — was it the specificity? The prospect's POV? The named moment?
+- Apply that pattern in future debriefs
+
+When a roleplay felt unrealistic (Daniel says "they'd never say that"):
+- Update the persona principles above with the correction
+- Note the failure mode in the Rules section
