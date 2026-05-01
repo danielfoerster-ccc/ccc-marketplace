@@ -105,7 +105,7 @@
       "name": "48hr-launch-blueprint",
       "source": "./plugins/48hr-launch-blueprint",
       "description": "Five-skill business validation toolkit based on Noah Kagan's Million Dollar Weekend. Guides users from idea generation through offer crafting to getting 3 paying customers in 48 hours — before building anything. Mindset Reset, Idea Generator, Business Model Validator, Dream Ten Launcher, and Validation Debrief.",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "author": {
         "name": "Claude Cowork Consultants"
       },
