@@ -370,18 +370,24 @@ Score each dimension 0–100. Apply weights. Sum for overall score.
 
 **This is what separates this skill from a generic audit. Every section below 85 gets ready-to-paste copy.**
 
-Full copy generation guide with templates: `references/copy-generation-guide.md`
+Generate copy using foundational docs as the source. Do not invent positioning that
+isn't documented — use positioning.md, voice.md, and ICP.md as the material.
 
-**Two hard rules for all copy:**
-1. **No fabricated conversion metrics.** Never write "+X% engagement" or "expected impact: Z%"
-2. **No banned language.** "consultant", "transform", "empower", "world-class", "next-level", "cutting-edge", or any outcome without a number
+**Two hard rules for all copy in this phase:**
+1. **No fabricated conversion metrics.** Never write "+X% engagement", "+Y% conversion",
+   or "expected impact: Z%". Explain why copy works using Ben's framework criteria —
+   not made-up performance numbers.
+2. **No banned language.** See banned list in Section 5.3. This applies to all sections,
+   including English variants where the guard tends to slip.
 
-**5 copy sections to generate:**
-1. **Headline Variants** — 3 variants (German-primary, English-primary, bilingual) using Ben's formula: `[Identity] | [Offer for ICP] → [Specific Outcome]`
-2. **Banner Brief** — headline text, subline, style direction, 1584×396 px
-3. **About Section Rewrite** — Ben's 5-part structure (Above-fold → Proof → Offers → Who → CTA). Apply voice.md banned list to all variants including English
-4. **Featured Section Copy** — title, description, URL, thumbnail brief for each card
-5. **Experience Description** — ICP callout → core offer → proof point → CTA link
+Read `references/copy-templates.md` before generating any copy in Phase 5. That file contains:
+- Headline formula + 3-variant structure (5.1)
+- Banner design brief format (5.2)
+- About section 5-part template + **banned language list** (5.3) — apply to all copy including English variants
+- Featured section copy format for Book-a-Call + Lead Magnet items (5.4)
+- Experience description format (5.5)
+
+**Core rule:** No fabricated conversion lift estimates (no "+25% call conversion"). Explain *why* a variant works — not what metric improvement it will deliver.
 
 ---
 
@@ -427,56 +433,13 @@ Checkbox format. One line per action item, grouped by section.
 
 ---
 
-## Troubleshooting
+## Troubleshooting, Related Skills & Learnings
 
-**LinkedIn requires login for full profile view.**
-Some sections (full About text, contact info, Featured items) only show when Chrome is
-logged into a LinkedIn account. Confirm the user is logged in before starting.
+See `references/troubleshooting-and-learnings.md` for: troubleshooting common Chrome/LinkedIn issues, related skills reference table, real-world learnings log (3 improvements from live audits), and version history.
 
-**About section is truncated.**
-Always click "see more" — the above-fold truncation hides most of the section.
-The first 300 characters are what every visitor sees before deciding to click. Flag weak
-first 300 characters as a separate Priority 1 finding even if the full About is strong.
-
-**Featured section doesn't render.**
-Scroll down and wait — LinkedIn Featured items can take a few seconds to appear. If they
-still don't show, refresh the page. Featured items are visible to logged-in users only.
-
-**Company logo missing.**
-This means no LinkedIn Company Page exists or the Experience entry isn't linked to one.
-Fix: create the Company Page (under work → set up page → link from Experience entry).
-This is a 10-minute task. Always flag as Priority 1 — Ben explicitly flags this as the
-top trust signal mistake agency owners and service professionals make.
-
-**Context docs not in workspace.**
-Ask the user for:
-1. Who they target (ICP in 1–2 sentences)
-2. What they offer + key outcome
-3. What action a profile visitor should take
-Proceed with context-informed rewrites based on answers.
+After each audit run where something surprising emerged, add a row to the learnings log in that reference file.
 
 ---
 
-## Related Skills
-
-| Skill | When to use |
-|-------|-------------|
-| `docx` | Required for report generation (Phase 6) |
-| `ccc-instagram-audit` | Run alongside for a full social presence audit |
-| `ccc-sop-creator` | To document the finalized profile as a repeatable optimization SOP |
-| `gmb-audit` | Run alongside for a full local + online authority audit |
-
----
-
-## Rules (Update When Things Go Wrong)
-
-- Login gate in Phase 1.2 is a HARD STOP — never score a profile from assumptions when login isn't confirmed
-- English copy variants slip on voice rules. Apply the banned language list to ALL variants, not just German
-- Never generate fabricated conversion metrics ("+25–40% conversion", "+15% engagement") — explain why copy works against framework criteria instead
-- If foundational docs (positioning.md, voice.md, ICP.md) are missing, generate observation-based copy only — never invent positioning
-
----
-
-## Self-Improvement
-
-After every audit run, check whether any Phase produced unexpected output (wrong scoring, fabricated claims, missed sections). Add the finding to the Rules section above and update the relevant Phase instructions. Track learnings in `references/copy-generation-guide.md` if copy-specific.
+*Daniel Förster & Heiko Lube | Claude Cowork Consultants (CCC)*
+*claudecoworkconsultants.com*

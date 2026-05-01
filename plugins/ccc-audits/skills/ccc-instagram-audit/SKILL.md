@@ -14,16 +14,6 @@ description: >
   Instagram performing", "Instagram content review", "social media audit",
   "Instagram score", "Instagram report".
 distribution: marketplace-ready
-allowed-tools:
-  - Read
-  - Write
-  - Edit
-  - Bash
-  - Glob
-  - Grep
-  - Agent
-  - Skill
-  - mcp__Claude_in_Chrome__*
 ---
 
 # CCC Instagram Audit Skill
@@ -183,17 +173,121 @@ Skip questions where the answer is clear from docs.
 
 ## Phase 3: Data Collection via Chrome
 
-Navigate systematically through the profile. Full step-by-step details in `references/data-collection-steps.md`.
+Navigate systematically through the profile. Capture all observable data.
 
-**7 steps — collect in order:**
+### Step 3.1 — Profile Header
 
-1. **Profile Header** — name field, bio, link, follower/following/post counts, profile pic, category, contact button, verified badge
-2. **Feed Grid** — screenshot top 9 posts, evaluate aesthetic coherence, format mix, production quality, website alignment
-3. **Last 12 Posts** — format, likes, comments, caption hooks, content pillars. Calculate **separate ER for collab vs. own content** (critical — never average them). Posting cadence: `posts / months_active ÷ 4`
-4. **Highlights** — count, names, cover design, content quality of top 2–3
-5. **Reels Tab** — like counts (visible on desktop), comment quality, hook quality. View counts = [Insights Required] on desktop
-6. **Bio Alignment** — compare against Brand Voice doc (only if loaded)
-7. **Competitive Context** — 2–3 competitor profiles. Use in-app search (not URL search). If no competitors found = first-mover opportunity, score Dimension 7 at 75–85
+Record:
+- Full name field (is it keyword-optimised or just brand name?)
+- Bio text (full text, emoji usage, keyword presence, CTA clarity)
+- Link in bio (destination, tool used — Linktree / native / beacons.ai)
+- Follower count, Following count, Post count
+- Profile picture (quality, brand-aligned, recognisable at small size)
+- Category label (if visible)
+- Contact button / action button (type, destination)
+- Verified badge (yes/no)
+
+### Step 3.2 — Feed Grid (First Impression)
+
+Before scrolling: screenshot the top 9 posts.
+
+Evaluate:
+- Overall aesthetic: coherent or chaotic? colour temperature consistent?
+- Format mix visible: any Reels thumbnails? Carousel indicators?
+- Production quality: professional/editorial vs. phone snapshots
+- Does it look like the website? (visual alignment check — use website URL from context)
+
+### Step 3.3 — Last 12 Posts (Deep Dive)
+
+For each of the last 12 posts, record:
+- Format (Reel / Carousel / Static)
+- Approximate like count (if visible)
+- Comment count
+- First line of caption (hook quality)
+- Notable comments (any substantive engagement?)
+- Post topic / content pillar
+
+Then calculate:
+- **Separate engagement rates for collab vs. own content** — this is critical.
+  Collab posts reach the collab partner's audience and will almost always outperform
+  own-content posts. Mixing them gives a misleading average. Calculate both:
+  - `ER_collab = avg likes (collab posts) / followers × 100`
+  - `ER_own = avg likes (own posts) / followers × 100`
+  - Note the gap ratio (e.g. "3× better" or "6× better") — this is a key finding
+- Format breakdown: % Reels / % Carousel / % Static
+- **Format performance per type:** check if the same piece of content was posted as
+  both Reel and Carousel for the same customer/subject. If so, compare engagement
+  directly — this reveals the format preference of this account's specific audience.
+- Caption formula: does it follow the brand's documented pattern? (if Brand Voice doc loaded)
+- Hashtag count per post (average) — and flag if pinned/older posts have dramatically
+  more hashtags than recent posts (inconsistency signal)
+- **Posting cadence estimate:** `posts_count / months_active ÷ 4` = posts per week.
+  Estimate months active from oldest visible post date if account age is unknown.
+
+⚠️ **If like counts are hidden:** Note this explicitly. Estimate engagement rate
+from comments only, flag as [Estimated] in the report.
+
+### Step 3.4 — Highlights
+
+Record:
+- Number of Highlights
+- Names/labels (are they descriptive and strategic?)
+- Cover design (branded/consistent? or default screenshot thumbnails?)
+- Open top 2–3 Highlights and note content quality and recency
+
+### Step 3.5 — Reels Tab (if present)
+
+Navigate to Reels tab. Click into individual Reels to check engagement.
+
+Record:
+- **Like counts** per Reel (visible by clicking into the post — desktop web shows likes)
+- **Comment counts** and comment quality
+- Hook quality (first frame visible in thumbnail)
+- Any notable Reels performing significantly above/below average
+
+⚠️ **View count limitation:** Instagram Reel view counts are NOT visible on the
+desktop web browser in the Reels grid. They are only accessible via the Instagram
+mobile app or Instagram Insights. If view counts matter, flag as [Insights Required].
+Do not state "view counts not available" as an error — it is a known Light mode
+limitation. Document like counts and comment quality instead.
+
+### Step 3.6 — Bio & Positioning Alignment Check
+
+**Only if Brand Voice / Client Context docs are loaded:**
+
+Compare bio text against:
+- Known brand positioning (does bio reflect the core value proposition?)
+- Documented language rules (any DON'T words used in bio?)
+- Known contradictions (flag "Fotobox" type issues if present in docs)
+
+### Step 3.7 — Competitive Context (2–3 Profiles)
+
+Navigate to 2–3 competitor profiles identified from:
+- Client Context doc (if available) — use documented competitors
+- Manual search for same niche if not documented
+
+**Searching for competitors:**
+- Try direct handle navigation first: `instagram.com/[handle]`
+- If handles from context docs return "Seite nicht verfügbar" (page not found), try
+  alternative handle formats (dots, underscores, without city suffix)
+- Use the Instagram **in-app search bar** (not URL-based keyword search — this does not
+  work reliably on desktop). Click the search icon → type the studio/brand name.
+- If Instagram search finds no results: also try searching in German if the client is
+  German-speaking (e.g. "Fotostudio Berlin" vs "photo studio berlin")
+
+**If no direct competitors are found on Instagram:**
+This is a significant finding in itself — document it as a **first-mover opportunity**
+rather than a data gap. Score Dimension 7 at 75–85 and include in the report:
+*"No Instagram-active direct competitors were found for [niche] in [city]. This means
+[client] can become the category-defining account for this concept on Instagram."*
+Do NOT leave this dimension unscored or score it low because no competitors exist.
+
+For each competitor found, record:
+- Follower count
+- Posting frequency estimate
+- Format mix
+- Engagement rate on last post
+- One notable content strength
 
 ---
 
@@ -201,43 +295,7 @@ Navigate systematically through the profile. Full step-by-step details in `refer
 
 **Before analysis or report generation, save all collected data to disk.**
 
-```bash
-cat > instagram-audit-data.json << 'EOF'
-{
-  "profile": {
-    "handle": "",
-    "name_field": "",
-    "bio": "",
-    "link_in_bio": "",
-    "followers": 0,
-    "following": 0,
-    "post_count": 0,
-    "profile_pic_quality": "",
-    "category": "",
-    "verified": false
-  },
-  "feed_analysis": {
-    "aesthetic_score_notes": "",
-    "format_breakdown": {"reels_pct": 0, "carousel_pct": 0, "static_pct": 0},
-    "avg_engagement_rate": 0,
-    "best_performing_post": "",
-    "worst_performing_post": "",
-    "caption_formula_followed": true/false
-  },
-  "highlights": {
-    "count": 0,
-    "names": [],
-    "covers_branded": true/false
-  },
-  "competitors": [],
-  "brand_alignment_issues": [],
-  "insights_available": false,
-  "audit_date": ""
-}
-EOF
-```
-
-This checkpoint enables session resumption if context limits are reached.
+Use the JSON template in `references/data-checkpoint-template.md`. This checkpoint enables session resumption if context limits are reached.
 
 ---
 
@@ -397,60 +455,13 @@ Three phases:
 
 ---
 
-## Troubleshooting
+## Troubleshooting, Related Skills & Learnings
 
-### Instagram Not Loading in Chrome
-- Wait 5–10 seconds for JS rendering
-- Try scrolling once to trigger lazy loading
-- If login wall appears: confirm with user whether to log in or proceed in Light mode
+See `references/troubleshooting-and-learnings.md` for: troubleshooting common Chrome/Instagram issues, related skills reference table, real-world learnings log (8 improvements from live audits), and version history.
 
-### Like Counts Hidden
-- Instagram allows accounts to hide like counts
-- Use comment counts only for engagement rate (note as [Estimated])
-- ⚠️ Reel view counts are NOT visible on desktop web (grid or individual Reel view)
-  — they require the Instagram mobile app or Insights access. Do not flag this as
-  an error. Note as [Insights Required] and use like+comment data instead.
-
-### Profile Not Found
-- Confirm handle spelling with user
-- Search Instagram directly (sometimes handles have periods, underscores)
-- Check for multiple similar accounts (e.g. @monochrome.me.studio vs @monochromberlin)
-
-### Brand Voice Doc Has Contradictions
-- Document them as findings, do not resolve them in the audit
-- State: "This contradiction was present in the brand documentation before this audit. It needs a decision from [client name] before implementing any bio changes."
-- Do NOT pick a side — surface the decision, don't make it
-
-### Context Docs Not Available
-- Proceed with observation-based scoring
-- Note at the top of the report: "This audit is observation-based. A brand voice document and client context document would upgrade alignment scoring for Dimensions 1, 2, and 3."
+After each audit run where something surprising emerged, add a row to the learnings log in that reference file.
 
 ---
 
-## Related Skills
-
-| Skill | When to use |
-|-------|-------------|
-| `docx` | Required for report generation (Phase 5) |
-| `ccc-seo-audit` | If Instagram audit reveals SEO gaps on the linked website |
-| `gmb-audit` | Run alongside Instagram for a full local presence audit |
-| `ccc-sop-creator` | If a repeatable Instagram content process needs to be documented post-audit |
-
----
-
-## Rules (Update When Things Go Wrong)
-
-- Always split collab vs. own-content engagement rates — averaging them masks real performance
-- Reel view counts are NOT visible on desktop web; use likes+comments and note [Insights Required]
-- If competitor handles from context docs don't exist on Instagram, run in-app search fallback — treat "no competitors found" as a first-mover finding, not a failure
-- Zero Highlights on a service business = score ≤15/100 (Critical), not just Average
-- Use Instagram in-app search bar, not URL-based keyword search (URL approach returns zero results)
-- When same content appears in multiple formats (carousel vs. Reel), always flag and compare directly
-- If brand voice doc has contradictions, document them — do NOT pick a side
-- Full learnings log with audit-by-audit details: see `references/learnings-log.md`
-
----
-
-## Self-Improvement
-
-After every audit run, append new learnings to `references/learnings-log.md` and update the Rules section above with any new edge cases. Track which Phase and Step was affected so future runs benefit immediately.
+*Daniel Förster & Heiko Lube | Claude Cowork Consultants (CCC)*
+*claudecoworkconsultants.com*
