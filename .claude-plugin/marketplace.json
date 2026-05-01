@@ -69,7 +69,7 @@
       "name": "ccc-operations",
       "source": "./plugins/ccc-operations",
       "description": "CCC internal operations toolkit. Two public skills: SOP Creator (HEROIC-format SOPs) and Skill Creator Pro (full Claude skill engineering loop). Framework Extractor moved to the second-brain plugin as of v1.6.0 — it is a knowledge-extraction tool and belongs with the Second Brain stack.",
-      "version": "1.6.0",
+      "version": "1.6.1",
       "author": {
         "name": "Claude Cowork Consultants"
       },

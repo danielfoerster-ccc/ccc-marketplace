@@ -1,9 +1,19 @@
 {
   "name": "ccc-operations",
-  "description": "CCC internal operations toolkit. Two public skills: CCC SOP Creator (HEROIC-format SOPs for any repeatable business process) and Skill Creator Pro (full engineering loop for Claude skills and plugins). Framework Extractor moved to the second-brain plugin in v1.6.0 — it is a knowledge-extraction tool and belongs with the Second Brain stack.",
-  "version": "1.6.0",
+  "description": "CCC internal operations toolkit. Two public skills: CCC SOP Creator (HEROIC-format SOPs for any repeatable business process) and Skill Creator Pro (full engineering loop for Claude skills and plugins). Framework Extractor moved to the second-brain plugin in v1.6.0 — it is a knowledge-extraction tool and belongs with the Second Brain stack. Also contains two private vault-only skills (never publish): Marketplace Health Check and Marketplace Publisher.",
+  "version": "1.6.1",
   "author": {
     "name": "Daniel Förster · Claude Cowork Consultants"
   },
-  "display_name": "CCC Operations"
+  "display_name": "CCC Operations",
+  "keywords": [
+    "SOP",
+    "standard operating procedure",
+    "skill creation",
+    "skill creator",
+    "plugin",
+    "workflow documentation",
+    "HEROIC",
+    "ops"
+  ]
 }

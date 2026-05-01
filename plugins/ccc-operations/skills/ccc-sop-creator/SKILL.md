@@ -72,7 +72,7 @@ Before asking any questions, always read:
 
 **2. Live CCC foundation docs** (always read for any SOP):
 - ICP: `03 - OPERATIONS/Claude Cowork Consultants/01 - GTM/icp.md`
-- Offer: `03 - OPERATIONS/Claude Cowork Consultants/01 - GTM/offer.md`
+- Offer: `03 - OPERATIONS/Claude Cowork Consultants/00 - CCC Foundations/offer.md`
 - Positioning: `03 - OPERATIONS/Claude Cowork Consultants/01 - GTM/positioning.md`
 - Voice: `03 - OPERATIONS/Claude Cowork Consultants/01 - GTM/voice.md`
 
