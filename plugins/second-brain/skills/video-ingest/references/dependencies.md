@@ -164,6 +164,29 @@ pip install imagehash --break-system-packages
 
 ---
 
+## Whisper Configuration (VAD Trade-off)
+
+The video-ingest skill uses Whisper for audio transcription. There are two modes:
+
+### Default (vad_filter=False)
+- Faster first-segment output (segments appear within seconds)
+- Good for clean course/presentation audio with clear speech
+- Language: auto-detect or set to `--language=en` (English)
+- Beam search: `beam_size=1` (fastest)
+
+**Use this for:** most educational videos, course recordings, webinars with clear audio
+
+### With VAD (Voice Activity Detection)
+- `vad_filter=True` — Whisper pre-scans the entire audio for silence before producing segments
+- Upfront processing delay: 60+ seconds for 60-minute audio (no output while scanning)
+- More aggressive at removing background silence/noise
+
+**Use this for:** noisy environments, multiple speakers with long pauses, if you need segment-level silence removal. Enable with `--vad` flag.
+
+**Why VAD is NOT the default:** On long, clean recordings (e.g., a 1-hour course), VAD's upfront pass can make it appear that Whisper has crashed or hung. For production use, the skill defaults to `vad_filter=False` so operators see immediate feedback.
+
+---
+
 ## Version Requirements
 
 Minimum supported versions (skill will work with newer):

@@ -2,6 +2,7 @@
 name: video-ingest
 description: Ingests split-format video recordings (muted video + separate audio) into a single markdown file with timestamped Whisper transcripts, extracted slide images, OCR slide text, and vault-ready frontmatter. Handles talking-head false positives via perceptual-hash deduplication—a two-layer fix that kills naive head-movement detection. Use this whenever you have a course recording, class video, or educational content in split format (video file + audio file) that needs to become a searchable vault note.
 allowed-tools: Bash, Read, Write
+version: 0.2.0
 ---
 
 **Workflow: Extract → Dedupe → OCR → Combine.** This skill ingests a muted video + audio pair, transcribes the audio to timestamped SRT, extracts candidate frames via ffmpeg scene detection, filters out talking-head false positives with perceptual-hash deduplication, OCRs surviving frames, and produces a single markdown ready for `knowledge-distill` to compress into a clean distill note.
@@ -46,6 +47,16 @@ Example path (without --thinker-folder):
     ...
 ```
 
+## Expected Output by Video Type
+
+The skill's output varies significantly depending on your video content. Knowing what to expect prevents confusion:
+
+- **Slide-first lectures** (e.g., a structured course with 20+ slides): Expect dozens of slide images retained in `_slides/`, with rich OCR text. Output is slide-heavy; the transcript is secondary.
+- **Talking-head presentations** (e.g., a webinar with a presenter at the bottom and minimal slides): Expect 0–5 slides retained, possibly zero if the video is purely presenter-to-camera. Output is transcript-dominated; slides are optional.
+- **Few/zero slides retained IS NOT A BUG.** If the video has minimal text-based slide content, the OCR text-length filter (Rule 3: ≥10 characters per slide) correctly identifies that there are no text-rich frames to extract. The transcript is the primary artifact.
+
+Tailor your expectations to your input content. If you expected slides but got none, the video likely had no text-based slides.
+
 ## Phase-by-Phase Workflow
 
 ### Phase 0: Inputs & Validation
@@ -53,6 +64,11 @@ Ask for video path, audio path. Confirm ffmpeg, whisper, tesseract, imagehash ar
 
 ### Phase 1: Audio Transcription
 Run Whisper on audio file with `--output_format=srt`. Produces `transcript.srt` with `HH:MM:SS,mmm --> HH:MM:SS,mmm` timestamps and speaker text. Extract total duration from the SRT for Phase 7 reporting.
+
+**Whisper Configuration Trade-offs:**
+- Default: `vad_filter=False`, `language="en"`, `beam_size=1` (speed-optimized for clean course audio)
+- With `vad_filter=True`: Whisper performs an upfront Voice Activity Detection pass on the full audio, which can delay first-segment output by 60+ seconds on long recordings (e.g., 60-min audio). Use only if you need aggressive silence-skipping (rarely needed).
+- Operator can enable VAD with `--vad` flag if desired, but default is disabled for immediate feedback.
 
 ### Phase 2: Frame Extraction
 ffmpeg with optional `--crop` + scene detection (threshold default 0.5):
@@ -105,7 +121,7 @@ Output summary:
 
 1. **Never extract frames without deduplication.** Raw ffmpeg scene detection on talking-head video produces dozens of near-duplicate frames (different head positions, same slide). Always run Phase 3 — it's the core innovation here.
 
-2. **Perceptual hash threshold is not arbitrary.** The default 0.15 normalized hamming distance is tuned for typical slide layouts. If you see excessive duplicates (talking head still sneaking through), lower threshold to 0.10. If you're losing legitimate slide changes, raise to 0.20. See `references/phash-tuning.md` for diagnostic steps.
+2. **Perceptual hash threshold is not arbitrary.** The default 0.12 normalized hamming distance is tuned for typical slide layouts. If you see excessive duplicates (talking head still sneaking through), lower threshold to 0.10. If you're losing legitimate slide changes, raise to 0.20. See `references/phash-tuning.md` for diagnostic steps.
 
 3. **OCR text < 10 chars is noise.** Animations, transitions, or pure-video frames that aren't slides will OCR to 1–5 chars. The 10-char floor filters these out without manual review. If a real slide is getting filtered, it means OCR failed — try increasing the threshold to 15 chars, or investigate the frame quality (blurry/dark slides may need preprocessing).
 

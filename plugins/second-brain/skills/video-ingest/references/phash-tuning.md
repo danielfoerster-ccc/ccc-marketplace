@@ -10,7 +10,7 @@ For each frame after ffmpeg extraction:
 3. Compute the normalized Hamming distance (0.0 = identical, 1.0 = completely different)
 4. If distance > threshold, keep the frame; otherwise skip as a duplicate
 
-**Default threshold: 0.15 normalized distance**
+**Default threshold: 0.12 normalized distance** (tuned for talking-head video; adjusted in v0.2 based on real-world test feedback)
 
 ## Why This Fixes Talking-Head False Positives
 
