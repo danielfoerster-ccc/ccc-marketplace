@@ -1,0 +1,23 @@
+{
+  "skill_name": "video-ingest",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I have a recording from Michael Simmons' Frontier Prompting class that I downloaded in split format. The video file is `/downloads/frontier-prompting-session-1.mp4` (muted, shows slides + talking head in corner) and the audio is `/downloads/frontier-prompting-session-1-audio.mp3`. Please ingest this with --thinker-folder='Michael Simmons' and --course-name='Frontier Prompting' so I can vault-ingest the transcript and slides.",
+      "expected_output": "A single markdown file at `01 - KNOWLEDGE BASE/Thinkers & Philosophers/Michael Simmons/Courses/Frontier Prompting/Frontier Prompting - Recording 1 - [Topic] - Raw Ingest.md` with timestamped Whisper transcript, extracted slide images in `_slides/` subfolder, OCR text below each image, and vault-ready frontmatter. Output should be consumable directly by `/knowledge-distill`.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "I have a Zoom recording where the presenter's head is in the bottom-right corner and takes up about 20% of the screen. The muted video is `~/Downloads/zoom-class.mp4` and the audio is `~/Downloads/zoom-class-audio.wav`. The camera position is pretty distracting, so I want to use the --crop flag to remove it. Can you ingest this with a suitable crop preset for Zoom gallery mode?",
+      "expected_output": "A markdown file in `01 - KNOWLEDGE BASE/📥 Inbox/Untitled Recording - Recording 1 - Raw Ingest.md` (since no --course-name or --thinker-folder were provided). The crop flag should remove the bottom-right talking-head region, resulting in fewer duplicate slides and cleaner OCR output. Frontmatter should include slide_count and ocr_success_rate. Expected: ~5–15 unique slides extracted (depending on video length), not 50+ duplicates from head movement.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "I want to test the dependency check before running a full ingest. Can you run the video-ingest skill with a nonexistent video file just to verify that the skill detects missing dependencies (ffmpeg, whisper, tesseract, imagehash) and returns helpful install commands if anything is missing?",
+      "expected_output": "Skill should run Phase 0 (Inputs & Validation), detect the nonexistent video file, and then check for all required dependencies. If any are missing, return exact install commands for the current OS. If all are installed, report success and offer to proceed (but don't crash on the missing video file in this test case).",
+      "files": []
+    }
+  ]
+}
