@@ -124,25 +124,24 @@
     {
       "name": "second-brain",
       "source": "./plugins/second-brain",
-      "description": "Second Brain tools for the cognitive-exoskeleton era. Five skills: Second Brain Setup & Audit (five-folder Layer-1 substrate + Three Brains framework + operation-readiness diagnostics), Knowledge Distill (URL/YouTube → key-idea notes with thinker profiles), Knowledge Archive (full-text archiving + bulk publication feed), Second Brain Connect (runs Simmons' 9 cognitive operations — Analogical, Abductive, Counterfactual, Falsification, Bayesian, First Principles, Dialectical, Systems, Perspective — against vault clusters and returns human-approved connection proposals), and Framework Extractor (decodes books, courses, and frameworks into structured Claude Cowork Skills and plugins via a 5-phase decode-build-audit-architect workflow).",
-      "version": "1.7.3",
+      "description": "Second Brain tools for the cognitive-exoskeleton era. Ten skills: Second Brain Setup & Audit (five-folder Layer-1 substrate + Three Brains framework + operation-readiness diagnostics), Knowledge Distill (URL/YouTube → key-idea notes with thinker profiles), Knowledge Archive (full-text archiving + bulk publication feed), Second Brain Connect (runs Simmons' 9 cognitive operations against vault clusters and returns human-approved connection proposals), Framework Extractor (decodes books/courses/frameworks into structured Claude Cowork Skills via 5-phase decode-build-audit-architect workflow), CCC Mental Model Recipes (vault-grounded fork with dual-mode output and attribution-clean Lens/Recipe handling), Frontier Prompting (Pattern Bridge / Void Space / Quantum Leap question design from Simmons' course), Third Brain Mastery (Five Stages curriculum daily-delivery mechanism), Video Ingest (split-format course recordings → vault markdown with Whisper transcripts, OCR slide text, pHash deduplication), and Specialized Profile Builder (Simmons Class 2 architecture — produces 7-dimensional operator-domain Specialized Memory Profiles via Disconfirming Evidence Questioning across 2 MVP branches).",
+      "version": "1.8.0",
       "author": {
         "name": "Daniel Förster · Claude Cowork Consultants"
       },
       "keywords": [
-        "second-brain",
-        "knowledge-base",
-        "cognitive-exoskeleton",
-        "cognitive-operations",
-        "distill",
-        "archive",
-        "connect",
-        "framework-extractor",
-        "simmons",
-        "obsidian",
-        "vault",
-        "three-brains",
-        "perspective-simulation"
+        "second brain",
+        "PKM",
+        "knowledge management",
+        "Obsidian",
+        "mental models",
+        "Simmons",
+        "frontier prompting",
+        "knowledge distill",
+        "cognitive operations",
+        "Three Brains",
+        "specialized memory",
+        "operator profile"
       ],
       "display_name": "Second Brain"
     },
