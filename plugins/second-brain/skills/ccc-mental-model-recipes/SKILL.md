@@ -9,15 +9,19 @@ description: >
   (Simmons-canonical + CCC-original Lenses). Run substantive reasoning work (decisions,
   strategy, diagnosis, IP development) through the library automatically. Bypass for routine
   ops (file moves, status checks, bash commands, simple lookups).
-allowed-tools: Read
-version: 1.0.0
+allowed-tools: Read, Bash, Glob
+version: 1.2.0
 ---
 
 # CCC Mental Model Recipes
 
 Apply the Cognitive Operations Architecture — structured thinking recipes built from lenses, operations, and recipes — to produce deeper thinking than default reasoning.
 
-**This is the CCC-adapted fork of Michael Simmons' Mental Model Recipes skill.** It inherits the full Simmons framework (89 Lenses, 9 Operations, 40 Recipes) and adds CCC-original content (49 additional Lenses, 7 Trademarks). It is vault-grounded (loads from `WELTENERNEUERER/01 - KNOWLEDGE BASE/Mental Models/` when mounted) with fallback bundling for standalone use.
+**This is the CCC-adapted fork of Michael Simmons' Mental Model Recipes skill.** It inherits the full Simmons framework (89 Lenses, 9 Operations, 40 Recipes) plus Simmons-extended content from paid courses (Class 4 Five Prompts, Class 5 Law of Requisite Variety, etc.) and CCC-original content (~75 additional Lenses, 20 Trademark seeds — see vault audit at runtime).
+
+**Two modes:**
+- **Vault-mounted (canonical):** the skill performs a *live audit* of `01 - KNOWLEDGE BASE/Mental Models/` and `01 - KNOWLEDGE BASE/Synthesis/Trademark Ideas/` at session start, so it always reflects the current state of the library — no matter how many Lenses, Recipes, or Trademark seeds have been added since the skill last shipped.
+- **Bundled fallback (snapshot):** when the skill runs outside a vault context (Claude.ai, web, etc.) it falls back to bundled reference files. Those files are intentionally a snapshot from skill release; in vault mode they are *not* the source of truth.
 
 ---
 
@@ -165,27 +169,58 @@ After selecting the recipe and BEFORE running steps, make an explicit decision: 
 
 ## Vault-Grounded Library Access
 
-### When Mounted in a Vault Session
+### When Mounted in a Vault Session — Run a Live Audit First
 
-The skill detects the vault context and loads from the live vault library:
+The skill detects the vault context (presence of `01 - KNOWLEDGE BASE/Mental Models/` directory) and **performs a live audit at session start** before any recipe selection.
 
-- **All 89 Simmons-canonical Lenses** + **49 CCC-original/other-source Lenses** = 138 total Lenses available for recipe work
-- **All 9 Operations + 72 Moves** (Simmons-distilled, CCC-curated)
-- **All 44 Recipes** (40 Simmons + 4 CCC/other)
-- **Real-time access to wikilinks** — when the recipe cites [[Extended Mind Theory]], the skill can cross-check the vault version
+**Live audit procedure** (run this once per session, cache the results):
 
-This gives the highest-fidelity results. CCC-original Lenses are especially valuable in CCC sales/engagement contexts because they are designed for the psychographic Daniel serves.
+```bash
+# Lenses count + recent additions
+ls "01 - KNOWLEDGE BASE/Mental Models/Lenses/"*.md | wc -l
+# List Lens files sorted by modification time (newest first) — surface anything recent
+ls -t "01 - KNOWLEDGE BASE/Mental Models/Lenses/"*.md | head -10
+
+# Operations + Moves
+ls -d "01 - KNOWLEDGE BASE/Mental Models/Operations/"*/ | wc -l   # 9 canonical Operations
+for d in "01 - KNOWLEDGE BASE/Mental Models/Operations/"*/; do
+  echo "$(basename "$d"): $(ls "$d"*.md 2>/dev/null | wc -l) Moves"
+done
+
+# Recipes (subfolders + root files)
+ls "01 - KNOWLEDGE BASE/Mental Models/Recipes/"*.md | wc -l
+ls -d "01 - KNOWLEDGE BASE/Mental Models/Recipes/"*/ | wc -l
+
+# Trademark seeds
+ls "01 - KNOWLEDGE BASE/Synthesis/Trademark Ideas/"*.md | grep -v _README | wc -l
+```
+
+The audit gives you the **current ground truth** rather than relying on stale skill metadata. The vault grows continuously — Lenses get distilled, Recipes get promoted, Trademark seeds get graduated. The skill must reflect that or it produces stale recommendations.
+
+**Audit baseline as of v1.2.0 release (2026-05-06):**
+- Lenses: 164 total (89 Simmons-canonical + ~75 CCC-original / Simmons-extended / other-source)
+- Operations: 9 canonical + 72 Moves (across 9 Operation subfolders)
+- Recipes: ~53 total (40 Simmons-canonical in category subfolders + ~13 CCC-original / extended at root)
+- Trademark seeds: 20 (CCC IP Cluster + Distribution Cluster + standalones)
+
+**If the live audit produces different numbers, trust the audit.** Don't reconcile to the baseline — the baseline is expected to drift. Use the audit numbers in your recipe-selection reasoning ("I have 164 Lenses available; the most semantically aligned one is...") and update the operator if the drift is large enough to surprise them.
+
+**CCC-original Lenses are especially valuable** in CCC sales/engagement contexts because they are designed for the psychographic Daniel serves. When in vault mode, prefer them over Simmons-canonical equivalents when the engagement is CCC-flavoured (operator psychology, AI coupling, founder-led business).
 
 ### Fallback Bundled Mode (Outside Vault)
 
-When the skill is used outside a vault context (Claude Desktop, web, other sessions), it loads from bundled reference files:
+When the skill is used outside a vault context (Claude.ai, web, other sessions where `01 - KNOWLEDGE BASE/` is not accessible), it loads from bundled reference files:
 
-- `lenses-catalogue.md` (89 Simmons-canonical)
-- `ccc-original-lenses.md` (7 graduated + 3 seed-stage CCC Lenses — bundled fallback)
-- `operations-moves.md` (9 Operations + 72 Moves)
-- `recipes-part1.md` through `recipes-part6.md` (40 Recipes)
+- `lenses-catalogue.md` (89 Simmons-canonical Lenses — stable, rarely changes)
+- `ccc-original-lenses.md` (CCC-original Lens snapshot — see top of file for snapshot date)
+- `simmons-extended-lenses.md` (Lenses surfaced from Simmons paid-course material — see top of file for snapshot date)
+- `operations-moves.md` (9 Operations + 72 Moves — stable)
+- `recipes-part1.md` through `recipes-part6.md` (40 Simmons-canonical Recipes — stable)
+- `attribution.md` (citation conventions)
 
-Fallback mode works but is constrained to the bundled set. Vault mode is recommended for full library access.
+**Fallback files are intentionally point-in-time snapshots.** They drift behind the vault. Each file's header notes its snapshot date. When in fallback mode, use them — but tell the operator: *"I'm running from bundled reference files, snapshot date [X]. The vault has grown since then; if you can mount the vault, I'll re-audit."*
+
+Vault mode is recommended for full library access and is canonical.
 
 ---
 
@@ -250,7 +285,9 @@ Don't read all reference files upfront. Read them on-demand:
 
 **v1.1.0 (2026-04-30):** Two failure-mode fixes from iteration-1 evals: (1) Added explicit "Reformulate vs. Directly Answer" decision step — was defaulting to creative reformulation when directness was sometimes better. (2) Added Output Length Discipline section — was producing 17KB outputs where baseline-with-vault produced 10KB with same diagnosis quality; padding from procedural-narration cut.
 
-**Future (Phase B — planned):** Ingest Simmons 2025+ content into simmons-extended-lenses.md. Expand CCC-original recipes as new Trademarks graduate. Consider marketplace-specific variations (LONNEL-tuned version, etc.).
+**v1.2.0 (2026-05-06):** Vault-drift fix. Earlier versions stated static counts (138 Lenses, 44 Recipes) that became stale as the vault grew. v1.2.0 replaces static counts with a **Live Audit procedure** the skill runs at session start in vault-mounted mode, so the skill always reflects current ground truth. Bundled fallback files now carry explicit snapshot dates and a header instructing the user to mount the vault for canonical access. Vault baseline updated: 164 Lenses, ~53 Recipes, 9 Operations + 72 Moves, 20 Trademark seeds (snapshot 2026-05-06). `simmons-extended-lenses.md` populated with Class 4-5 surfaced Lenses (Law of Requisite Variety + others). `ccc-original-lenses.md` updated with new graduated Trademarks since v1.1 (Service-to-Software Pipeline et al.). Frontmatter `allowed-tools` expanded to `Read, Bash, Glob` to support the live audit. Frontmatter version finally bumped to match body documentation (v1.0.0 → v1.2.0).
+
+**Future (Phase B — planned):** Continue ingesting Simmons paid-course content into simmons-extended-lenses.md as new Classes drop. Expand CCC-original recipes as new Trademarks graduate. Consider marketplace-specific variations (LONNEL-tuned version, etc.). Consider a v1.3 vault-drift detector that warns Daniel when the vault has grown >10% since the last skill release — signals it's time to refresh bundled fallbacks for outside-vault use.
 
 ---
 

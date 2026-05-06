@@ -1,5 +1,7 @@
 # CCC-Original Lenses & Trademark-Tier Deployables
 
+> *Last snapshot: **2026-05-06 (skill v1.2.0)**. The vault has more entries than this file lists. **In vault-mounted mode, run the live audit per SKILL.md and prefer the live folder content** at `01 - KNOWLEDGE BASE/Synthesis/Trademark Ideas/` (currently 20 seeds) and `01 - KNOWLEDGE BASE/Mental Models/Lenses/` (currently 164 Lenses, of which ~75 are CCC-original / Simmons-extended / other-source). This bundled file exists for outside-vault use.*
+
 CCC-original and derived-source Lenses developed within [[WELTENERNEUERER]]. These complement the 89 Simmons-canonical Lenses and extend the library for CCC-specific engagement work. Each entry can be deployed as a Lens in problem-solving recipes (like the Simmons Lenses) or read as a standalone Trademark Idea for strategic framing.
 
 ---
@@ -159,4 +161,64 @@ These Lenses operate similarly to Simmons' Lenses but are CCC-authored. When bui
 
 ---
 
-*This reference file is part of the [[ccc-mental-model-recipes]] plugin v1.0.0. Last updated 2026-04-30.*
+*This reference file is part of the [[ccc-mental-model-recipes]] plugin. Last updated 2026-05-06 (v1.2.0).*
+
+---
+
+## Recent Additions Since v1.1.0 (snapshot 2026-05-06)
+
+### Service-to-Software Pipeline (graduated Trademark seed)
+
+**Status:** Seed (surfaced 2026-05-06 from corpus harvest on Simmons AI Second Brain Course)
+
+**Core Claim:** A consulting methodology becomes a distributable software product when its decision logic is captured as Lenses, Operations, and Recipes, then packaged as a Cowork skill that an operator can run on their own engagements. This is the GTM moat for AI-era consultancies: not better consulting, but consulting that ships as software. Every CCC plugin in the marketplace (`ccc-cashflow-management`, `ccc-sales-process`, `ccc-seo-suite`, `ccc-buyback`, `ccc-gtm`, `ccc-ai-audit`, `second-brain`, `ccc-planning`) is an instance of the pattern.
+
+**The Operator Move:** When evaluating a methodology — your own or a competitor's — ask: *can it be packaged as software, or does delivery require the human?* Methodologies that can be packaged scale exponentially; methodologies that can't have a human-shaped ceiling. The pipeline identifies which methodologies are worth investing in.
+
+**Deployment Signal:** Use when (a) deciding which methodology to absorb next, (b) positioning a CCC engagement (the consulting IS the methodology absorption + decoding; the product IS the packaged skill), (c) pricing — methodologies that ship as software justify subscription/license pricing, not just hourly billing, (d) explaining CCC's moat to clients, prospects, or hires.
+
+**When NOT to Use:** Pure expertise engagements (one-off advisory where the value IS the human's specific judgment, not a generalisable methodology). Identity work and Universe Two work — see [[Craft Sovereignty in the AI Era]].
+
+**Related:** [[Three-Layer Architecture Doctrine]], [[The Operator as Bottleneck]], [[Five Stages of Third Brain Mastery — Seed]], [[Fractal Three Brains]], [[Agent Orchestration as Core Skill]] (Simmons-extended)
+
+**Attribution:** CCC-original. Pattern recognition surfaced via [[ccc-mental-model-recipes]] corpus harvest on Simmons Class 5 (which described Service-to-Software as a *future direction*; the harvest revealed CCC was already executing it). Graduation target 2026-07-05.
+
+**Vault wikilink:** [[Service-to-Software Pipeline]]
+
+---
+
+### Operator Bottleneck Has Three Dimensions (candidate Lens — surfaced 2026-05-06)
+
+**Status:** Candidate Lens, not yet promoted (awaiting Daniel review per Falsification proposal #138)
+
+**Core Claim:** [[The Operator as Bottleneck]] is *not* a single-dimension claim. The bottleneck has three dimensions, all of which must close to escape it: (1) **Context completeness** — operator's frameworks, history, and self-model encoded for AI access, (2) **Cognitive operations skill** — operator can shape questions, run recipes, abandon when surprised, (3) **Architectural commitment** — operator has externalised memory, orchestration, and sustained substrate.
+
+**Falsification origin:** Surfaced via the 2026-05-06 Falsification on [[The Operator as Bottleneck]] using Simmons's "AI Tourist vs. Operator" framing as a cross-test. Verdict: Simmons's narrower framing (context-completeness alone) is *necessary but not sufficient* — operators with rich context but tourist-tier output exist. The 3-dimensional structure makes the bottleneck claim mechanically precise.
+
+**The Operator Move:** When diagnosing why an AI-augmented operator isn't compounding, *test* which dimension is the active bottleneck — don't assume the answer. A client who closes only the context gap (rich profile, generic output) gets a half-result. A client who closes all three gets transformation.
+
+**Deployment Signal:** Use in CCC client diagnostic work + Daniel's own self-diagnostic. Especially valuable as a counter to "just upgrade your prompts" advice — most operators with good prompts are stuck on the OTHER two dimensions.
+
+**Attribution:** CCC-original (sharpening of [[The Operator as Bottleneck]] via Falsification on Simmons-extended cross-test). See [[2026-05-06 — Falsification on Operator as Bottleneck — Proposal]] for full reasoning.
+
+---
+
+### Lens candidates surfaced 2026-05-06 — not yet in vault, pending Daniel review
+
+These were flagged during the corpus-harvest pass but not yet promoted:
+- **Personal Growth as Primary Output** — Trademark seed candidate. Motivation inversion: paradoxically, work driven by genuine intellectual curiosity (not reach optimisation) is what produces rare, valuable output. Source: Simmons Class 3 (Blockbuster Philosophy). Graduation candidate.
+- **Integrative Complexity Beats Consistency in Algorithmic Environments** — CCC Lens candidate. Generalises beyond content to GTM, hiring, product positioning in any saturated algorithmic surface. Source: Simmons Class 3.
+- **Course Macro-Structure (Foundation → Architecture → Philosophy → Tools → Capstone)** — engagement-architecture template (not Lens / Recipe / Trademark). See [[Course Macro-Structure as CCC Engagement Template — Proposal]] for full proposal pending Daniel decision.
+
+When the canonical vault entries are created (expected within 30 days post-Daniel-review), this section's references should be updated.
+
+---
+
+## Vault Pointer for Outside-Vault Sessions
+
+The full CCC-original / Simmons-extended Lens set lives in `01 - KNOWLEDGE BASE/Mental Models/Lenses/` (164 .md files, ~75 of which are CCC-original or extended). The full Trademark seed set lives in `01 - KNOWLEDGE BASE/Synthesis/Trademark Ideas/` (20 seeds). When operating outside the vault:
+
+1. Use this file's bundled entries plus the candidates section above
+2. Be explicit with the operator that you're running on a snapshot
+3. Mention that more Lenses / seeds may exist than what this file lists
+4. If the operator can mount the vault, recommend doing so for canonical access
