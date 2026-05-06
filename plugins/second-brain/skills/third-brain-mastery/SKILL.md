@@ -5,10 +5,11 @@ description: |
 allowed-tools: "Read, Write, Glob"
 metadata:
   author: Claude · CCC (curriculum design by Daniel Förster)
-  version: 0.1.0
-  status: v0.1 — Stage 1 implementation, ready for 2026-05-01 launch
-  dependencies: ["frontier-prompting skill", "daily-checkin skill"]
+  version: 0.2.0
+  status: v0.2 — Stage 1 active; Stage 2 spec'd via Five Prompts bundle (active execution = v0.3)
+  dependencies: ["frontier-prompting skill", "daily-checkin skill", "ccc-mental-model-recipes skill"]
   trademark_seed: "[[Five Stages of Third Brain Mastery — Seed]]"
+  v0_2_addition: "Bundled Simmons Class 4 Five Prompts as Stage 2 daily-practice spec — see references/stage-2-five-prompts.md"
 ---
 
 # Third Brain Mastery Skill
@@ -260,7 +261,7 @@ to see the field before you ask the question.
 
 6. **Technique selection is online, not offline.** You decide which technique activates which question — you don't ask the operator to pick a technique first. You do the cognitive work of matching.
 
-7. **Stage 2-5 are stubbed.** Stages 2-5 are defined but not implemented. Only Stage 1 is fully active. If stage > 1, surface a message: "Stage [N] is defined but in-development. Using Stage 1 practice for now."
+7. **Stage 2 is spec'd in v0.2; active execution is v0.3.** If `current_stage == 2`, surface the v0.2 handoff message (see "Stage 2 — Spec'd as of v0.2" section) — do NOT silently fall back to Stage 1 practice. The handoff is part of the teaching loop. Stages 3-5 remain stubbed; for those, the original message applies: "Stage [N] is defined but in-development. Using Stage 1 practice for now."
 
 8. **State file is source of truth.** Always load and update the state file. It's the single source for streak, stage, and graduation status.
 
@@ -278,13 +279,23 @@ to see the field before you ask the question.
 
 ---
 
-## Future Phases (v0.2+)
+## Stage 2 — Spec'd as of v0.2 (active execution = v0.3)
 
-**Stage 2 (Perspective Prompting):**
-- After 7 reflex days on Frontier Prompting, unlock Perspective mode
-- Daily practice: run a council-of-experts prompt on one TOP 3 task
-- Graduation: 7 consecutive days of invoking council prompts unprompted
-- Uses: `ccc-mental-model-recipes` skill for perspective synthesis
+**Stage 2 (Perspective Prompting via the Five Prompts):** Spec lives in `references/stage-2-five-prompts.md`. The skill bundles Simmons Class 4's Five Prompts (Phenomenological / Developmental Editor / Perspective Shift / Clarifying Questions / Synthesis) as Stage 2 daily-practice content. When `current_stage == 2` AND v0.3 is implemented, the skill will:
+- Read the stage-2-five-prompts reference at runtime
+- Route the operator's TOP 3 task through ONE of the Five Prompts based on task shape
+- Apply the same reflex-graduation logic as Stage 1 (7 consecutive YES days)
+- After 14+ practice runs AND 7 consecutive reflex days → Stage 2 graduates
+
+**For v0.2 (now):** Stage 2 routing is documented but NOT executed. If the operator's `current_stage` reads as 2 (Stage 1 has graduated), the skill surfaces:
+
+> *Stage 1 graduated. Stage 2 (Perspective Prompting via Five Prompts) is spec'd — see `references/stage-2-five-prompts.md` — but active daily-practice execution is v0.3. For now, you can run any of the Five Prompts manually. The reflex-graduation tracker for Stage 2 activates in v0.3.*
+
+This explicit handoff to the operator avoids a half-implemented Stage 2 that confuses the practice rhythm. Better to ship Stage 2 as a documented spec the operator can execute manually until v0.3 makes it auto-routed.
+
+---
+
+## Stages 3-5 (still stubbed)
 
 **Stages 3-5 (Multi-Prompting, Infinite Prompting, Harvard Protocol):**
 - Stubbed. Definitions in [[The Five Stages of Third Brain Mastery — Curriculum]].
