@@ -50,18 +50,27 @@
     {
       "name": "ccc-gtm",
       "source": "./plugins/ccc-gtm",
-      "description": "Go-to-market system for AI-first marketing agencies. Runs a structured GTM discovery session to define ICP, positioning, and offer — then produces a phased 90-day launch plan with weekly actions and a clear revenue hypothesis.",
-      "version": "1.1.2",
+      "description": "Go-To-Market foundation for AI automation consultants. Three skills: (1) GTM Discovery — structured interview to build ICP, positioning, offer, voice, and operational context; (2) GTM 90-Day Launch Plan — phased week-by-week action plan grounded in the discovery foundation; (3) 7 Powers Diagnostic — Hamilton Helmer's strategic-positioning framework applied as a discovery-call brief or C-Suite workshop deck, anchoring narrower CCC engagement scopes in a Vision-of-Domination story.",
+      "version": "1.2.0",
       "author": {
         "name": "Claude Cowork Consultants"
       },
       "keywords": [
-        "gtm",
         "go-to-market",
-        "icp",
+        "GTM",
+        "ICP",
         "positioning",
-        "launch-plan",
-        "strategy"
+        "offer design",
+        "niche",
+        "AI consulting",
+        "launch plan",
+        "90 days",
+        "7 Powers",
+        "strategic diagnostic",
+        "moat analysis",
+        "discovery call",
+        "vision of domination",
+        "C-Suite workshop"
       ],
       "display_name": "CCC Go-To-Market"
     },
