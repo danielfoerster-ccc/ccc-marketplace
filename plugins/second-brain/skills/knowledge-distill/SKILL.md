@@ -9,9 +9,10 @@ description: |
 allowed-tools: "Read, Write, Glob, Grep, Bash"
 metadata:
   author: Daniel Förster · Claude Cowork Consultants
-  version: 1.3.0
+  version: 1.4.0
   created: 2026-04-01
-  updated: 2026-04-19
+  updated: 2026-05-07
+  v1_4_addition: "Book Ingestion Procedure — strict 7-phase discipline (skeleton-first, one-chapter-at-a-time, write-before-next-read, drop-content-explicitly) added after 2026-05-07 multi-Harari-book parallel-dispatch failure mode and the recovery pattern that worked across 5 sequential agents (Homo Deus + 21 Lessons fully ingested, no crashes)."
 ---
 
 # Knowledge Distill Skill
@@ -378,13 +379,35 @@ TODO nodes flagged: [[A]], [[B]]
 - **File path to a saved transcript**: read with the `Read` tool (Mode 1, no Tavily). Preferred workflow: save transcript to vault → run the skill with the file path — cheaper and cleaner.
 - Extract: speaker's 1–3 core claims, frameworks / models / stories referenced, memorable phrasings. Route + wikilink as any other source.
 
-### Books (PDF or similar)
+### Books (PDF or similar) — Strict ingestion discipline
 
 **Do not archive PDFs as Markdown** — the PDF itself IS the archive; duplicating it into the vault creates storage without compounding.
 
-Instead: **chapter-level distills**. For each chapter, produce a distill note at the appropriate route. When the book teaches a framework worth operationalising, the full chain is:
+Instead: **chapter-level distills** following the per-chapter write-as-you-go discipline below. The discipline exists because book-length PDFs (300-500 pages) reliably crash agents that try to read multiple chapters before writing distills — context fills with PDF content, autocompact thrashes, and the agent ends mid-stream with zero output. *(Failure mode established 2026-05-07 across three parallel Harari book agents: Sapiens, Homo Deus, 21 Lessons all crashed with zero distills written despite reading 200-300 pages each.)*
 
-`knowledge-distill` → [[framework-extractor]] → [[ccc-sop-creator]] → [[skill-creator-pro]]
+**The Book Ingestion Procedure (mandatory for any PDF >100 pages):**
+
+1. **Phase 0 — Skeleton first.** Before reading any content, create the master MOC file with frontmatter + a chapter-by-chapter skeleton (one heading per chapter, empty bodies). Create empty stub files for each chapter distill: `Chapter [N] — [Title] — Distill.md` with frontmatter only. This anchors the workflow against eventual context loss — if the agent crashes, the next agent picks up from the partially-filled skeleton.
+
+2. **Phase 1 — One chapter at a time.** Read ONLY the pages of the next un-distilled chapter (use the PDF skill's `pages` parameter, e.g., `pages: "32-58"`). Never read content for two chapters before writing the first chapter's distill. Never read more than 30-40 pages in a single Read call.
+
+3. **Phase 2 — Write before next read.** After reading a chapter's pages: immediately Edit the corresponding stub file to insert the distill. Cap distills at 60-100 lines (Core Argument + 3-7 Key Ideas + Connections — not 300 lines). The cap matters: distill = compressed thinking, not chapter re-narration.
+
+4. **Phase 3 — Drop content explicitly.** After writing the chapter distill, the agent's working memory should NOT retain the chapter text. The next chapter starts fresh. If the agent feels tempted to "remember" prior chapters for cross-references, those references go in the MOC after all chapters are done — not built up across chapters during reading.
+
+5. **Phase 4 — Update the MOC progressively.** After each chapter distill is saved, append a one-line summary to the MOC's chapter table. The MOC grows row-by-row alongside the chapter distills, not in one big batch at the end.
+
+6. **Phase 5 — Cross-thinker connections + Lens candidates LAST.** Once all chapters are distilled, do a separate synthesis pass: cross-thinker links, Lens / Trademark / Recipe candidates, falsification candidates against existing CCC IP. This is a small additional read (the agent re-skims their own distills), not new PDF reading.
+
+7. **Phase 6 — Update the thinker `_Index.md` and pipeline tracker.** Mark the book as ✅ ingested with the date and a brief summary line.
+
+**Why this works (the slides PDF case study, 2026-05-06):** A 168-page slides PDF crashed one agent that tried to read it in fewer larger chunks. A second agent succeeded by reading 30-page chunks and writing to disk after each chunk — 107 substantive items captured cleanly across the whole deck. The Book Ingestion Procedure formalises this pattern.
+
+**Resume capability.** If a book ingestion crashes mid-way (context overflow, etc.), the partially-filled skeleton on disk lets the next agent pick up from the next un-distilled chapter. Always Phase-0 the skeleton even if you think this run will complete cleanly.
+
+When the book teaches a framework worth operationalising, the full chain remains:
+
+`knowledge-distill` (book pattern above) → [[framework-extractor]] → [[ccc-sop-creator]] → [[skill-creator-pro]]
 
 This is the shipped path — the GTM plugin was produced from source material along this chain.
 
