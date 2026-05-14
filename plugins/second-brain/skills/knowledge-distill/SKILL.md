@@ -9,7 +9,7 @@ description: |
 allowed-tools: "Read, Write, Glob, Grep, Bash"
 metadata:
   author: Daniel Förster · Claude Cowork Consultants
-  version: 1.4.0
+  version: 1.4.1
   created: 2026-04-01
   updated: 2026-05-07
   v1_4_addition: "Book Ingestion Procedure — strict 7-phase discipline (skeleton-first, one-chapter-at-a-time, write-before-next-read, drop-content-explicitly) added after 2026-05-07 multi-Harari-book parallel-dispatch failure mode and the recovery pattern that worked across 5 sequential agents (Homo Deus + 21 Lessons fully ingested, no crashes)."
@@ -387,7 +387,9 @@ Instead: **chapter-level distills** following the per-chapter write-as-you-go di
 
 **The Book Ingestion Procedure (mandatory for any PDF >100 pages):**
 
-1. **Phase 0 — Skeleton first.** Before reading any content, create the master MOC file with frontmatter + a chapter-by-chapter skeleton (one heading per chapter, empty bodies). Create empty stub files for each chapter distill: `Chapter [N] — [Title] — Distill.md` with frontmatter only. This anchors the workflow against eventual context loss — if the agent crashes, the next agent picks up from the partially-filled skeleton.
+1. **Phase 0 — Skeleton first, with a path-resolution check.** Before reading any content, create the master MOC file with frontmatter + a chapter-by-chapter skeleton (one heading per chapter, empty bodies). Create empty stub files for each chapter distill: `Chapter [N] — [Title] — Distill.md` with frontmatter only. This anchors the workflow against eventual context loss — if the agent crashes, the next agent picks up from the partially-filled skeleton.
+
+   **Path-resolution check (mandatory before the first write):** the target directory path contains spaces, ampersands, em-dashes, and a leading number-prefix (`01 - KNOWLEDGE BASE/Thinkers & Philosophers/...`). Before writing any file, confirm the directory you are about to write into actually resolves: run a `Bash` `ls` (or `test -d`) on the *exact* target directory string and confirm it exists. If `ls` returns "No such file or directory", **do not create the directory by writing into it** — first diagnose whether the path was mangled. The known failure mode (2026-05-12): a target path with embedded literal quote characters (`"01 - KNOWLEDGE BASE"/...`) created a quote-named sibling folder at vault root because a `mkdir`/write went to the literally-quoted string instead of the real folder. Two cheap guards: (a) prefer the `Write` tool with a clean absolute path string typed directly — never assemble paths by concatenating shell-escaped fragments; (b) after creating the skeleton, `ls` the parent of the target folder and confirm no quote-named or otherwise-mangled sibling appeared. If one did, stop and report it rather than continuing to write into the wrong place.
 
 2. **Phase 1 — One chapter at a time.** Read ONLY the pages of the next un-distilled chapter (use the PDF skill's `pages` parameter, e.g., `pages: "32-58"`). Never read content for two chapters before writing the first chapter's distill. Never read more than 30-40 pages in a single Read call.
 
@@ -439,6 +441,7 @@ Route to `01 - KNOWLEDGE BASE/Concepts & Ideas/Personal Reflections/` or `01 - K
 10. **Folder paths above are defaults, not absolutes.** If the vault uses a different layout, adapt. When uncertain, ask before saving to the wrong place.
 11. **Books don't get Markdown archives — chapter distills instead.** Courses do. Apply the book/course → plugin chain when the source teaches an operationalisable framework.
 12. **Meeting notes route to Operations/Intelligence, not the Knowledge Base.**
+13. **Verify the target directory resolves before the first write — never write into an unconfirmed path.** Vault paths contain spaces, ampersands, em-dashes, and number-prefixes; a mangled path (especially one with embedded literal quote characters) silently creates a junk sibling folder at vault root instead of failing loudly. `ls` / `test -d` the exact target directory string first; after creating a book skeleton, `ls` the parent and confirm no mangled sibling appeared. *(Added v1.4.1 — 2026-05-12, after a quote-mangled `"01 - KNOWLEDGE BASE"` folder was created at vault root during the 2026-05-05 Tegmark ingestion and went unnoticed for a week.)*
 
 ---
 
@@ -453,6 +456,7 @@ Route to `01 - KNOWLEDGE BASE/Concepts & Ideas/Personal Reflections/` or `01 - K
 | Tavily quietly replaced with Bash/Chrome when it fails                    | Partial text; inconsistent results            | Old instruction to "fall back to Chrome"                    | Stop and ask the user to reconnect Tavily.                                              |
 | Paywalled source scraped partially                                        | Distorted distill based on teaser content     | No paywall handling                                         | Stop and ask; accept a paste-in (Mode 0) if the user has access.                        |
 | Stance never assigned; wikilinks applied identically to every source      | Graph is topical, not relational              | Epistemic stance skipped                                    | Infer stance (default `resonates`); calibrate wikilink depth in Phase 4.                |
+| Target path mangled (embedded quotes, bad escaping)                       | Junk sibling folder created at vault root (e.g. `"01 - KNOWLEDGE BASE"/`) | Path assembled from shell-escaped fragments; write went to a literally-quoted string | `ls` / `test -d` the exact target directory before the first write; use `Write` with a clean typed absolute path; after skeleton creation, `ls` the parent for mangled siblings. |
 
 ---
 
