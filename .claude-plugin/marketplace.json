@@ -12,7 +12,7 @@
       "name": "ccc-planning",
       "source": "./plugins/ccc-planning",
       "description": "CCC daily operating system. Structured daily check-ins, daily checkouts, weekly planning, 90-day sprints, and session handoff prep — all designed for solo founders and fractional executives running an AI-first business.",
-      "version": "1.3.0",
+      "version": "1.4.0",
       "author": {
         "name": "Claude Cowork Consultants"
       },
