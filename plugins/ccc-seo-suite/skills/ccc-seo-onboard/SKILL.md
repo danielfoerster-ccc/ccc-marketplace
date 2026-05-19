@@ -1,52 +1,97 @@
 ---
 name: ccc-seo-onboard
 description: |
-  Engagement-start orchestrator. Runs the interactive intake interview (BenAI Context Questionnaire pattern adapted for CCC), bootstraps the per-client SEO folder from template, captures author profile(s) per the author profile schema, captures brand voice, sets up GSC service account (or Cowork connector), captures WordPress REST API credentials, runs the baseline tools-audit, and emits the Phase 1 readiness report. After this skill completes, the client is ready for `ccc-seo-strategy-session`.
-  Use this skill when an operator says "onboard a client", "start engagement", "set up [Client] SEO", "bootstrap the client", "kick off SEO for [Client]", or anytime a new client's SEO engagement begins. The first orchestrator any new client touches.
+  Engagement-start orchestrator. Runs intake (interactive interview OR fast-forward from existing discovery-call findings), bootstraps the per-client SEO folder from template, captures author profile(s) + brand voice, sets up GSC service account + WordPress REST credentials + DataForSEO, runs the baseline tools-audit, and emits the Phase 1 readiness report. After this skill completes, the client is ready for `ccc-seo-strategy-session`.
+  Use this skill when an operator says "onboard a client", "start engagement", "set up [Client] SEO", "bootstrap the client", "kick off SEO for [Client]", or anytime a new client's SEO engagement begins. ALSO use when a Discovery-Call has already happened and the intake-content is captured in a findings-file (intake_source=external_call) — the skill detects that and skips the 37-question interview. The first orchestrator any new client touches.
 allowed-tools: "Read, Write, Edit, Bash, WebFetch, Glob"
 metadata:
   author: Claude Cowork Consultants
-  version: 0.1.0
+  version: 0.2.0
   layer: orchestration-surface
   category: user-task-orchestrator
   composes:
     - ccc-seo-tools-audit
+  shared_libs:
+    - _lib/docx-helpers.js
+  schemas:
+    - schemas/onboarding-findings-schema.md
+    - schemas/author-profile-schema.md
+  folder_template: templates/_TEMPLATE - Client SEO Folder/
   reference_pattern: "BenAI Business & Personal Context Questionnaire (Courses/OS Setup Course/)"
 distribution: ccc-internal
 ---
 
 # ccc-seo-onboard — Engagement Start
 
-**Workflow: Interactive intake → folder bootstrap → author + voice capture → credentials → baseline audit → readiness report.**
+**Workflow: Intake (interactive OR fast-forward from findings-file) → folder bootstrap → author + voice capture → credentials → baseline audit → readiness report.**
 
 ## What this is
 
-The first session a new client goes through. Everything `ccc-seo-strategy-session` and downstream skills need is captured here: business context, ICP, focus (Service / Product / Hybrid), language(s), location(s), brand voice, author(s), credentials. Bootstraps the full per-client folder from the template. Runs the baseline audit so subsequent strategy work has a current state to plan against.
+The first session a new client goes through. Everything `ccc-seo-strategy-session` and downstream skills need is captured here: business context, ICP, focus, language(s), location(s), brand voice, author(s), credentials. Bootstraps the full per-client folder from the template. Runs the baseline audit so subsequent strategy work has a current state to plan against.
 
-Modeled on BenAI's Business & Personal Context Questionnaire pattern (from the OS Setup course) but extended for SEO-specific capture (focus decision, library prefix, GSC connection, WP REST credentials, per-language voice profiles).
+The skill supports three intake modes — choose by `intake_source`:
+
+| Mode | When | What happens |
+|------|------|--------------|
+| `interactive` (default) | No prior call / no findings-file yet | Walks through the 30–45 min 37-question interview (Stage 1) |
+| `external_call` | Discovery-Call already happened, findings captured in a findings-file | Validates findings against `schemas/onboarding-findings-schema.md`, skips Stage 1, jumps to Stage 2 (Folder Bootstrap). Only re-runs Stage 1 for individual blocks that fail validation |
+| `brief_yaml` | Batch onboarding (e.g., partner firm with multiple sub-clients) | Reads YAML brief, no operator prompts |
+
+This fast-forward pattern (added in v0.2.0) was developed after the first full engagement (Kai Reichel, May 2026) where the Discovery-Call had captured all 37 answers — re-running the interview would have been 30+ minutes of redundant work.
 
 ## When to use
 
 - Engagement start: every new client onboarding to `ccc-seo-suite`.
-- Re-onboarding: occasionally when major business pivot warrants re-baselining (rare — usually a strategy refresh handles drift).
+- After Discovery-Call: when intake-content is already in a findings-file at `03 - OPERATIONS/Intelligence/meetings/client-calls/<date>-<client>-onboarding*.md` OR `02 - Clients/<Client>/SEO/_planning/onboarding-findings.md`.
+- Re-onboarding: occasionally when major business pivot warrants re-baselining.
 
 ## Inputs
 
 - `client_name` (required) — the new client's name.
-- `interactive` (optional, default true) — interactive intake. Non-interactive mode requires a pre-filled YAML brief instead.
-- `brief_yaml` (required if non-interactive) — pre-filled answers to the intake questions.
+- `intake_source` (optional, default `interactive`) — one of `interactive`, `external_call`, `brief_yaml`.
+- `findings_path` (required if `intake_source=external_call`) — absolute path to findings-file (or wikilink resolvable from client folder).
+- `brief_yaml` (required if `intake_source=brief_yaml`) — pre-filled answers to the intake questions.
 
 ## Procedure
 
 ### Stage 0 — Pre-flight
 
-1. Verify client doesn't already exist (no folder collision at `02 - Clients/[Client_name]/`).
-2. Read [[02 - Methodology|the methodology]] sections relevant to onboarding (§2 dual strategy, §3 company wikipedia, §10 operator's mental model — to be ready to explain what we're setting up).
-3. Read the per-client folder template at `04 - Templates/_TEMPLATE - Client SEO Folder/`.
+1. Verify client folder state at `02 - Clients/[Client_name]/SEO/`:
+   - If folder doesn't exist → fresh onboarding, proceed.
+   - If folder exists but `00 - Strategy.md` missing → onboarding partially started, continue from where left off.
+   - If folder + `00 - Strategy.md` both exist → onboarding done before; STOP and confirm with operator whether to re-run.
+2. Read the folder template at `templates/_TEMPLATE - Client SEO Folder/`.
+3. **If `intake_source=external_call`:** locate findings-file (auto-search `03 - OPERATIONS/Intelligence/meetings/client-calls/*<Client>*onboarding*.md` if path not given) and validate against `schemas/onboarding-findings-schema.md`. Surface which blocks (A–I) are complete vs. missing.
 
-### Stage 1 — Interactive intake (~30-45 minutes)
+### Stage 1 — Intake
 
-If interactive, run the questions in this order. **One question at a time.** Wait for operator answer before moving on. Iterate if answers are vague.
+**Mode-dependent.** Three branches:
+
+#### Branch 1a: `intake_source=interactive` (default)
+
+Run the 37 questions in this order. **One question at a time.** Wait for operator answer before moving on. Iterate if answers are vague.
+
+#### Branch 1b: `intake_source=external_call` (fast-forward — added v0.2.0)
+
+1. Read the findings-file in full.
+2. For each onboarding-block A–I, validate per `schemas/onboarding-findings-schema.md`:
+   - Block present (H2 with recognizable label)?
+   - Required sub-fields present in block body (regex/heuristic match)?
+3. Produce validation-report:
+   ```
+   Block A (Identity & Domain): ✓ complete — domain=kaireichel.de, library_prefix=/blog/
+   Block B (Business Context):  ✓ complete — ICP captured
+   ...
+   Block F (Author Profile):    ⚠ partial — credentials-list missing year-ranges
+   ```
+4. **For blocks marked ⚠ partial or ✗ missing:** run only those specific blocks from Branch 1a interactively. **Do NOT re-ask blocks already complete in the findings.**
+5. Capture all answers (existing-from-findings + newly-interactively-collected) into a unified intake-payload for Stage 2.
+
+#### Branch 1c: `intake_source=brief_yaml` (batch mode)
+
+Validate YAML against required-field list, proceed without operator prompts.
+
+#### Question reference (used by Branch 1a + Branch 1b for missing blocks)
 
 **Block A — Identity & domain (5 min)**
 1. Client legal name + display name.
@@ -105,17 +150,17 @@ If interactive, run the questions in this order. **One question at a time.** Wai
 
 ### Stage 2 — Bootstrap the folder
 
-1. Copy the template folder structure from `04 - Templates/_TEMPLATE - Client SEO Folder/` to `03 - OPERATIONS/Claude Cowork Consultants/02 - Clients/[Client_name]/SEO/`.
+1. Copy the template folder structure from `templates/_TEMPLATE - Client SEO Folder/` (plugin-resident) to `03 - OPERATIONS/Claude Cowork Consultants/02 - Clients/[Client_name]/SEO/`. Use `mkdir -p` to create all subdirectories: `01 - Tech Audit`, `03 - Pillars`, `04 - Silos`, `05 - Sub-Silos`, `06 - Articles`, `07 - Research Briefs`, `08 - GSC`, `09 - Internal Linking`, `11 - Cohorts`, `_authors`, `_voice`, `_planning`, `_reports/onboarding`, `_reports/strategy-sessions`, `_reports/weekly`, `_reports/quarterly`.
 2. Populate template-placeholders in the seeded files:
    - `00 - Strategy.md` frontmatter: client, url, focus, languages, locations, library_prefix, ymyl_client, ymyl_domains, authors (wikilinks), brand_voice, created.
    - `00 - Strategy.md` body: Business Overview from intake (Block B), Strategy Choice rationale (Block C). Pillar Tree placeholder (filled by strategy-session).
    - `02 - URL Inventory.md` placeholder (filled by classify-urls).
-   - `08 - GSC/opportunities.md` initial empty state.
-   - `10 - Publishing Log.md` initial empty state.
-   - `11 - Cohorts/winners-pattern.md` `status: insufficient-data` initial state.
-   - `README.md` with client name in placeholders replaced.
-3. Write author profile(s) per Block F to `03 - OPERATIONS/Claude Cowork Consultants/02 - Clients/[Client_name]/SEO/_authors/` OR for canonical authors (Daniel, etc.) to `00 - COMMAND CENTER/Foundational Docs/Authors/`. See `03 - Schemas/author-profile-schema.md` for structure.
-4. Write brand voice profile to `03 - OPERATIONS/Claude Cowork Consultants/02 - Clients/[Client_name]/SEO/_voice/voice.md` (per primary language) and `_voice/voice.{lang}.md` for additional languages.
+   - `08 - GSC/opportunities.md` initial empty state with prerequisites-check.
+   - `10 - Publishing Log.md` initial empty state with schema + cohort-tracking table.
+   - `11 - Cohorts/winners-pattern.md` `status: insufficient-data` initial state with expected-timeline.
+   - `README.md` with client name in placeholders replaced + Quick-Nav.
+3. Write author profile(s) per Block F to `02 - Clients/[Client_name]/SEO/_authors/<author-slug>.md` per `schemas/author-profile-schema.md`.
+4. Write brand voice profile to `02 - Clients/[Client_name]/SEO/_voice/voice.<lang>.md` per primary language (one file per additional language).
 
 ### Stage 3 — Credentials configuration
 
@@ -136,62 +181,4 @@ If interactive, run the questions in this order. **One question at a time.** Wai
 ### Stage 4 — Baseline audit
 
 1. Invoke `ccc-seo-tools-audit` against the client domain in full mode.
-2. Audit output persists to `01 - Tech Audit/full-{YYYY-MM-DD}.md`.
-3. Summary surfaced to operator.
-
-### Stage 5 — Readiness report
-
-Generate a one-page readiness report at `_reports/onboarding/{YYYY-MM-DD}-readiness.docx`:
-- Client overview (name, domain, focus, languages, locations).
-- ICP + business context.
-- Strategy decision + rationale.
-- Author(s) captured + YMYL qualifications.
-- Credentials status (all green or any missing flagged).
-- Baseline audit summary (critical / high / medium / low issue counts).
-- Recommended next step: run `ccc-seo-strategy-session` to build the pillar tree + topic queue.
-
-### Stage 6 — Return
-
-```yaml
-status: ready | partial | aborted
-client: "[[Client]]"
-folder_path: "03 - OPERATIONS/Claude Cowork Consultants/02 - Clients/[Client]/SEO/"
-strategy_choice: Service | Product | Hybrid
-languages: [...]
-authors_captured: <int>
-ymyl_flagged: bool
-credentials:
-  gsc: connected | service-account-pending | missing
-  wordpress: connected | missing
-  dataforseo: connected | missing
-  tavily: connected | missing
-baseline_audit: { critical: <int>, high: <int>, ... }
-readiness_report_path: "_reports/onboarding/..."
-recommended_next: "Run ccc-seo-strategy-session"
-```
-
-## Non-interactive mode
-
-If `interactive: false`, expect a `brief_yaml` input that pre-answers all 37 questions across Blocks A-I. Skill validates the YAML against required-field list and proceeds without operator prompts. Useful for batch onboarding of related clients (e.g., a partner firm onboarding multiple sub-clients with shared characteristics).
-
-## Reference
-
-Full methodology: [[02 - Methodology|CCC SEO AI Suite Methodology]] §10 (operator's mental model — what we're setting up), §2 (dual strategy decision), §5 (E-E-A-T + YMYL).
-
-Author profile schema: [[03 - Schemas/author-profile-schema|author-profile-schema]].
-
-Article frontmatter schema: [[03 - Schemas/article-frontmatter-schema|article-frontmatter-schema]] (for what subsequent skills will write).
-
-Folder template: `04 - Templates/_TEMPLATE - Client SEO Folder/`.
-
-BenAI Context Questionnaire reference: `01 - KNOWLEDGE BASE/Thinkers & Philosophers/Ben van Sprundel/Courses/OS Setup Course/Full Walkthrough - Setting Up The Second Brain/Business & Personal Context Questionnaire.md`.
-
-## Anti-patterns
-
-- Do NOT skip the strategy decision (Block C). Subsequent skills need this to know which prompt template family applies.
-- Do NOT capture vague answers. "We help businesses with marketing" is not an ICP. Push for specificity.
-- Do NOT skip YMYL flagging on YMYL clients. Hard-block thresholds depend on it.
-- Do NOT skip author qualification check on YMYL clients. Unqualified author + YMYL = indexing failure.
-- Do NOT inline credentials in any vault file. Use Cowork's credential store or the vault's secret-handling pattern.
-- Do NOT proceed to strategy-session without a baseline audit. Strategy without current-state knowledge produces theoretical plans.
-- Do NOT compress the intake. The 30-45 minutes pays off across the entire engagement; compressing produces missing context that later skills have to backfill awkwardly.
+2. Audit output persists to

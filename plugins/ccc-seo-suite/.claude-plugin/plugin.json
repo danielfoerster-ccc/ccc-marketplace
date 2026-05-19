@@ -1,7 +1,7 @@
 {
   "name": "ccc-seo-suite",
-  "description": "CCC SEO AI Suite — full-stack AI-native SEO operation for non-technical teams. Two-layer architecture: 16 atomic skills (engineering substrate) + 6 user-task orchestrators + entry router + 2 artifact/audit skills. Closed GSC learning loop with cohort attribution + per-platform AI citation tracking + multi-content-type / multi-language first-class. Includes engagement-start rescue mode for clients arriving with substantial existing content (50-500 articles from previous agency / in-house work). Built on top of the BenAI marketplace SEO stack with significant CCC extensions for compounding quality.",
-  "version": "1.0.0",
+  "description": "CCC SEO AI Suite - full-stack AI-native SEO operation for non-technical teams. Two-layer architecture: 17 atomic skills (engineering substrate) + 7 user-task orchestrators + entry router + client-facing handoff layer + 2 artifact/audit skills. Closed GSC learning loop with cohort attribution + per-platform AI citation tracking + multi-content-type / multi-language first-class. Includes engagement-start rescue mode for clients arriving with substantial existing content. Shared _lib (docx-helpers, dataforseo-client with cost-logging, voice-loader) + schemas + folder templates. Built on the BenAI marketplace SEO stack with significant CCC extensions for compounding quality.",
+  "version": "1.1.0",
   "author": {
     "name": "Claude Cowork Consultants",
     "url": "https://claudecowork-consultants.com"

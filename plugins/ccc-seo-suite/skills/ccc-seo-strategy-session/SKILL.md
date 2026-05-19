@@ -6,7 +6,7 @@ description: |
 allowed-tools: "Read, Write, Edit, Bash, WebFetch, Glob, Task"
 metadata:
   author: Claude Cowork Consultants
-  version: 0.1.0
+  version: 0.2.0
   layer: orchestration-surface
   category: user-task-orchestrator
   composes:
@@ -14,6 +14,9 @@ metadata:
     - ccc-seo-classify-urls
     - ccc-seo-tools-plan
     - ccc-seo-ideate-topics
+  shared_libs:
+    - _lib/dataforseo-client.js
+    - _lib/docx-helpers.js
 distribution: ccc-internal
 ---
 
@@ -40,21 +43,28 @@ Two modes:
 - `client` (required) — wikilink.
 - `mode` (optional) — `initial` (default) or `refresh`.
 - `interactive` (optional, default true).
-- `topic_count_per_silo` (optional, default 3) — sub-silo target count per silo for initial mode.
+- `topic_count_per_silo` (optional, default 3) — sub-silo target count per silo for initial mode. **Warning: > 3 produces a very long pipeline** (5 sub-silos × 3 silos × 5 pillars = 75 sub-silos = ~22 months at 1/week). Use > 3 only on explicit operator request.
 - `pillar_count` (optional, default 3) — pillar target count for initial mode.
+- `prioritization_strategy` (optional, default `quick-win`) — how the topic-queue is ordered:
+  - `quick-win` — Pillar with weakest brand-competition first (best for Greenfield / new sites < 6 months — conversion-intent beats volume)
+  - `volume-first` — Pillar with highest aggregate KW-volume first (best for sites with existing domain authority)
+  - `hybrid` — alternate top-2 pillars; dilutes compounding, use sparingly
+  - `manual` — operator orders the queue by hand post-generation
+  See Stage 5 for the decision-tree.
 
 ## Procedure
 
 ### Stage 0 — Pre-flight
 
 1. Verify client folder exists + onboarding is complete (read `00 - Strategy.md` frontmatter — focus, languages, locations should be set).
-2. Read [[02 - Methodology|methodology]] §2 (dual strategy), §3 (company wikipedia pattern), §6.1 (keyword identification — 5 lenses) to ground the run.
+2. **DataForSEO availability check** — confirm credentials present. If missing → STOP, this skill cannot run without DataForSEO (Stages 3, 3a, 8 all depend on it). Use `_lib/dataforseo-client.js` `userInfo()` for a zero-cost auth check.
+3. Read [[02 - Methodology|methodology]] §2 (dual strategy), §3 (company wikipedia pattern), §6.1 (keyword identification — 5 lenses) to ground the run.
 
 ### Stage 1 — Audit refresh
 
-1. Invoke `ccc-seo-tools-audit` against the client domain.
-2. In `initial` mode: produces a baseline if onboarding's audit is stale (>30 days).
-3. In `refresh` mode: produces a fresh audit for trend comparison.
+1. **Audit-staleness check first.** Look at the most recent file in `01 - Tech Audit/`. If its date is **within the last 7 days**, the audit is fresh — skip the re-run, link-reference the existing audit, and proceed to Stage 2. Re-auditing a site that was audited days ago wastes time and (if CWV) money. (This was a friction point in the first engagement — onboarding's audit was hours old and the skill re-ran it anyway.)
+2. If the most recent audit is **older than 30 days** (or absent): invoke `ccc-seo-tools-audit`.
+3. In `refresh` mode: always produce a fresh audit regardless of age — trend comparison needs the current snapshot.
 4. Capture audit summary — critical issues become priority constraints in planning.
 
 ### Stage 2 — URL classification
@@ -68,13 +78,29 @@ Two modes:
 
 1. From `00 - Strategy.md` business overview, extract 5-8 primary KW seeds (for initial mode) OR pull existing pillar-level KWs (for refresh mode).
 2. Run DataForSEO SERP queries against the seeds (with `language_code` + `location_code`).
+   - **Use `_lib/dataforseo-client.js`** — its `serpBulk()` handles the parallel-call pattern (the Live-Advanced endpoint accepts only 1 task per call, so N seeds = N parallel calls) and auto-logs cost to `_planning/dataforseo-spend-log.md`.
 3. Capture top-10 competitor URLs across queries. Top 5 most-frequent competitors become the analysis set.
-4. For each competitor, fetch via Tavily Extract:
+4. For each competitor, fetch via Tavily Extract (fallback: `curl` if Tavily unavailable):
    - Library / hub URL pattern (do they have a `/library/`? `/resources/`? Other?).
    - Cluster count + content type mix (glossary-heavy? video-heavy? blog-only?).
-   - Approximate article volume.
+   - Approximate article volume (sitemap URL-count is a fast proxy).
    - Branded series presence (video / podcast / report-series).
 5. Persist competitor analysis to `_planning/competitors-{YYYY-MM-DD}.md` with structured findings.
+
+### Stage 3a — Brand-Term Reality Check  *(added v0.2.0 — mandatory)*
+
+**This stage is non-negotiable. Skipping it risks building an entire pillar against the wrong SERP.**
+
+The client's strategic brand-term may mean something completely different in Google than in the client's head. In the first engagement, the client's brand-term "Verantwortungsvolle Männlichkeit" turned out to be SERP-occupied by NGOs (Plan International, Heinrich Böll Stiftung) and political discourse — not coaching. Building a pillar named after that term would have meant 19 topics competing against organisations we cannot outrank, in a content-field that isn't even ours.
+
+Procedure:
+1. Extract from `00 - Strategy.md` frontmatter the client's `brand_term` (and any `brand_term_internal` / strategic positioning phrase from the Business Overview).
+2. Run a dedicated SERP query for each brand-term via `_lib/dataforseo-client.js`.
+3. **Disconnect heuristic:** examine the top-5 organic results. Do they belong to the client's actual competitive field (coaching / consulting / the client's industry)? Or to an adjacent-but-wrong field (NGO / politics / academia / news / government)?
+   - If top-5 are field-appropriate → brand-term is SEO-safe, can be a pillar/silo target.
+   - If top-5 are wrong-field → **DISCONNECT FLAG.** The brand-term must NOT be used as a pillar/silo/sub-silo target keyword. The client keeps the term internally; the SEO-pillar gets a different, field-appropriate name.
+4. Persist the check to `_planning/brand-term-reality-check-{YYYY-MM-DD}.md` with the decision documented.
+5. **If a DISCONNECT FLAG fires:** surface it to the operator at Stage 5 explicitly, with 2-3 alternative pillar-term options and their SERP-realities. The operator decides the rename. The client must be told about the rename transparently (this becomes a line item in the `ccc-seo-client-handoff` strategy-review doc).
 
 ### Stage 4 — Strategic plan generation
 
@@ -86,11 +112,12 @@ Two modes:
    - Competitor enrichment (from Stage 3).
 2. Capture the plan output at `_planning/plan-{YYYY-MM-DD}-{mode}.md`.
 
-### Stage 5 — Operator review of strategy
+### Stage 5 — Operator review of strategy + prioritization decision
 
 **Operator checkpoint** (if interactive): operator reviews:
 - Proposed pillar tree (Service) or BOFU/MOFU/TOFU funnel (Product).
 - Per-pillar rationale.
+- **Brand-Term Reality-Check result** (from Stage 3a) — if a DISCONNECT FLAG fired, present the rename decision here with 2-3 alternative pillar-term options.
 - Recommended publishing cadence.
 - Refresh-mode delta recommendations (which pillars to over-invest in, which to pause).
 
@@ -99,112 +126,21 @@ Operator can:
 - Modify (rename pillars, drop pillars, add pillars). Skill captures changes.
 - Request alternative options (skill regenerates with the operator's feedback applied).
 
+#### Prioritization-Strategy decision
+
+The `prioritization_strategy` input determines pillar-publishing-order. Walk the operator through this decision-tree if they haven't pre-set it:
+
+| Client situation | Recommended strategy | Why |
+|------------------|---------------------|-----|
+| Greenfield site, < 6 months old, no domain authority | **`quick-win`** | Conversion-intent beats raw volume. Start with the pillar whose SERP has the weakest brand-competition — fastest path to first rankings + first leads. Volume in the Ads-tool under-counts PAA-long-tail anyway. |
+| Established site, existing rankings, domain authority present | **`volume-first`** | Authority can absorb harder SERPs. Lead with the highest-aggregate-volume pillar to maximise traffic-capture. |
+| Operator explicitly wants risk-spreading across two themes | **`hybrid`** | Acceptable but dilutes per-pillar compounding (internal-linking + cohort-attribution need cluster-depth). Use sparingly. |
+| Operator has strong domain-specific intuition | **`manual`** | Operator hand-orders the queue post-generation. |
+
+**The recommendation is a recommendation.** Operator owns the call. Document the chosen strategy + rationale in `00 - Strategy.md` Decisions-Log.
+
+Note from the first engagement: the operator can override the *recommendation* but should hear the reasoning. Kai Reichel's run had a volume-champion pillar (Midlife, 8,100/mo) tempting a `volume-first` switch — but `quick-win` (Trennung pillar, weak brand-competition + acute-pain searchers) was the right call for a Greenfield coaching site. Volume ≠ conversions.
+
 ### Stage 6 — Pillar tree commit to Strategy.md
 
-After operator approval, merge the approved pillar tree into `00 - Strategy.md`:
-- Pillar list with rationale.
-- Per-pillar: target KW, intent, expected silos.
-- Cluster index page briefs (for Service strategy — every Pillar gets a real index page per methodology §3.4).
-
-For Service: also create the Pillar files at `03 - Pillars/[Pillar Name].md` with topic frontmatter (status: queued, shape: pillar).
-
-### Stage 7 — Cluster index briefs
-
-For Service-strategy clients, every Pillar needs a real index page (not just a URL prefix). Generate cluster index briefs — these are "topic specs" for the Pillar pages themselves:
-- Frontmatter: status: queued, shape: pillar, target_kw (the Pillar topic KW), language, location.
-- Body: brief description + expected silos to cover.
-- These get processed first by `ccc-seo-publish-next` in Phase 2+ — pillars before silos before sub-silos.
-
-### Stage 8 — Topic ideation first pass
-
-For each Pillar:
-1. Invoke `ccc-seo-ideate-topics` with parent = Pillar, count = `pillar_count` × `topic_count_per_silo` (default 3 silos).
-2. Each Silo lands as a topic file at `04 - Silos/[Pillar]/[Silo].md`.
-
-For each generated Silo:
-1. Invoke `ccc-seo-ideate-topics` with parent = Silo, count = `topic_count_per_silo` (default 3 sub-silos).
-2. Each Sub-Silo lands at `05 - Sub-Silos/[Pillar]/[Silo]/[Sub-Silo].md`.
-
-For Product strategy:
-1. For each BOFU page (existing): invoke ideate-topics for MOFU children.
-2. For each MOFU article: invoke ideate-topics for TOFU children.
-
-End state: pillar count × 3 silos × 3 sub-silos = 27 topics queued (default). Plus 3 pillar topics. Total: 30 topics in queue.
-
-### Stage 9 — Queue order in Strategy.md
-
-Append all generated topics to the topic queue section in `00 - Strategy.md`:
-- Order: Pillars first, Silos second, Sub-Silos third (BFS — pillars before deeper).
-- Within each level: ordered by KW search volume × intent fit × cohort weighting (when available).
-- Each entry: target KW, intent, parent silo, target word count (from shape), priority.
-
-### Stage 10 — Operator review of queue
-
-**Operator checkpoint** (if interactive): operator reviews:
-- The topic queue (typically 30 topics).
-- Operator can: approve, reorder priorities, defer specific topics, drop specific topics.
-
-### Stage 11 — Strategy session report
-
-Generate a `.docx` report at `_reports/strategy-sessions/{YYYY-MM-DD}.docx`:
-- Strategy decision summary.
-- Pillar tree visualisation.
-- Topic queue (top 10 next-up).
-- Competitor landscape findings.
-- Audit findings affecting strategy.
-- Recommended publishing cadence.
-- For refresh mode: delta from prior strategy.
-
-### Stage 12 — Return
-
-```yaml
-status: complete | partial | aborted
-client: "[[Client]]"
-mode: initial | refresh
-strategy_path: "00 - Strategy.md"
-plan_path: "_planning/plan-2026-04-30-initial.md"
-competitors_path: "_planning/competitors-2026-04-30.md"
-report_path: "_reports/strategy-sessions/2026-04-30.docx"
-audit_critical: <int>
-url_inventory_total: <int>
-url_inventory_flagged: <int>
-pillars_count: 3
-silos_count: 9
-sub_silos_count: 27
-topic_queue_total: 39   # 3 pillars + 9 silos + 27 sub-silos
-recommended_cadence: "2 articles/week"
-recommended_next: "Start ccc-seo-publish-next on next-up topic in queue"
-```
-
-## Refresh mode specifics
-
-In `refresh` mode (typically called after `ccc-seo-quarterly-review` decides a refresh is warranted):
-- Stage 1: audit refresh produces trend deltas (resolved / persistent / new issues vs. baseline).
-- Stage 2: URL classification incremental (only new/changed URLs).
-- Stage 3: competitor enrichment refreshed (competitive landscape may have shifted).
-- Stage 4: tools-plan in `refresh` mode produces a delta + recommendations rather than full re-plan.
-- Stage 5: operator reviews recommendations specifically — what changes are approved.
-- Stages 6-9: implement approved changes (rename / drop / add pillars; reorder topics; queue replacement topics for losers).
-- Stage 10: queue review preserves manual priority overrides from prior runs.
-
-The whole point of refresh: preserve what's working, change what isn't, based on the evidence from `winners-pattern.md` + `opportunities.md` + the audit deltas.
-
-## Reference
-
-Full methodology: [[02 - Methodology|CCC SEO AI Suite Methodology]] §2 (dual strategy framework — what this orchestrator implements), §3 (company wikipedia pattern — what the strategy targets), §6 (closed GSC learning loop — refresh mode reads its outputs).
-
-Atomic skills composed:
-- [[ccc-seo-tools-audit]]
-- [[ccc-seo-classify-urls]]
-- [[ccc-seo-tools-plan]]
-- [[ccc-seo-ideate-topics]]
-
-## Anti-patterns
-
-- Do NOT skip the audit refresh in initial mode if onboarding's audit is >30 days old. Stale baselines produce theoretical plans.
-- Do NOT skip operator review at Stage 5. Pillar tree decisions are strategic; operator owns them.
-- Do NOT auto-commit pillar tree changes in refresh mode without operator approval. Refresh recommendations are recommendations.
-- Do NOT generate sub-silos before silos. BFS order matters — operators publish pillars first to anchor topical authority.
-- Do NOT skip Pillar files generation in Service mode. Cluster index pages are required (methodology §3.4).
-- Do NOT use a Sub-Silo target count > 5 in initial mode without operator request. 3 sub-silos × 9 silos × 3 pillars = 27 sub-silos is already a substantial 12-week pipeline at 2 articles/week.
-- Do NOT skip the cohort weighting hand-off to ideate-topics in refresh mode. Compounding depends on it.
+After operator approval, merge the approve

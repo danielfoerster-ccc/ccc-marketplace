@@ -48,9 +48,11 @@ Listen for one of these intent types. Often the operator says one directly; some
 
 | Intent | Routes to |
 |---|---|
-| "I want to start with a new client" / "onboard [Client]" | `ccc-seo-onboard` |
+| "I want to start with a new client" / "onboard [Client]" / "we already had the discovery call" | `ccc-seo-onboard` (use `intake_source=external_call` if a findings-file exists) |
 | "Build the strategy" / "generate the pillar tree" / "topic queue" | `ccc-seo-strategy-session` (mode=initial if first time, mode=refresh if existing strategy) |
+| "Plan the wave" / "what order do I publish [Pillar] in" / "which article first" | `ccc-seo-pillar-wave-launch` |
 | "Publish the next article" / "ship the next one" / "do today's content session" | `ccc-seo-publish-next` |
+| "Client-facing version" / "jargon-free doc for [Client]" / "[Client] needs to review" / "monthly client report" | `ccc-seo-client-handoff` |
 | "Weekly review" / "GSC review" / "what should I act on this week" | `ccc-seo-weekly-review` |
 | "Quarterly review" / "cohort analysis" / "strategy refresh" | `ccc-seo-quarterly-review` (Phase 4 — until then, route to `weekly-review` with a note) |
 | "Audit the site" / "Seomator audit" / "tech audit" | `ccc-seo-tools-audit` |
@@ -147,7 +149,4 @@ All skills:
 
 ## Anti-patterns
 
-- Do NOT route directly without confirming with operator. Operator may want to do something different than the obvious next step.
-- Do NOT route to a skill whose prerequisites aren't met. Surface the gap and guide.
-- Do NOT explain the entire suite when operator just wants a quick route. Match the verbosity to the intent.
-- Do NOT make up client state. If client folder doesn't exist, say so. Don't synthesize a status from nothing.
+- Do NOT route directly without confirming with operator. Operator may want t

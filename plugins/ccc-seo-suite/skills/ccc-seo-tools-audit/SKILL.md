@@ -6,7 +6,7 @@ description: |
 allowed-tools: "Read, Write, Edit, Bash, WebFetch, Glob"
 metadata:
   author: Claude Cowork Consultants
-  version: 0.1.0
+  version: 0.2.0
   wraps: "seo:seo-audit (BenAI marketplace SEO plugin)"
   layer: atomic-substrate
   category: marketplace-wrap
@@ -16,7 +16,24 @@ distribution: ccc-internal
 
 # ccc-seo-tools-audit — Full Site Audit
 
-**Workflow: Receive client + scope → invoke `seo:seo-audit` → persist to vault → diff against prior runs → return prioritised findings.**
+**Workflow: Time-budget-check → invoke Seomator (local OR sandbox) → persist to vault → diff against prior runs → return prioritised findings.**
+
+## ⚠️ EXECUTION-ENVIRONMENT — READ FIRST
+
+Seomator crawls are slow (~5s per page; CWV-rendering adds ~30s). The Cowork sandbox bash-tool has a **45-second hard cap per call**, and background-detached processes (`nohup`/`setsid`) do NOT survive bash-session resets reliably.
+
+**This means: crawls of more than ~5 pages will fail in the Cowork sandbox.** Discovered the hard way in the first full engagement (Kai Reichel, May 2026).
+
+**Decision rule — run a time-budget-check before any crawl:**
+
+```
+estimated_seconds = (pages × 5) + (cwv_enabled ? pages × 30 : 0)
+```
+
+- `estimated_seconds < 35` → run in Cowork sandbox directly
+- `estimated_seconds ≥ 35` → **route to local-Windows execution** (see "Local Execution" below). Do not attempt the sandbox crawl — it will time out and produce a partial or empty result.
+
+**Default is `--no-cwv`.** Core Web Vitals require Playwright (~200MB browser download) and a headed render per page. CWV is a Phase-2 performance-optimisation concern, not an Audit-1 necessity. Only enable CWV when the operator explicitly asks for it, and even then prefer local execution.
 
 ## What this is
 
@@ -33,53 +50,30 @@ The full-site audit. 16 categories × 148 rules running against the live site vi
 
 - `client` (required) — wikilink.
 - `scope` (optional) — `full` (default) or `categories: [list]` for partial audit.
+- `crawl_pages` (optional, default 20) — max pages to crawl. Small sites (< 20 pages) auto-detect actual count.
+- `cwv` (optional, default `false`) — include Core Web Vitals. Requires local execution. **Default off** — see Execution-Environment note.
 - `compare_to_baseline` (optional, default true if prior audit exists) — diff vs. most recent prior audit.
 
 ## Procedure
 
+### Stage 0 — Time-budget-check
+
+1. Estimate page-count: small-site assumption ~8–20 pages. If unknown, assume `crawl_pages` value.
+2. Compute `estimated_seconds = (pages × 5) + (cwv ? pages × 30 : 0)`.
+3. If `≥ 35` → route to **Local Execution** (give operator the command, await uploaded output-file). If `< 35` → proceed in-sandbox.
+
+### Stage 1 — Run the audit
+
 1. **Read client config** — domain URL, languages, locations, exclusions list (URLs marked `seo_excluded: true`).
-2. **Invoke `seo:seo-audit`** with the configured scope. Capture full structured output: per-category findings, severity ratings, recommended fixes.
+2. **Invoke Seomator** with the configured scope. Standard command:
+   ```bash
+   seomator audit <url> --crawl -m <crawl_pages> --no-cwv --format llm -o seomator-output-<date>.md
+   ```
+   (drop `--no-cwv` only if `cwv: true` AND running locally). Capture full structured output: per-category findings, severity ratings, recommended fixes.
+3. **Output-size handling:** if the output `.md` exceeds 80 KB, do NOT load it with the Read tool. Use the rule-extraction script (see References) to pull critical/warning issues by rule with page-counts. This is automatic, not optional — large outputs silently truncate otherwise.
 3. **Apply CCC priority extraction:**
    - Hard issues (blocks indexing or significantly suppresses ranking) → priority `critical`
    - Significant issues (likely depressing performance) → priority `high`
    - Best-practice misses → priority `medium`
    - Nice-to-haves → priority `low`
-   This priority is what `ccc-seo-strategy-session` reads as input, not the raw severity ratings.
-4. **Persist:**
-   - Path: `03 - OPERATIONS/Claude Cowork Consultants/02 - Clients/[Client]/SEO/01 - Tech Audit/full-{YYYY-MM-DD}.md`
-   - Frontmatter: type, client, scope, audited (date), categories_run, total_issues, critical_count, high_count, medium_count, low_count, skill_version, wraps, baseline_diff (if applicable).
-   - Body: per-category findings + recommended fixes + priority tags.
-5. **Compare to baseline** (if prior audit exists in `01 - Tech Audit/`):
-   - Find most recent prior `full-*.md` audit.
-   - Compute deltas: new issues, resolved issues, persistent issues (still present from prior audit), regressed issues (resolved but back).
-   - Surface in a "Trend Analysis" section at the top of the new audit file.
-6. **Update Strategy.md audit log:**
-   - Append wikilink to this audit + 1-line summary (critical/high/total counts) to `00 - Strategy.md` audit log section.
-7. **Return** structured result:
-   ```yaml
-   audit_path: "01 - Tech Audit/full-2026-04-30.md"
-   total_issues: <int>
-   critical: <int>
-   high: <int>
-   medium: <int>
-   low: <int>
-   trend:
-     new_issues: <int>
-     resolved_issues: <int>
-     persistent_issues: <int>
-     regressed_issues: <int>
-   top_5_critical: [<list of issue summaries>]
-   ```
-
-## Reference
-
-Marketplace skill source: `seo:seo-audit` (BenAI). Ships ~27 KB of references including category breakdowns, language bias warnings for non-English sites, crawl budget guidance for WordPress + WooCommerce, and platform-specific fix mapping. The wrapper does NOT modify these — they're production-grade.
-
-Full methodology: [[02 - Methodology|CCC SEO AI Suite Methodology]] §5 (E-E-A-T as indexing foundation — many critical issues this audit surfaces are E-E-A-T-related), §11 (anti-patterns).
-
-## Anti-patterns
-
-- Do NOT skip baseline comparison when prior audits exist. Trends are what matter, not snapshots.
-- Do NOT promote priority above what severity warrants. Priority extraction is conservative — when in doubt, downgrade.
-- Do NOT modify the marketplace skill's category set. New categories propagate from upstream.
-- Do NOT delete prior audit files. Audit history is needed for longitudinal trend analysis (12+ month view shows what's working).
+   This priority is what `ccc-seo-strategy-session` reads as input, not the ra
