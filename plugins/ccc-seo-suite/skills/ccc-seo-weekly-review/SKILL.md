@@ -6,9 +6,10 @@ description: |
 allowed-tools: "Read, Write, Edit, Bash, WebFetch, Glob, Task"
 metadata:
   author: Claude Cowork Consultants
-  version: 0.1.0
+  version: 0.2.0
   layer: orchestration-surface
   category: user-task-orchestrator
+  pattern: orchestrator-selective-dispatch
   composes:
     - ccc-seo-tools-optimize
     - ccc-seo-trigger-rewrite
@@ -17,13 +18,27 @@ distribution: ccc-internal
 
 # ccc-seo-weekly-review — The Weekly GSC Session
 
-**Workflow: GSC pull → 8 mode analysis → decision pass → action queue update → weekly report.**
+**Workflow: Selective-Dispatch Orchestration.** Dispatch the one heavy step → run the light decision step inline → build the report inline. Pull GSC, see what changed, decide what to act on, generate the report.
 
 ## What this is
 
-The weekly rhythm of the suite. Pull GSC, see what changed, decide what to act on, generate the report. Visibility for the operator (what's working, what's not) and the client (what was shipped, what's coming, AI-citation footprint).
+The weekly rhythm of the suite. Visibility for the operator (what's working, what's not) and the client (what was shipped, what's coming, AI-citation footprint).
 
 In v0.2 (Phase 2 era), cohort analysis is not yet integrated — that lands in Phase 4. v0.2 produces the report from current-week data + simple week-over-week deltas; the cohort feature attribution layer is a Phase 4 enhancement to this same orchestrator.
+
+## The orchestration model — read this before running
+
+This orchestrator uses **selective dispatch**, not all-dispatch. The distinction is the whole point of v0.2, and it differs deliberately from `ccc-seo-publish-next` (which dispatches every step).
+
+The dispatch decision rule applies at *sub-skill granularity inside this orchestrator*: dispatch a composed step as a scoped `Task` sub-agent **only when it is both (a) genuinely heavy** — loads a large playbook/wrap, scrapes, or processes large data — **and (b) self-contained** — its result is consumable by the next stage as a structured return or a persisted file read by path. Keep inline: light decision/scoring steps, and the synthesis stage where the orchestrator must see the data to do its job well.
+
+Applied to this skill's three steps:
+
+- **Stage 1 — `ccc-seo-tools-optimize` → DISPATCHED.** It is the one genuinely heavy unit: it wraps `seo:seo-optimize` (~148 KB of analysis playbooks), pulls the GSC CSV, runs 8 analysis modes, and writes snapshots. Running that inline dumps the playbook load, the raw CSV, and the 8-mode analysis scratch into the orchestrator's context — the bulk of the run's noise. Dispatched, all of that stays in a throwaway context; only the structured return and the persisted file paths come back. The unit is heavy enough that its own value far exceeds the fixed cost of spawning a sub-agent.
+- **Stage 2 — `ccc-seo-trigger-rewrite` → INLINE.** It is a light decision-layer skill (`Read/Write/Edit/Glob` only, heuristic scoring over an opportunities list, no scrape, no heavy wrap). Dispatching it would pay the full fixed cost of spawning a sub-agent to isolate almost no noise — a net loss. It also benefits from sitting in the same context as the Stage 1 return it scores.
+- **Stage 3 — Report build → INLINE.** The `.docx` report is this skill's deliverable, and its value is the *synthesis*: the headline finding, the top-3 narrative, the week-over-week story. That synthesis must be done in a context that has actually seen the data — the deltas, the winners/decliners, the opportunity surface. Dispatching it would make the synthesis blind. Stage 1 already ran isolated, so the orchestrator enters Stage 3 light anyway.
+
+**What stays in the orchestrator (never dispatched):** target-week selection, the Stage 2 decision step, the report synthesis, operator checkpoints, distribution judgment, the final summary. The orchestrator decides and synthesises; only the one heavy analytical unit is dispatched.
 
 ## When to use
 
@@ -40,132 +55,45 @@ In v0.2 (Phase 2 era), cohort analysis is not yet integrated — that lands in P
 
 ## Procedure
 
-### Stage 0 — Pre-flight
+### Stage 0 — Pre-flight (orchestrator, inline)
 
-1. Read client config (GSC property, languages, locations, review-day cadence).
-2. Verify GSC credentials.
+Pure orchestrator judgment — light config reads, not dispatched.
+
+1. Read client config (GSC property, languages, locations, review-day cadence) from `00 - Strategy.md`. Capture the client SEO folder root path — the orchestrator needs it to brief the Stage 1 dispatch.
+2. Verify GSC credentials are configured (the orchestrator confirms they exist; the sub-agent will use them).
 3. Determine target week.
 
-### Stage 1 — GSC analysis
+### Stage 1 — GSC analysis (dispatch `ccc-seo-tools-optimize`)
 
-1. Invoke `ccc-seo-tools-optimize` with `mode: all`, `compare_to_previous: true`.
-2. Skill pulls GSC for the week, runs all 8 analysis modes, persists snapshots, backfills article frontmatter d30/d60/d90/d180 GSC fields where the windows are reached, returns opportunities proposal.
-3. Capture: pull path, deltas path, opportunities proposal, articles backfilled count.
+**Dispatch a scoped sub-agent** for `ccc-seo-tools-optimize`. The orchestrator does NOT run the GSC pull or the 8-mode analysis itself — that is exactly the heavy, noisy, self-contained work that belongs in a clean throwaway context.
 
-### Stage 2 — Decision pass
+**Brief to hand the sub-agent:**
+- The skill to load: `ccc-seo-tools-optimize`.
+- Task: pull GSC for the target week, run all 8 analysis modes, persist snapshots, backfill article frontmatter d30/d60/d90/d180 GSC fields where the windows are reached.
+- `client` — the client wikilink + the client SEO folder root path.
+- `week` — the target week.
+- `mode: all`, `compare_to_previous: true`.
+- Credentials pointer: where the GSC credentials live (vault config path — never inline the creds).
+- Expected output: GSC pull persisted to `08 - GSC/pulls/{week}.csv`; deltas persisted to `08 - GSC/deltas/{week}.md`; article frontmatter backfilled.
+- Return contract: the skill's defined YAML — `pull_path`, `deltas_path`, `opportunities_proposed` (the 7 candidate lists), `articles_backfilled`.
 
-1. Invoke `ccc-seo-trigger-rewrite` with the opportunities proposal + `mode: weekly`.
-2. Skill scores each opportunity, assigns action types, applies cohort weighting (if winners-pattern available), updates `08 - GSC/opportunities.md`, returns top-3 priority actions.
+**On return:** the orchestrator receives `{pull_path, deltas_path, opportunities_proposed, articles_backfilled}`. It carries these forward — paths, not file contents.
+
+### Stage 2 — Decision pass (`ccc-seo-trigger-rewrite`, inline)
+
+Run `ccc-seo-trigger-rewrite` **inline** — it is a light decision-layer skill, and isolating it would cost more than it saves (see the orchestration model above).
+
+1. Run `ccc-seo-trigger-rewrite` with `mode: weekly`, passing the Stage 1 `deltas_path` (the skill reads the opportunities proposal from there).
+2. The skill scores each opportunity, assigns action types, applies cohort weighting (if winners-pattern available), updates `08 - GSC/opportunities.md`, returns top-3 priority actions.
 3. Capture: queued actions by type, manual reviews, strategic reviews, top-3 actions.
 
-### Stage 3 — Weekly report generation
+### Stage 3 — Weekly report generation (orchestrator, inline)
 
-Generate a `.docx` report at `03 - OPERATIONS/Claude Cowork Consultants/02 - Clients/[Client]/SEO/_reports/weekly/{YYYY-Www}.docx`.
+Build the `.docx` report **inline** — the synthesis must happen in a context that has seen the data. Read the `deltas_path` file (for winners/decliners + WoW figures) and `08 - GSC/opportunities.md` (the updated queue); the opportunity surface is also in the Stage 1 `opportunities_proposed` return already carried forward.
+
+Generate the report at `03 - OPERATIONS/Claude Cowork Consultants/02 - Clients/[Client]/SEO/_reports/weekly/{YYYY-Www}.docx`.
 
 Report sections:
 
 **1. Executive Summary** (~150 words)
-- Total clicks + impressions this week vs. last week (% change).
-- Articles published this week (from publishing log) — count + URLs.
-- Top 3 actions for next week (from trigger-rewrite output).
-- Headline finding (the most operator-relevant single fact from the GSC analysis).
-
-**2. What Shipped This Week**
-- Pull rows from `10 - Publishing Log.md` where publish_date is in this week.
-- Per article: URL, target KW, shape, EEAT score, GEO score.
-- Note any cohort-eligible articles (aged d30 / d60 / d90 / d180 this week — first GSC backfill snapshots captured).
-
-**3. GSC Trends**
-- Total clicks, impressions, CTR, avg position WoW.
-- Top 5 winners (biggest position improvements).
-- Top 5 decliners.
-
-**4. Opportunity Surface**
-- Striking distance (top 5).
-- Low CTR (top 5).
-- Cannibalization issues.
-- Content gaps (top 5 — candidates for new articles).
-
-**5. AI Citation Footprint**
-- Per-platform citation counts this week (when tracking is available — detection mechanism evolves; v0.2 may have manual entry, Phase 5 brand-presence skill auto-detects).
-- ChatGPT / AI Overviews / Perplexity / Gemini / Copilot — separate columns.
-- Trend vs. prior weeks.
-
-**6. Action Queue**
-- Top 3 actions for the operator next week.
-- Per action: type (article-rewrite / new-article / etc.), URL or KW, expected impact, estimated effort.
-
-**7. Manual + Strategic Reviews**
-- Any items flagged for operator attention.
-- Any items flagged for next strategy session.
-
-### Stage 4 — Operator review (interactive mode)
-
-**Operator checkpoint** (if interactive):
-- Skim the report.
-- Approve action queue (or override priorities).
-- Resolve any manual review flags.
-- Decide on report distribution (Slack, email, hold for client meeting).
-
-### Stage 5 — Distribution
-
-Per `report_to`:
-- `slack` → invoke Slack send to specified channel with executive summary + .docx attachment.
-- `email` → compose email with summary + .docx attachment, send to specified recipient (manual operator confirm before sending in interactive mode).
-- `file-only` → keep at vault path; no distribution.
-
-### Stage 6 — Return summary
-
-```yaml
-status: completed | aborted
-client: "[[Client]]"
-week: "2026-W18"
-gsc:
-  total_clicks: 1247
-  total_clicks_wow_change: +12.3
-  total_impressions: 48312
-  total_impressions_wow_change: +8.1
-  avg_position: 18.4
-  avg_position_wow_change: -0.7   # negative = improved
-articles_shipped_this_week: 3
-articles_backfilled_with_gsc: 7
-opportunities_surfaced: 24
-opportunities_resolved: 5
-top_3_actions:
-  - {type: striking-distance-rewrite, url: "...", priority: high}
-  - {type: new-article, kw: "...", priority: high}
-  - {type: meta-rewrite, url: "...", priority: medium}
-manual_reviews: 1
-strategic_reviews: 0
-report_path: "_reports/weekly/2026-W18.docx"
-distributed_to: ["slack:#client-channel"]
-```
-
-## Phase 4 enhancement preview
-
-When Phase 4 ships (`ccc-seo-analyze-cohort`), this orchestrator gains an additional stage between Stage 1 and Stage 2:
-
-**Stage 1.5 — Cohort d30 quick-signal pass**
-1. Invoke `ccc-seo-analyze-cohort` with `cadence: d30`.
-2. Identifies articles aged 30-60 days that are early winners or fast failures.
-3. Surfaces in the report under a new section "Cohort Signals — Early Winners + Fast Failures".
-4. Feeds into trigger-rewrite as additional priority weighting.
-
-The orchestrator structure stays — only the cohort skill addition.
-
-## Reference
-
-Full methodology: [[02 - Methodology|CCC SEO AI Suite Methodology]] §6 (the closed GSC learning loop — this orchestrator runs Halves 1 + 2 weekly).
-
-Atomic skills composed:
-- [[ccc-seo-tools-optimize]]
-- [[ccc-seo-trigger-rewrite]]
-
-## Anti-patterns
-
-- Do NOT auto-distribute reports without operator confirmation in interactive mode. Reports go to clients; mistakes propagate.
-- Do NOT skip the cohort backfill in Stage 1. Without it, cohort analysis breaks at d90.
-- Do NOT generate reports without action queue updates. The point is decision-making, not just status reporting.
-- Do NOT lump AI citations as "AI mentions: X". Always per-platform — only 11% domain overlap between platforms.
-- Do NOT move resolved opportunities out of `opportunities.md` history. Needed for cohort attribution + retrospective.
-- Do NOT bypass the report when running in non-interactive scheduled-autonomous mode. Scheduled runs still produce reports — they just don't pause for operator review before distribution.
+- Total clicks 

@@ -6,9 +6,10 @@ description: |
 allowed-tools: "Read, Glob"
 metadata:
   author: Claude Cowork Consultants
-  version: 0.1.0
+  version: 0.1.1
   layer: orchestration-surface
   category: entry-router
+  pattern: router
   routes_to:
     - ccc-seo-onboard
     - ccc-seo-strategy-session
@@ -32,6 +33,10 @@ distribution: ccc-internal
 The front door of `ccc-seo-suite`. Operators don't need to memorise 22 skill names. They invoke `ccc-seo`, describe what they want or what client they're working on, and this router picks the right next step.
 
 Mirrors the entry-router pattern used by `ccc-cashflow-start`, `ccc-buyback`, `ccc-audit-start`.
+
+## Routing skill — not a composing orchestrator
+
+This is a **routing skill**, not a composing orchestrator. It reads the operator's intent, assesses client state, and hands off to the right sub-skill — it does not compose a sequence of heavy atomic skills in its own context (note `allowed-tools: "Read, Glob"` — no `Task` tool, and `routes_to:` rather than `composes:`). The **Dispatch-Selection Rule** that governs the suite's composing orchestrators (`onboard`, `strategy-session`, `publish-next`, `weekly-review`, `quarterly-review`, `rescue`) — dispatch a composed unit only when it is both heavy and self-contained, keep light decision + synthesis stages inline — therefore **does not apply here**: there are no composed units to classify. The skill it routes to is then itself responsible for its own dispatch behaviour. See the [[2026-05-20 — SEO Orchestrator Dispatch — Head-to-Head Test]] for the rule and its scope.
 
 ## When to use
 
@@ -149,4 +154,13 @@ All skills:
 
 ## Anti-patterns
 
-- Do NOT route directly without confirming with operator. Operator may want t
+- Do NOT route directly without confirming with operator. Operator may want to do something different than the obvious next step.
+- Do NOT route to a skill whose prerequisites aren't met. Surface the gap and guide.
+- Do NOT explain the entire suite when operator just wants a quick route. Match the verbosity to the intent.
+- Do NOT make up client state. If client folder doesn't exist, say so. Don't synthesize a status from nothing.
+- Do NOT apply a dispatch restructure to this skill. It is a router, not a composing orchestrator — it composes no heavy units, so the Dispatch-Selection Rule has nothing to classify here.
+
+## Version history
+
+- **v0.1.1 (2026-05-20)** — Added a "Routing skill — not a composing orchestrator" section + `pattern: router` to clarify that the **Dispatch-Selection Rule** from the [[2026-05-20 — SEO Orchestrator Dispatch — Head-to-Head Test]] (rolled across the five composing orchestrators per Phase 2 of the [[2026-05-14 — Multi-Agent & Token-Efficiency Architecture — Assessment]]) does **not** apply to this skill: a router reads intent and hands off, it composes no heavy atomic units in its own context (`allowed-tools: "Read, Glob"` — no `Task`). No structural change — the routing logic is unchanged.
+- **v0.1.0** — Initial build. Entry router for the CCC SEO AI Suite.
